@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 3839920841995940714}
   - component: {fileID: 751749687531140368}
   - component: {fileID: 2216556820916945124}
-  - component: {fileID: 6395421457569368874}
+  - component: {fileID: 1859716884037350642}
   m_Layer: 0
   m_Name: Enemy_1
   m_TagString: Untagged
@@ -118,7 +118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3839920841995940715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 30, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3839920842533021004}
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
---- !u!114 &6395421457569368874
+--- !u!114 &1859716884037350642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,10 +164,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3839920841995940715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b535665309fb644b1d3d186c8c982a, type: 3}
+  m_Script: {fileID: 11500000, guid: 31c147c276ec36548a87eb19edf825c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  radius: -2.5
+  camWidth: 0
+  camHeight: 0
+  keepOnScreen: 0
+  isOnScreen: 1
 --- !u!1 &3839920842197968130
 GameObject:
   m_ObjectHideFlags: 0

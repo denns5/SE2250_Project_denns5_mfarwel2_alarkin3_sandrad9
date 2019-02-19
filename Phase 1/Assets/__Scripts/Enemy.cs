@@ -5,28 +5,34 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed = 10f;
-    // Start is called before the first frame update
-    void Start()
+    public float enemyPadding = 1.5f;
+
+    private BoundsCheck bndCheck;
+
+    void Awake()
     {
-        
+        bndCheck = GetComponent<BoundsCheck>();
     }
 
     public Vector3 pos
     {
-        get
-        {
-            return (this.transform.position);
-        }
-        set
-        {
-            this.transform.position = value;
-        }
+        get => transform.position;
+        set => transform.position = value;
     }
     // Update is called once per frame
     void Update()
     {
         Move();
+
+        if(bndCheck!=null && !bndCheck.isOnScreen)
+        {
+            if (pos.y < bndCheck.camHeight - bndCheck.radius)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
+
     public virtual void Move()
     {
         
