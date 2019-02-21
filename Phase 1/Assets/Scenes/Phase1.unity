@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
+  - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: _MainCamera
   m_TagString: MainCamera
@@ -373,6 +374,23 @@ MonoBehaviour:
   - {fileID: 7510414290417884150, guid: 9de3ee26331726f4186099abf00f0608, type: 3}
   enemySpawnPerSecond: 0.5
   enemyDefaultPadding: 1.5
+--- !u!114 &534669907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c147c276ec36548a87eb19edf825c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  camWidth: 0
+  camHeight: 0
+  keepOnScreen: 0
+  isOnScreen: 1
 --- !u!1 &885756058
 GameObject:
   m_ObjectHideFlags: 0

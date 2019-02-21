@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4154903980846744822}
   - component: {fileID: 6680154080685030122}
   - component: {fileID: 6364195165525305167}
+  - component: {fileID: 2177473106043448833}
   m_Layer: 0
   m_Name: Enemy_0
   m_TagString: Untagged
@@ -64,6 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  enemyPadding: 1.5
 --- !u!114 &6364195165525305167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +83,20 @@ MonoBehaviour:
   camHeight: 0
   keepOnScreen: 0
   isOnScreen: 1
+--- !u!114 &2177473106043448833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460340036764306656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b535665309fb644b1d3d186c8c982a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  enemyPadding: 1.5
 --- !u!1 &3460340036844546416
 GameObject:
   m_ObjectHideFlags: 0
