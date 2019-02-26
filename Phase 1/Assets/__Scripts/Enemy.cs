@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{//setting speed
+{   //setting speed
     public float speed = 10f;
-    public float enemyPadding = 1.5f;
+    
 
     private BoundsCheck bndCheck;
 
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void Move()//creating a virtua void method to be used the enemy child classes
+    public virtual void Move()//creating a virtual void method to be used the enemy child classes
     {
         
 
