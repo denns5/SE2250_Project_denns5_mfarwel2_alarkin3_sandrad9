@@ -7,11 +7,11 @@ public class Enemy : MonoBehaviour
     public float speed = 10f;
     
 
-    private BoundsCheck bndCheck;
+    private BoundsCheck _bndCheck;
 
     void Awake()
     {
-        bndCheck = GetComponent<BoundsCheck>();//when an enemy is instantiated, a BoundsCheck component is created and we can access variables from it
+        _bndCheck = GetComponent<BoundsCheck>();//when an enemy is instantiated, a BoundsCheck component is created and we can access variables from it
     }
 
     public Vector3 pos
@@ -24,9 +24,9 @@ public class Enemy : MonoBehaviour
     {
         Move();
 
-        if(bndCheck!=null && !bndCheck.isOnScreen)
+        if(_bndCheck!=null && !_bndCheck.isOnScreen)
         {
-            if (pos.y < bndCheck.camHeight - bndCheck.radius)
+            if (pos.y < _bndCheck.camHeight - _bndCheck.radius)
             {
                 Destroy(gameObject);//destroying the game object once it has left the screen
             }

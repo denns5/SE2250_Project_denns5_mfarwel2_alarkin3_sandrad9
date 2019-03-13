@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3839920841733790601}
   - component: {fileID: 3839920841733790602}
   - component: {fileID: 3839920841733790603}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,9 +104,9 @@ GameObject:
   - component: {fileID: 2216556820916945124}
   - component: {fileID: 1859716884037350642}
   - component: {fileID: 1045041375717081645}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,7 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  enemyPadding: 1.5
 --- !u!114 &1859716884037350642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  enemyPadding: 1.5
 --- !u!1 &3839920842197968130
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3839920842197968129}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +230,7 @@ GameObject:
   - component: {fileID: 3839920842358502255}
   - component: {fileID: 3839920842358502240}
   - component: {fileID: 3839920842358502241}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +321,7 @@ GameObject:
   - component: {fileID: 3839920842533021001}
   - component: {fileID: 3839920842533021002}
   - component: {fileID: 3839920842533021003}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

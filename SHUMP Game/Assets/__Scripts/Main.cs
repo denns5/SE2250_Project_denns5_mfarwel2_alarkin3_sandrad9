@@ -10,12 +10,12 @@ public class Main : MonoBehaviour
     public float enemySpawnPerSecond = 0.5f;
     public float enemyDefaultPadding = 1.5f;
 
-    private BoundsCheck bndCheck;
+    private BoundsCheck _bndCheck;
 
     void Awake()
     {
         S = this;
-        bndCheck = GetComponent<BoundsCheck>();
+        _bndCheck = GetComponent<BoundsCheck>();
         Invoke("SpawnEnemy", 1f/enemySpawnPerSecond);//calling the spawn enemy function once every 2 seconds
     }
 
@@ -30,13 +30,22 @@ public class Main : MonoBehaviour
         }
 
         Vector3 pos = Vector3.zero;
-        float xMin = -bndCheck.camWidth + enemyPadding;//creating a max and min value for the possible starting points of the ships
-        float xMax = bndCheck.camWidth - enemyPadding;
+        float xMin = -_bndCheck.camWidth + enemyPadding;//creating a max and min value for the possible starting points of the ships
+        float xMax = _bndCheck.camWidth - enemyPadding;
         pos.x = Random.Range(xMin, xMax);
-        pos.y = bndCheck.camHeight + enemyPadding;//setting the y component of the enemies to be at the top of the boundry
+        pos.y = _bndCheck.camHeight + enemyPadding;//setting the y component of the enemies to be at the top of the boundry
         go.transform.position = pos;
 
         Invoke("SpawnEnemy", 1f/enemySpawnPerSecond);//calling the invoke again
+    }
+
+    public void DelayedRestart(float delay)
+    {
+        Invoke("Restart", delay);
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene("SHUMP Game");//reloading the scene
     }
     
 }

@@ -9,7 +9,23 @@ public class Hero : MonoBehaviour
     public float speed = 30;
     public float rollMult = -45;
     public float pitchMult = 30;
-   
+    public float gameRestartDelay = 2f;
+
+    private float _shieldLevel = 4;//setting initial shield level
+
+    private GameObject _lastTriggerGo = null;
+
+    void Awake()
+    {
+        if (S == null)
+        {
+            S = this;//setting the singleton to this
+        }
+        else
+        {
+            Debug.LogError("Hero.Awake() - Attempted to assign second hero");
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -23,4 +39,44 @@ public class Hero : MonoBehaviour
         transform.position = pos;
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
     }
+    void OnTriggerEnter(Collider other)
+    {
+        Transform rootT = other.gameObject.transform.root;
+        GameObject go = rootT.gameObject;
+        print("Triggered: "+other.gameObject.name);
+
+        if (go == _lastTriggerGo)
+        {
+            return;
+        }
+        _lastTriggerGo = go;
+        if (go.tag == "Enemy")
+        {
+            _shieldLevel--;//decreasing the shield level when the ship is hit by an enemy
+            Destroy(go);//destroying the enemy when hit
+            if (_shieldLevel < 0)
+            {
+                Destroy(gameObject);//destroying the hero ship
+                print("Shield Destroyed");
+                Main.S.DelayedRestart(gameRestartDelay);//restarting the game
+            }
+        }
+        else
+        {
+            print("Triggered by non Enemy" + go.name);
+        }
+    }
+    
+    public float shieldLevel
+    {
+        get
+        {
+            return _shieldLevel;
+        }
+        set
+        {
+        //do not need to use a setter at this poit
+        }
+    }
+    
 }
