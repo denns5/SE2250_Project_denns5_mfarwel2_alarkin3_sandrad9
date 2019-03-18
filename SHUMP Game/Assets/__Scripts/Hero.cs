@@ -10,10 +10,15 @@ public class Hero : MonoBehaviour
     public float rollMult = -45;
     public float pitchMult = 30;
     public float gameRestartDelay = 2f;
+    public GameObject projectilePrefab;
+    public float projectileSpeed = 40;
 
     private float _shieldLevel = 4;//setting initial shield level
 
     private GameObject _lastTriggerGo = null;
+
+    public delegate void WeaponFireDelegate();
+    public WeaponFireDelegate fireDelegate;
 
     void Awake()
     {
@@ -25,6 +30,8 @@ public class Hero : MonoBehaviour
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second hero");
         }
+        fireDelegate += TempFire;
+
     }
 
     // Update is called once per frame
@@ -38,7 +45,26 @@ public class Hero : MonoBehaviour
         pos.y += yAxis * speed * Time.deltaTime;
         transform.position = pos;
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
+
+        // Allow the ship to fire bullet
+        if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
+        {
+            fireDelegate();
+        }
     }
+
+    void TempFire()
+    {
+        GameObject projGO = Instantiate<GameObject>(projectilePrefab);
+        projGO.transform.position = transform.position;
+        Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
+
+        Projectile proj = projGO.GetComponent<Projectile>();
+        proj.type = WeaponType.simple;
+        float tSpeed = Main.GetWeaponDefinition(proj.type).velocity;
+        rigidB.velocity = Vector3.up * tSpeed;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         Transform rootT = other.gameObject.transform.root;

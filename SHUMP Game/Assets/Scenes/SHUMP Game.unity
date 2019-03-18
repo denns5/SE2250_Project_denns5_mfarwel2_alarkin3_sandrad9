@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -374,6 +374,31 @@ MonoBehaviour:
   - {fileID: 7510414290417884150, guid: 9de3ee26331726f4186099abf00f0608, type: 3}
   enemySpawnPerSecond: 0.5
   enemyDefaultPadding: 1.5
+  weaponDefinitions:
+  - type: 2
+    letter: S
+    color: {r: 0.98039216, g: 0.086908154, b: 0.8084356, a: 0}
+    projectilePrefab: {fileID: 3519399282143753321, guid: 907ded2321a867a44868a41931853b38,
+      type: 3}
+    projectileColor: {r: 0.9803922, g: 0.08627451, b: 0.8078432, a: 0}
+    delayBetweenShots: 0.2
+    velocity: 50
+  - type: 1
+    letter: B
+    color: {r: 0.24056605, g: 0.9408454, b: 0.9622642, a: 0}
+    projectilePrefab: {fileID: 3519399282143753321, guid: 907ded2321a867a44868a41931853b38,
+      type: 3}
+    projectileColor: {r: 0.2392157, g: 0.94117653, b: 0.9607844, a: 0}
+    delayBetweenShots: 0.4
+    velocity: 50
+  - type: 0
+    letter: N
+    color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 0}
+    projectilePrefab: {fileID: 3519399282143753321, guid: 907ded2321a867a44868a41931853b38,
+      type: 3}
+    projectileColor: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 0}
+    delayBetweenShots: 0.4
+    velocity: 50
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,6 +712,9 @@ MonoBehaviour:
   rollMult: -45
   pitchMult: 30
   gameRestartDelay: 2
+  projectilePrefab: {fileID: 3519399282143753321, guid: 907ded2321a867a44868a41931853b38,
+    type: 3}
+  projectileSpeed: 40
 --- !u!114 &1849502932
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class Main : MonoBehaviour
 {
     static public Main S;
+    static Dictionary<WeaponType, WeaponDefinition> WEAP_DICT;
     public GameObject[] prefabEnemies;//creating a array to store the three enemies
     public float enemySpawnPerSecond = 0.5f;
     public float enemyDefaultPadding = 1.5f;
+    public WeaponDefinition[] weaponDefinitions;
 
     private BoundsCheck _bndCheck;
 
@@ -17,6 +19,12 @@ public class Main : MonoBehaviour
         S = this;
         _bndCheck = GetComponent<BoundsCheck>();
         Invoke("SpawnEnemy", 1f/enemySpawnPerSecond);//calling the spawn enemy function once every 2 seconds
+
+        WEAP_DICT = new Dictionary<WeaponType, WeaponDefinition>();
+        foreach(WeaponDefinition def in weaponDefinitions)
+        {
+            WEAP_DICT[def.type] = def;
+        }
     }
 
     public void SpawnEnemy()
@@ -46,6 +54,16 @@ public class Main : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("SHUMP Game");//reloading the scene
+    }
+
+    static public WeaponDefinition GetWeaponDefinition (WeaponType weaponType)
+    {
+        if (WEAP_DICT.ContainsKey(weaponType))
+        {
+            return (WEAP_DICT[weaponType]);
+        }
+
+        return (new WeaponDefinition());
     }
     
 }
