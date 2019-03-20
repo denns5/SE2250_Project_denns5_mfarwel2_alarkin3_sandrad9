@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public enum WeaponType
-{
+public enum WeaponType {
     none,
     blaster,
     simple
@@ -60,12 +59,12 @@ public class Weapon : MonoBehaviour
 
     public WeaponType type
     {
-        get { return (_type); }
+        get {   return (_type);     }
         set
-        { SetType(value); }
+        {   SetType(value);     }
     }
 
-    public void SetType(WeaponType weaponType)
+    public void SetType (WeaponType weaponType)
     {
         _type = weaponType;
         if (_type == WeaponType.none)
@@ -98,7 +97,7 @@ public class Weapon : MonoBehaviour
             vel.y = -vel.y;
         }
 
-        switch (type)
+        switch(type)
         {
             case WeaponType.simple:
                 p = MakeProjectile();
@@ -150,6 +149,6 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 }

@@ -30,7 +30,7 @@ public class Hero : MonoBehaviour
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second hero");
         }
-        fireDelegate += TempFire;
+        // fireDelegate += TempFire;
 
     }
 
@@ -47,12 +47,15 @@ public class Hero : MonoBehaviour
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
 
         // Allow the ship to fire bullet
+        // error
         if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
+        //if (Input.GetKeyDown(KeyCode.Space))
         {
             fireDelegate();
         }
     }
 
+    /* unneccessary function now, as we are improving the way the ship fires
     void TempFire()
     {
         GameObject projGO = Instantiate<GameObject>(projectilePrefab);
@@ -60,10 +63,11 @@ public class Hero : MonoBehaviour
         Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
 
         Projectile proj = projGO.GetComponent<Projectile>();
-        proj.type = WeaponType.simple;
+        proj.type = WeaponType.blaster;
         float tSpeed = Main.GetWeaponDefinition(proj.type).velocity;
         rigidB.velocity = Vector3.up * tSpeed;
     }
+    */
 
     void OnTriggerEnter(Collider other)
     {

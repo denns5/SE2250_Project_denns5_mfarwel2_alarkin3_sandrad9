@@ -18,10 +18,10 @@ public class Main : MonoBehaviour
     {
         S = this;
         _bndCheck = GetComponent<BoundsCheck>();
-        Invoke("SpawnEnemy", 1f/enemySpawnPerSecond);//calling the spawn enemy function once every 2 seconds
+        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);//calling the spawn enemy function once every 2 seconds
 
         WEAP_DICT = new Dictionary<WeaponType, WeaponDefinition>();
-        foreach(WeaponDefinition def in weaponDefinitions)
+        foreach (WeaponDefinition def in weaponDefinitions)
         {
             WEAP_DICT[def.type] = def;
         }
@@ -44,7 +44,7 @@ public class Main : MonoBehaviour
         pos.y = _bndCheck.camHeight + enemyPadding;//setting the y component of the enemies to be at the top of the boundry
         go.transform.position = pos;
 
-        Invoke("SpawnEnemy", 1f/enemySpawnPerSecond);//calling the invoke again
+        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);//calling the invoke again
     }
 
     public void DelayedRestart(float delay)
@@ -56,7 +56,7 @@ public class Main : MonoBehaviour
         SceneManager.LoadScene("SHUMP Game");//reloading the scene
     }
 
-    static public WeaponDefinition GetWeaponDefinition (WeaponType weaponType)
+    static public WeaponDefinition GetWeaponDefinition(WeaponType weaponType)
     {
         if (WEAP_DICT.ContainsKey(weaponType))
         {
@@ -65,5 +65,5 @@ public class Main : MonoBehaviour
 
         return (new WeaponDefinition());
     }
-    
+
 }
