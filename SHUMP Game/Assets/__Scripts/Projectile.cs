@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
 
     }
-    
+
 
     // Update is called once per frame
     void Update()
@@ -46,6 +46,7 @@ public class Projectile : MonoBehaviour
     {
         _type = eType;
         WeaponDefinition def = Main.GetWeaponDefinition(_type);
-        rend.material.color = Color.white; //def.projectileColor;
+        // error -- fixed Mar 19, 2019
+        rend.material.color = def.projectileColor;
     }
 }
