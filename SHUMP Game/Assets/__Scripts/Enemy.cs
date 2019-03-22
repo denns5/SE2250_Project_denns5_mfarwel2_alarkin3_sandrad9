@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {   //setting speed
     public float speed = 10f;
-    
 
     private BoundsCheck _bndCheck;
 
@@ -24,7 +23,7 @@ public class Enemy : MonoBehaviour
     {
         Move();
 
-        if(_bndCheck!=null && !_bndCheck.isOnScreen)
+        if (_bndCheck != null && !_bndCheck.isOnScreen)
         {
             if (pos.y < _bndCheck.camHeight - _bndCheck.radius)
             {
@@ -35,22 +34,13 @@ public class Enemy : MonoBehaviour
 
     public virtual void Move()//creating a virtual void method to be used the enemy child classes
     {
-        
+
 
     }
 
 
-    void OnCollisionEnter (Collision coll)
+    public virtual void OnCollisionEnter(Collision coll)
     {
-        GameObject otherGO = coll.gameObject;
-        if (otherGO.tag == "ProjectileHero")
-        {
-            Destroy(otherGO);
-            Destroy(gameObject);
-        }
-        else
-        {
-            print("Enemy hit by non-ProjectileHero: " + otherGO.name);
-        }
+
     }
 }

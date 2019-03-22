@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy_0 : Enemy
 {
     // Update is called once per frame
+    private int _health = 2;
     void Update()
     {
         Move();
@@ -15,5 +16,26 @@ public class Enemy_0 : Enemy
         Vector3 tempPos = transform.position;
         tempPos.y -= speed * Time.deltaTime;//will cause the enemy to move down
         pos = tempPos;
+    }
+
+    public override void OnCollisionEnter(Collision coll)
+    {
+        GameObject otherGO = coll.gameObject;
+        if (otherGO.tag == "ProjectileHero")
+        {
+            Destroy(otherGO);
+            if (_health == 1)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _health = _health - 1;
+            }
+        }
+        else
+        {
+            print("Enemy hit by non-ProjectileHero: " + otherGO.name);
+        }
     }
 }
