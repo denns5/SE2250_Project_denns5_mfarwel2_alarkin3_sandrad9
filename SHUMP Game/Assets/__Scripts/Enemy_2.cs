@@ -6,11 +6,9 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
 {
     private float _randomSpeed;
     private float _directionChange = 50f;
-
-
     private int _health = 3;
-
-
+    private int _points = 300;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +37,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
         _directionChange--;
         Move();
     }
-    override public void Move()//overiding the super class Move() method.
+    override public void Move() //overiding the super class Move() method.
     {
         //adjusting the position of the enemy whenever Move() is called(every frame).
         Vector3 tempPos = pos;
@@ -56,14 +54,14 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
             Destroy(otherGO);
             if (_health == 1)
             {
+                ScoreManager.UpdateScore(_points);
+                TextManager.UpdateText();
                 Destroy(gameObject);
             }
             else
             {
                 _health = _health - 1;
             }
-            // Destroy(gameObject);
-
         }
         else
         {
