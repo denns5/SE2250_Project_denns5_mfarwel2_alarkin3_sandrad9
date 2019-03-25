@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy_1 : Enemy
 {
     private float _randomSpeed;
+    private int _points = 100;
     // Start is called before the first frame update
     void Start()
     {//will randomly set the initial direction of the enemy to left or right
@@ -40,6 +41,8 @@ public class Enemy_1 : Enemy
         GameObject otherGO = coll.gameObject;
         if (otherGO.tag == "ProjectileHero")
         {
+            ScoreManager.UpdateScore(_points);
+            TextManager.UpdateText();
             Destroy(otherGO);
             Destroy(gameObject);
 

@@ -9,6 +9,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
 
 
     private int _health = 3;
+    private int _points = 300;
 
 
     // Start is called before the first frame update
@@ -56,6 +57,8 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
             Destroy(otherGO);
             if (_health == 1)
             {
+                ScoreManager.UpdateScore(_points);
+                TextManager.UpdateText();
                 Destroy(gameObject);
             }
             else
