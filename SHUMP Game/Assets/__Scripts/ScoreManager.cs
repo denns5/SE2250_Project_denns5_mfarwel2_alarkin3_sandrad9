@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     static private ScoreManager S;
     static public int HIGH_SCORE = 0;
-    private int score = 0;
+    private int _score = 0;
 
     void Awake()
     {
@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
         }
 
         //Reset score
-        score = 0;
+        _score = 0;
 
     }
 
@@ -51,7 +51,7 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateS(int p)
     {
-        score += p;
+        _score += p;
     }
 
     public static void GameOverScore()
@@ -68,11 +68,11 @@ public class ScoreManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (HIGH_SCORE <= score)
+        if (HIGH_SCORE <= _score)
         {
-            PlayerPrefs.SetInt("SHUMPHighScore", score);
+            PlayerPrefs.SetInt("SHUMPHighScore", _score);
         }
     }
 
-    static public int SCORE { get { return S.score; } }
+    static public int SCORE { get { return S._score; } }
 }
