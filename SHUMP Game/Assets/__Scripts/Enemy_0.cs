@@ -6,8 +6,6 @@ public class Enemy_0 : Enemy
 {
     // Update is called once per frame
     private int _health = 2;
-    private int _points = 200;
-
     void Update()
     {
         Move();
@@ -28,9 +26,7 @@ public class Enemy_0 : Enemy
             Destroy(otherGO);
             if (_health == 1)
             {
-                ScoreManager.UpdateScore(_points);
-                TextManager.UpdateText();
-                Destroy(gameObject);                
+                Destroy(gameObject);
             }
             else
             {

@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
@@ -11,8 +12,11 @@ public class Hero : MonoBehaviour
     public float gameRestartDelay = 2f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
+
     private float _shieldLevel = 4;//setting initial shield level
+
     private GameObject _lastTriggerGo = null;
+
     public delegate void WeaponFireDelegate();
     public WeaponFireDelegate fireDelegate;
 
@@ -25,7 +29,9 @@ public class Hero : MonoBehaviour
         else
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second hero");
-        }    
+        }
+        // fireDelegate += TempFire;
+
     }
 
     // Update is called once per frame
@@ -76,13 +82,13 @@ public class Hero : MonoBehaviour
         _lastTriggerGo = go;
         if (go.tag == "Enemy")
         {
-                        
             _shieldLevel--;//decreasing the shield level when the ship is hit by an enemy
             Destroy(go);//destroying the enemy when hit
-            
             if (_shieldLevel < 0)
             {
-                GameOver();
+                Destroy(gameObject);//destroying the hero ship
+                print("Shield Destroyed");
+                Main.S.DelayedRestart(gameRestartDelay);//restarting the game
             }
         }
         else
@@ -99,18 +105,8 @@ public class Hero : MonoBehaviour
         }
         set
         {
-        //do not need to use a setter at this point
+        //do not need to use a setter at this poit
         }
     }
-
-    // Called when the game is over
-    void GameOver()
-    {
-        Destroy(gameObject);//destroying the hero ship
-        print("Shield Destroyed");
-              
-        //Invoke("ReloadLevel", reloadDelay);
-        Main.S.DelayedRestart(gameRestartDelay);//restarting the game
-    }
-
+    
 }

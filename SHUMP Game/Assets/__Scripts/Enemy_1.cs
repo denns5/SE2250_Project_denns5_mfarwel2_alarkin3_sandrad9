@@ -5,8 +5,6 @@ using UnityEngine;
 public class Enemy_1 : Enemy
 {
     private float _randomSpeed;
-    private int _points = 100;
-
     // Start is called before the first frame update
     void Start()
     {//will randomly set the initial direction of the enemy to left or right
@@ -35,15 +33,14 @@ public class Enemy_1 : Enemy
         tempPos.y -= speed * Time.deltaTime;//will cause the enemy to move down
         pos = tempPos;//the resulting Vector3 will be in a 45 degree angle left or right.
     }
-    
+
+
     public override void OnCollisionEnter(Collision coll)
     {
         GameObject otherGO = coll.gameObject;
         if (otherGO.tag == "ProjectileHero")
         {
             Destroy(otherGO);
-            ScoreManager.UpdateScore(_points);
-            TextManager.UpdateText();
             Destroy(gameObject);
 
         }
