@@ -27,18 +27,9 @@ public class TextManager : MonoBehaviour
 
     private void SetUpUITexts()
     {
-        // Set up the HighScore UI Text
-        GameObject go = GameObject.Find("HighScore");
-        if (go != null)
-        {
-            highScoreGT = go.GetComponent<Text>();
-            highScoreGT.gameObject.SetActive(false);
-        }
-        string hScore = "High Score: " + ScoreManager.HIGH_SCORE;
-        go.GetComponent<Text>().text = hScore;
-
+        
         // Set up GameOver UI Text
-        go = GameObject.Find("GameOver");
+        GameObject go = GameObject.Find("GameOver");
         if (go != null)
         {
             gameOverGT = go.GetComponent<Text>();
@@ -67,6 +58,7 @@ public class TextManager : MonoBehaviour
     {
         gameOverGT.text = "Game Over";
         scoreGT.gameObject.SetActive(false);
+        UpdateHighScore();
         highScoreGT.gameObject.SetActive(true);
         gameOverGT.gameObject.SetActive(true);
     }
@@ -86,5 +78,18 @@ public class TextManager : MonoBehaviour
     public void UpdateT()
     {
         scoreGT.text = "Your score: " + ScoreManager.SCORE;
+    }
+
+    public void UpdateHighScore()
+    {
+        // Set up the HighScore UI Text
+        GameObject go = GameObject.Find("HighScore");
+        if (go != null)
+        {
+            highScoreGT = go.GetComponent<Text>();
+            highScoreGT.gameObject.SetActive(false);
+        }
+        string hScore = "High Score: " + ScoreManager.HIGH_SCORE;
+        go.GetComponent<Text>().text = hScore;
     }
 }

@@ -49,8 +49,8 @@ public class Main : MonoBehaviour
 
     public void DelayedRestart(float delay)
     {
-        TextManager.GameOverText();
         ScoreManager.GameOverScore();
+        TextManager.GameOverText();
         Invoke("Restart", delay);
     }
     public void Restart()

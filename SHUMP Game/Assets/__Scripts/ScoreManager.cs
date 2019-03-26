@@ -71,6 +71,7 @@ public class ScoreManager : MonoBehaviour
         if (HIGH_SCORE <= _score)
         {
             PlayerPrefs.SetInt("SHUMPHighScore", _score);
+            HIGH_SCORE = PlayerPrefs.GetInt("SHUMPHighScore");
         }
     }
 
