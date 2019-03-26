@@ -32,6 +32,7 @@ public class TextManager : MonoBehaviour
         if (go != null)
         {
             highScoreGT = go.GetComponent<Text>();
+            highScoreGT.gameObject.SetActive(false);
         }
         string hScore = "High Score: " + ScoreManager.HIGH_SCORE;
         go.GetComponent<Text>().text = hScore;
@@ -66,7 +67,7 @@ public class TextManager : MonoBehaviour
     {
         gameOverGT.text = "Game Over";
         scoreGT.gameObject.SetActive(false);
-        highScoreGT.gameObject.SetActive(false);
+        highScoreGT.gameObject.SetActive(true);
         gameOverGT.gameObject.SetActive(true);
     }
 
