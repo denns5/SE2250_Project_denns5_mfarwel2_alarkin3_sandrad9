@@ -29,19 +29,18 @@ public class Weapon : MonoBehaviour
 
     [Header("Set Dynamically")]
     [SerializeField]
+    private WeaponType _type = WeaponType.none;
     public WeaponDefinition def;
     public GameObject collar;
     public float lastShotTime;
-
-    private WeaponType _type = WeaponType.none;
-    private Renderer _collarRend;
+    private Renderer collarRend;
 
 
     // Start is called before the first frame update
     void Start()
     {
         collar = transform.Find("Collar").gameObject;
-        _collarRend = collar.GetComponent<Renderer>();
+        collarRend = collar.GetComponent<Renderer>();
 
         SetType(_type);
 
@@ -78,7 +77,7 @@ public class Weapon : MonoBehaviour
             this.gameObject.SetActive(true);
 
         def = Main.GetWeaponDefinition(_type);
-        _collarRend.material.color = def.color;
+        collarRend.material.color = def.color;
         lastShotTime = 0;
     }
 

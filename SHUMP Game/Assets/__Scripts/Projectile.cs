@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private BoundsCheck _bndCheck;
-    private Renderer _rend;
+    private BoundsCheck bndCheck;
+    private Renderer rend;
 
     [Header("Set Dynamically")]
     public Rigidbody rigid;
@@ -26,8 +26,8 @@ public class Projectile : MonoBehaviour
 
     void Awake()
     {
-        _bndCheck = GetComponent<BoundsCheck>();
-        _rend = GetComponent<Renderer>();
+        bndCheck = GetComponent<BoundsCheck>();
+        rend = GetComponent<Renderer>();
         rigid = GetComponent<Rigidbody>();
 
     }
@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_bndCheck.isOnScreen)
+        if (!bndCheck.isOnScreen)
         {
             Destroy(gameObject);
         }
@@ -47,6 +47,6 @@ public class Projectile : MonoBehaviour
         _type = eType;
         WeaponDefinition def = Main.GetWeaponDefinition(_type);
         // error -- fixed Mar 19, 2019
-        _rend.material.color = def.projectileColor;
+        rend.material.color = def.projectileColor;
     }
 }
