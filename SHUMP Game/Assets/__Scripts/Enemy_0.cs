@@ -30,6 +30,7 @@ public class Enemy_0 : Enemy
                 ScoreManager.UpdateScore(_points);
                 TextManager.UpdateText();
                 Destroy(gameObject);
+                Main.S.ShipDestoryed(this);
             }
             else
             {

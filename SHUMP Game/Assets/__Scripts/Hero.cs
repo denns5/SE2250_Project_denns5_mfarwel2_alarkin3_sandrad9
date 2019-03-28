@@ -12,6 +12,7 @@ public class Hero : MonoBehaviour
     public float gameRestartDelay = 2f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
+    public Weapon[] weapons;
 
     private float _shieldLevel = 4;//setting initial shield level
 
@@ -77,10 +78,24 @@ public class Hero : MonoBehaviour
                 Main.S.DelayedRestart(gameRestartDelay);//restarting the game
             }
         }
+        else if (go.tag == "PowerUp")
+        {
+            AbsorbPowerUp(go);
+        }
         else
         {
             print("Triggered by non Enemy" + go.name);
         }
+    }
+
+    public void AbsorbPowerUp(GameObject go)
+    {
+        PowerUp pu = go.GetComponent<PowerUp>();
+        switch (pu.type)
+        {
+            //fill in later when we create the different power up types
+        }
+        pu.Absorbedby(gameObject);
     }
     
     public float shieldLevel
@@ -91,7 +106,7 @@ public class Hero : MonoBehaviour
         }
         set
         {
-        //do not need to use a setter at this poit
+        //do not need to use a setter at this point
         }
     }
     

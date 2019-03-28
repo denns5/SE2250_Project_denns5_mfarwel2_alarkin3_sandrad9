@@ -8,7 +8,7 @@ public enum WeaponType
 {
     none,
     blaster,
-    simple
+    simple,
 }
 
 [System.Serializable]

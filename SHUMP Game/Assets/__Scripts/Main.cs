@@ -11,6 +11,8 @@ public class Main : MonoBehaviour
     public float enemySpawnPerSecond = 0.5f;
     public float enemyDefaultPadding = 1.5f;
     public WeaponDefinition[] weaponDefinitions;
+    public GameObject prefabPowerUp;
+    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.simple, WeaponType.simple, WeaponType.blaster};//simple will be twice as likley as blaster
 
     private BoundsCheck _bndCheck;
 
@@ -66,6 +68,21 @@ public class Main : MonoBehaviour
         }
 
         return (new WeaponDefinition());
+    }
+
+    public void ShipDestoryed(Enemy e)
+    {
+        if (Random.value <= e.powerUpDropChance)
+        {//havent created this variable in Enemy yet
+            int index = Random.Range(0, powerUpFrequency.Length);
+            WeaponType puType = powerUpFrequency[index];
+            //spawn a power up
+            GameObject go = Instantiate(prefabPowerUp) as GameObject;
+            PowerUp pu = GetComponent<PowerUp>();
+            pu.SetType(puType);
+            //set the power up to the position of the destroyed ship
+            go.transform.position = e.transform.position;
+        }
     }
 
 }
