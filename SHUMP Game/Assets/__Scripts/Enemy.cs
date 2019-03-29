@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {   //setting speed
     public float speed = 10f;
-    public float powerUpDropChance = 1f;
+    public float powerUpDropChance;
 
     private BoundsCheck _bndCheck;
 

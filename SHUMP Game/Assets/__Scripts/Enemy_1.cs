@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy_1 : Enemy
 {
+    public float powerUpDropChance = 1f;
+
     private float _randomSpeed;
     private int _points = 100;
     // Start is called before the first frame update
@@ -45,7 +47,7 @@ public class Enemy_1 : Enemy
             TextManager.UpdateText();
             Destroy(otherGO);
             Destroy(gameObject);
-
+            Main.S.ShipDestoryed(this);
         }
         else
         {

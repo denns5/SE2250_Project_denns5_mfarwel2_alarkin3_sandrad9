@@ -78,7 +78,7 @@ public class Main : MonoBehaviour
             WeaponType puType = powerUpFrequency[index];
             //spawn a power up
             GameObject go = Instantiate(prefabPowerUp) as GameObject;
-            PowerUp pu = GetComponent<PowerUp>();
+            PowerUp pu = go.GetComponent<PowerUp>();
             pu.SetType(puType);
             //set the power up to the position of the destroyed ship
             go.transform.position = e.transform.position;

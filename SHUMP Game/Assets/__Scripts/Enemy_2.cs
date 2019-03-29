@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
 {
+    public float powerUpDropChance = 1f;
+
     private float _randomSpeed;
     private float _directionChange = 50f;
 
@@ -60,6 +62,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
                 ScoreManager.UpdateScore(_points);
                 TextManager.UpdateText();
                 Destroy(gameObject);
+                Main.S.ShipDestoryed(this);
             }
             else
             {

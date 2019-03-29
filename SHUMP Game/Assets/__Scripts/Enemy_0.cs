@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemy_0 : Enemy
 {
-    // Update is called once per frame
+    public float powerUpDropChance = 1f;
+    
     private int _health = 2;
     private int _points = 200;
     void Update()
