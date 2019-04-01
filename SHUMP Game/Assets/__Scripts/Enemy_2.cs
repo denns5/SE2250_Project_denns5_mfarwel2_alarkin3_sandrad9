@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
 {
-    public float powerUpDropChance = 1f;
+    //public float powerUpDropChance = 1f;
 
     private float _randomSpeed;
     private float _directionChange = 50f;
@@ -12,6 +12,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
 
     private int _health = 3;
     private int _points = 300;
+    private float _delayBetweenHits = 0;
 
 
     // Start is called before the first frame update
@@ -57,16 +58,20 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
         if (otherGO.tag == "ProjectileHero")
         {
             Destroy(otherGO);
-            if (_health == 1)
+            if (Time.time - _delayBetweenHits < 0.1) return;
+            else if (_health == 1)
             {
                 ScoreManager.UpdateScore(_points);
                 TextManager.UpdateText();
                 Destroy(gameObject);
                 Main.S.ShipDestoryed(this);
+                print("Enemy 2 killed");
             }
             else
             {
                 _health = _health - 1;
+                print("Enemy 2 hit " + _health);
+                _delayBetweenHits = Time.time;
             }
             // Destroy(gameObject);
 

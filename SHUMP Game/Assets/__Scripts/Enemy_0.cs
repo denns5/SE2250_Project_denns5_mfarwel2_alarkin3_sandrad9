@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Enemy_0 : Enemy
 {
-    public float powerUpDropChance = 1f;
+    //public float powerUpDropChance = 1f;
     
     private int _health = 2;
     private int _points = 200;
+    private float _delayBetweenHits=0;
     void Update()
     {
         Move();
@@ -26,16 +27,20 @@ public class Enemy_0 : Enemy
         if (otherGO.tag == "ProjectileHero")
         {
             Destroy(otherGO);
-            if (_health == 1)
+            if (Time.time - _delayBetweenHits < 0.1f) return;
+            else if (_health == 1)
             {
                 ScoreManager.UpdateScore(_points);
                 TextManager.UpdateText();
                 Destroy(gameObject);
                 Main.S.ShipDestoryed(this);
+                print("Enemy 0 killed");
             }
             else
             {
                 _health = _health - 1;
+                print("Enemy 0 hit " + _health);
+                _delayBetweenHits = Time.time;
             }
         }
         else

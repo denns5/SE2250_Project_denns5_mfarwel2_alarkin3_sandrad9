@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy_1 : Enemy
 {
-    public float powerUpDropChance = 1f;
+    //public float powerUpDropChance = 1f;
 
     private float _randomSpeed;
     private int _points = 100;
@@ -48,6 +48,7 @@ public class Enemy_1 : Enemy
             Destroy(otherGO);
             Destroy(gameObject);
             Main.S.ShipDestoryed(this);
+            print("Enemy 1 killed");
         }
         else
         {
