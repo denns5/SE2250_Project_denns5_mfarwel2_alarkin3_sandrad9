@@ -93,6 +93,9 @@ public class Hero : MonoBehaviour
         PowerUp pu = go.GetComponent<PowerUp>();
         switch (pu.type)
         {
+            case WeaponType.speed:
+                speed += 10;
+                break;
             //fill in later when we create the different power up types
         }
         pu.Absorbedby(gameObject);

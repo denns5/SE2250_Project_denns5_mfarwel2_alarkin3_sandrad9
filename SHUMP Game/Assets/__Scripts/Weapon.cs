@@ -9,6 +9,7 @@ public enum WeaponType
     none,
     blaster,
     simple,
+    speed
 }
 
 [System.Serializable]
@@ -117,6 +118,9 @@ public class Weapon : MonoBehaviour
                 p = MakeProjectile();
                 p.transform.rotation = Quaternion.AngleAxis(-30, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
+                break;
+
+            case WeaponType.speed:
                 break;
 
             // idk about this one
