@@ -7,7 +7,9 @@ public class Enemy : MonoBehaviour
     public float speed = 10f;
     public float powerUpDropChance = 1f;
 
+
     private BoundsCheck _bndCheck;
+    
 
     void Awake()
     {

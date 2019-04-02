@@ -372,6 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  powerUpDropChance: 1
 --- !u!114 &769230799192860393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  powerUpDropChance: 1
 --- !u!1 &7510414290570905541
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,10 @@ public class Main : MonoBehaviour
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
     public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.simple, WeaponType.simple, WeaponType.blaster};//simple will be twice as likley as blaster
+    public AudioClip killSound;
 
     private BoundsCheck _bndCheck;
+    private AudioSource _source;
 
     void Awake()
     {
@@ -27,6 +29,7 @@ public class Main : MonoBehaviour
         {
             WEAP_DICT[def.type] = def;
         }
+        _source = GetComponent<AudioSource>();
     }
 
     public void SpawnEnemy()
@@ -72,6 +75,7 @@ public class Main : MonoBehaviour
 
     public void ShipDestoryed(Enemy e)
     {
+        _source.PlayOneShot(killSound, 0.5f);
         if (Random.value <= e.powerUpDropChance)
         {//havent created this variable in Enemy yet
             int index = Random.Range(0, powerUpFrequency.Length);

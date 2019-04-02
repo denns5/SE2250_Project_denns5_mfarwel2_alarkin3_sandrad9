@@ -13,9 +13,10 @@ public class Hero : MonoBehaviour
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
     public Weapon[] weapons;
+    public AudioClip shootSound;
 
     private float _shieldLevel = 4;//setting initial shield level
-
+    private AudioSource _source;
     private GameObject _lastTriggerGo = null;
 
     public delegate void WeaponFireDelegate();
@@ -31,7 +32,7 @@ public class Hero : MonoBehaviour
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second hero");
         }
-        // fireDelegate += TempFire;
+        _source = GetComponent<AudioSource>();
 
     }
 
@@ -48,11 +49,10 @@ public class Hero : MonoBehaviour
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
 
         // Allow the ship to fire bullet
-        // error
         if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
-        //if (Input.GetKeyDown(KeyCode.Space))
         {
             fireDelegate();
+            _source.PlayOneShot(shootSound,0.6f);
         }
     }
 

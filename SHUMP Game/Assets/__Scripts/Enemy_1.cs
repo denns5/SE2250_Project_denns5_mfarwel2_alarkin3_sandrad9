@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Enemy_1 : Enemy
 {
-    //public float powerUpDropChance = 1f;
+    
 
     private float _randomSpeed;
     private int _points = 100;
+
     // Start is called before the first frame update
     void Start()
     {//will randomly set the initial direction of the enemy to left or right
@@ -49,6 +50,7 @@ public class Enemy_1 : Enemy
             Destroy(gameObject);
             Main.S.ShipDestoryed(this);
             print("Enemy 1 killed");
+            
         }
         else
         {

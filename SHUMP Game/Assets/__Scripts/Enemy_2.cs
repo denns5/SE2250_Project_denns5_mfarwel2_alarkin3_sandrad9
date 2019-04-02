@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
 {
-    //public float powerUpDropChance = 1f;
+    
 
     private float _randomSpeed;
     private float _directionChange = 50f;
-
 
     private int _health = 3;
     private int _points = 300;
@@ -66,6 +65,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
                 Destroy(gameObject);
                 Main.S.ShipDestoryed(this);
                 print("Enemy 2 killed");
+                
             }
             else
             {
