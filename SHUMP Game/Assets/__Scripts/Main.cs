@@ -88,6 +88,7 @@ public class Main : MonoBehaviour
             pu.SetType(puType);
             //set the power up to the position of the destroyed ship
             go.transform.position = e.transform.position;
+            print("power up spawned");
         }
     }
 

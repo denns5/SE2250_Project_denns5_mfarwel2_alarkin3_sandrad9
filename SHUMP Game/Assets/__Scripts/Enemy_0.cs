@@ -28,14 +28,14 @@ public class Enemy_0 : Enemy
             
             Destroy(otherGO);
             if (Time.time - _delayBetweenHits < 0.1f) return;
-            else if (_health == 1)
+            else if (_health <= 1)
             {
                 ScoreManager.UpdateScore(_points);
                 TextManager.UpdateText();
-                Destroy(gameObject);
                 Main.S.ShipDestoryed(this);
                 print("Enemy 0 killed");
-                
+                Destroy(gameObject);
+
             }
             else
             {

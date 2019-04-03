@@ -52,7 +52,7 @@ public class Hero : MonoBehaviour
         if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
         {
             fireDelegate();
-            _source.PlayOneShot(shootSound,0.6f);
+            _source.PlayOneShot(shootSound,0.3f);
         }
     }
 
@@ -74,7 +74,6 @@ public class Hero : MonoBehaviour
             if (_shieldLevel < 0)
             {
                 Destroy(gameObject);//destroying the hero ship
-                print("Shield Destroyed");
                 Main.S.DelayedRestart(gameRestartDelay);//restarting the game
             }
         }
