@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  powerUpDropChance: 1
+  powerUpDropChance: 0.3
 --- !u!114 &1859716884037350642
 MonoBehaviour:
   m_ObjectHideFlags: 0

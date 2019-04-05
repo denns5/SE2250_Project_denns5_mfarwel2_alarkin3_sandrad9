@@ -76,7 +76,7 @@ public class Main : MonoBehaviour
 
     public void ShipDestoryed(Enemy e, int type)
     {
-        print("Ship Destroyed!" + type);
+        //print("Ship Destroyed!" + type);
         _source.PlayOneShot(killSound, 0.5f);
         if (Random.value <= e.powerUpDropChance)
         {//havent created this variable in Enemy yet
