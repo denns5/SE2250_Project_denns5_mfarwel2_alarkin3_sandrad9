@@ -51,7 +51,7 @@ public class ScoreManager : MonoBehaviour
     }
     public void UpdateS(int p)
     {
-        _score = _score + _level * p;
+        _score = _score + p;
 
         if (_score > _level*200)
         {

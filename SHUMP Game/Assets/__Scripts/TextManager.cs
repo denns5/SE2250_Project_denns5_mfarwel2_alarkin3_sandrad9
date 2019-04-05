@@ -7,7 +7,7 @@ public class TextManager : MonoBehaviour
 {
     static private TextManager T;
     public float levelStartDelay = 2f;
-    public Text gameOverGT, highScoreGT, scoreGT, level;
+    public Text gameOverGT, highScoreGT, scoreGT, level, fixedLevel;
 
     void Awake()
     {
@@ -40,12 +40,17 @@ public class TextManager : MonoBehaviour
         //Set up ScoreCounter UI Text
         go = GameObject.Find("ScoreCounter");
         scoreGT = go.GetComponent<Text>();
-        UpdateT();
 
         //Set up Level UI Text
         go = GameObject.Find("Level");
         level = go.GetComponent<Text>();
         UpdateLevel();
+
+        //Set up Level UI Text
+        go = GameObject.Find("FixedLevel");
+        fixedLevel = go.GetComponent<Text>();
+        UpdateT();
+
     }
 
     public static void GameOverText()
@@ -84,6 +89,8 @@ public class TextManager : MonoBehaviour
     public void UpdateT()
     {
         scoreGT.text = "Your score: " + ScoreManager.SCORE;
+        fixedLevel.text = "Level: " + ScoreManager.LEVEL;
+
     }
 
     public void UpdateHighScore()
