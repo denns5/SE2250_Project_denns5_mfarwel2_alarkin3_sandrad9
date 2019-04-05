@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour
     static private ScoreManager S;
     static public int HIGH_SCORE = 0;
     private int _score = 0;
+    private int _level = 1;
 
     void Awake()
     {
@@ -48,10 +49,30 @@ public class ScoreManager : MonoBehaviour
             Debug.LogError("ScoreManager:UpdateScore() called while S=null.\n" + nre);
         }
     }
-
     public void UpdateS(int p)
     {
-        _score += p;
+        _score = _score + _level * p;
+
+        if (_score > _level*200)
+        {
+            UpdateL();
+        }
+    }
+    public static void UpdateLevel()
+    {
+        try
+        { // try-catch stops an error from breaking your program 
+            S.UpdateL();
+        }
+        catch (System.NullReferenceException nre)
+        {
+            Debug.LogError("ScoreManager:UpdateLevel() called while S=null.\n" + nre);
+        }
+    }
+    public void UpdateL()
+    {
+        _level++;
+        TextManager.UpdateLevel();
     }
 
     public static void GameOverScore()
@@ -76,4 +97,5 @@ public class ScoreManager : MonoBehaviour
     }
 
     static public int SCORE { get { return S._score; } }
+    static public int LEVEL { get { return S._level; } }
 }

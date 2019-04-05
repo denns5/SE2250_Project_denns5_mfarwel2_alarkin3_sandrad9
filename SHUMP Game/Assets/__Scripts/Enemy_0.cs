@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy_0 : Enemy
 {
     private int _health = 2;
-    private int _points = 200;
+    private int _points = 20;
     private float _delayBetweenHits=0;
 
     void Update()
@@ -16,7 +16,7 @@ public class Enemy_0 : Enemy
     public override void Move()
     {//adjusting the position of the enemy whenever Move() is called(every frame).
         Vector3 tempPos = transform.position;
-        tempPos.y -= speed * Time.deltaTime;//will cause the enemy to move down
+        tempPos.y -= (speed + ScoreManager.LEVEL) * Time.deltaTime;//will cause the enemy to move down
         pos = tempPos;
     }
 
@@ -25,14 +25,14 @@ public class Enemy_0 : Enemy
         GameObject otherGO = coll.gameObject;
         if (otherGO.tag == "ProjectileHero")
         {
-            
+            print("Collision with 0");
             Destroy(otherGO);
             if (Time.time - _delayBetweenHits < 0.1f) return;
             else if (_health <= 1)
             {
                 ScoreManager.UpdateScore(_points);
                 TextManager.UpdateText();
-                Main.S.ShipDestoryed(this);
+                Main.S.ShipDestoryed(this,0);
                 print("Enemy 0 killed");
                 Destroy(gameObject);
 

@@ -10,7 +10,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
     private float _directionChange = 50f;
 
     private int _health = 3;
-    private int _points = 300;
+    private int _points = 30;
     private float _delayBetweenHits = 0;
 
 
@@ -21,11 +21,11 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
         int r = Random.Range(0, 2);
         if (r == 0)
         {
-            _randomSpeed = -speed;
+            _randomSpeed = -(speed + ScoreManager.LEVEL) ;
         }
         else
         {
-            _randomSpeed = speed;
+            _randomSpeed = (speed + ScoreManager.LEVEL);
         }
 
     }
@@ -47,7 +47,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
         //adjusting the position of the enemy whenever Move() is called(every frame).
         Vector3 tempPos = pos;
         tempPos.x += 1.5f * _randomSpeed * Time.deltaTime;
-        tempPos.y -= speed * Time.deltaTime;//subtracting will cause the enemy to move down the screen.
+        tempPos.y -= (speed + ScoreManager.LEVEL) * Time.deltaTime;//subtracting will cause the enemy to move down the screen.
         pos = tempPos;
     }
 
@@ -63,7 +63,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
                 ScoreManager.UpdateScore(_points);
                 TextManager.UpdateText();
                 Destroy(gameObject);
-                Main.S.ShipDestoryed(this);
+                Main.S.ShipDestoryed(this,2);
                 print("Enemy 2 killed");
                 
             }

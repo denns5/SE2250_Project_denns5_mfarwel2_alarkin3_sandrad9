@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class TextManager : MonoBehaviour
 {
     static private TextManager T;
-    public Text gameOverGT, highScoreGT, scoreGT;
+    public float levelStartDelay = 2f;
+    public Text gameOverGT, highScoreGT, scoreGT, level;
 
     void Awake()
     {
@@ -40,6 +41,11 @@ public class TextManager : MonoBehaviour
         go = GameObject.Find("ScoreCounter");
         scoreGT = go.GetComponent<Text>();
         UpdateT();
+
+        //Set up Level UI Text
+        go = GameObject.Find("Level");
+        level = go.GetComponent<Text>();
+        UpdateLevel();
     }
 
     public static void GameOverText()
@@ -56,7 +62,7 @@ public class TextManager : MonoBehaviour
 
     void GameOver()
     {
-        gameOverGT.text = "Game Over";
+        gameOverGT.text = "Game Over!\nYou got to Level: " + ScoreManager.LEVEL;
         scoreGT.gameObject.SetActive(false);
         UpdateHighScore();
         highScoreGT.gameObject.SetActive(true);
@@ -91,5 +97,29 @@ public class TextManager : MonoBehaviour
         }
         string hScore = "High Score: " + ScoreManager.HIGH_SCORE;
         go.GetComponent<Text>().text = hScore;
+    }
+
+    public static void UpdateLevel()
+    {
+        try
+        { // try-catch stops an error from breaking your program 
+            T.UpdateL();
+        }
+        catch (System.NullReferenceException nre)
+        {
+            Debug.LogError("TextManager:UpdateLevel() called while T=null.\n" + nre);
+        }
+    }
+
+    public void UpdateL()
+    {
+        level.text = "Level: " + ScoreManager.LEVEL;
+        level.gameObject.SetActive(true);
+        Invoke("HideLevelText", levelStartDelay);
+    }
+
+    private void HideLevelText()
+    {
+        level.gameObject.SetActive(false);
     }
 }

@@ -33,7 +33,6 @@ public class Main : MonoBehaviour
         _source = GetComponent<AudioSource>();
         _source.PlayOneShot(music, 0.6f);
     }
-
     public void SpawnEnemy()
     {
         int ndx = Random.Range(0, prefabEnemies.Length);
@@ -75,8 +74,9 @@ public class Main : MonoBehaviour
         return (new WeaponDefinition());
     }
 
-    public void ShipDestoryed(Enemy e)
+    public void ShipDestoryed(Enemy e, int type)
     {
+        print("Ship Destroyed!" + type);
         _source.PlayOneShot(killSound, 0.5f);
         if (Random.value <= e.powerUpDropChance)
         {//havent created this variable in Enemy yet
@@ -88,8 +88,6 @@ public class Main : MonoBehaviour
             pu.SetType(puType);
             //set the power up to the position of the destroyed ship
             go.transform.position = e.transform.position;
-            print("power up spawned");
         }
     }
-
 }

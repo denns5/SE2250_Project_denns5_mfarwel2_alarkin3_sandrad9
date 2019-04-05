@@ -9,7 +9,7 @@ public class Hero : MonoBehaviour
     public float speed = 30;
     public float rollMult = -45;
     public float pitchMult = 30;
-    public float gameRestartDelay = 2f;
+    public float gameRestartDelay = 4f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
     public Weapon[] weapons;

@@ -24,6 +24,7 @@ public class PowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        print("Powerup spawned");
         //find cube reference
         cube = transform.Find("Cube").gameObject;
         //find other components
