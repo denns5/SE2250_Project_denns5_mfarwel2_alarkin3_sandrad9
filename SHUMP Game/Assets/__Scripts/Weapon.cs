@@ -10,7 +10,8 @@ public enum WeaponType
     blaster,
     simple,
     rocket,
-    speed
+    speed,
+    bomb
 }
 
 [System.Serializable]
@@ -129,6 +130,11 @@ public class Weapon : MonoBehaviour
             case WeaponType.speed:
                 break;
 
+            case WeaponType.bomb:
+                p = MakeProjectile();
+                p.rigid.velocity =  vel;
+                break;
+
             // idk about this one
             case WeaponType.none:
                 break;
@@ -167,6 +173,8 @@ public class Weapon : MonoBehaviour
             SetType(WeaponType.blaster);
         if (Input.GetKeyDown(KeyCode.C))
             SetType(WeaponType.rocket);
+        if (Input.GetKeyDown(KeyCode.V))
+            SetType(WeaponType.bomb);
     }
 
 }

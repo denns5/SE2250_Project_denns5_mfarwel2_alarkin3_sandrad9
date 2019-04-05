@@ -521,6 +521,14 @@ MonoBehaviour:
     projectileColor: {r: 0.9528302, g: 0.09438412, b: 0.09438412, a: 1}
     delayBetweenShots: 0.4
     velocity: 50
+  - type: 5
+    letter: B
+    color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+    projectilePrefab: {fileID: 1234056846350956305, guid: 1c060622237fa43dfaf3066d5ed6adeb,
+      type: 3}
+    projectileColor: {r: 0.43529412, g: 0.43529412, b: 0.43529412, a: 1}
+    delayBetweenShots: 0.4
+    velocity: 20
   prefabPowerUp: {fileID: 4954421266934592492, guid: 926b5324a546d9047aeae3b2db9f4ded,
     type: 3}
   powerUpFrequency: 020000000200000001000000

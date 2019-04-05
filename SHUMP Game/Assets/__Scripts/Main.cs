@@ -12,7 +12,7 @@ public class Main : MonoBehaviour
     public float enemyDefaultPadding = 1.5f;
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
-    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.simple, WeaponType.speed, WeaponType.blaster};//simple will be twice as likley as blaster
+    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.simple, WeaponType.bomb, WeaponType.blaster};//simple will be twice as likley as blaster
     public AudioClip killSound;
     public AudioClip music;
 
