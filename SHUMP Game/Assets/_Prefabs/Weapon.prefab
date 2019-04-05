@@ -122,6 +122,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b17ab739c31d7498e2e9d5bd785d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 0
+  def:
+    type: 0
+    letter: 
+    color: {r: 1, g: 1, b: 1, a: 1}
+    projectilePrefab: {fileID: 0}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    delayBetweenShots: 0
+    velocity: 20
+  collar: {fileID: 0}
+  lastShotTime: 0
+  rocketRigidBody: {fileID: 3519399282143753314, guid: 907ded2321a867a44868a41931853b38,
+    type: 3}
+  turn: 10
+  rocketVelocity: 20
 --- !u!1 &3606555935940502446
 GameObject:
   m_ObjectHideFlags: 0

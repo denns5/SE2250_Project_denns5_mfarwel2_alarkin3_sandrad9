@@ -9,6 +9,7 @@ public enum WeaponType
     none,
     blaster,
     simple,
+    rocket,
     speed
 }
 
@@ -105,6 +106,11 @@ public class Weapon : MonoBehaviour
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
+           
+           case WeaponType.rocket:
+                p = MakeProjectile();
+                p.rigid.velocity = vel;
+                break;
 
             case WeaponType.blaster:
                 // middle projectile
@@ -137,6 +143,7 @@ public class Weapon : MonoBehaviour
             go.tag = "ProjectileHero";
             go.layer = LayerMask.NameToLayer("ProjectileHero");
         }
+      
         else
         {
             go.tag = "Projectile Enemy";
@@ -154,16 +161,12 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            if (type == WeaponType.simple)
-            {
-                SetType(WeaponType.blaster);
-            }
-            else
-            {
+        if (Input.GetKeyDown(KeyCode.Z))
                 SetType(WeaponType.simple);
-            }
-        }
+        if (Input.GetKeyDown(KeyCode.X))
+            SetType(WeaponType.blaster);
+        if (Input.GetKeyDown(KeyCode.C))
+            SetType(WeaponType.rocket);
     }
+
 }

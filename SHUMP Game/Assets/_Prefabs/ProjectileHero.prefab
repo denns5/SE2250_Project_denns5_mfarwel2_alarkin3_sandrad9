@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3519399282143753314}
   - component: {fileID: 3519399282143753315}
   - component: {fileID: 3519399282143753312}
+  - component: {fileID: 5844553848213524480}
   m_Layer: 10
   m_Name: ProjectileHero
   m_TagString: ProjectileHero
@@ -141,3 +142,19 @@ MonoBehaviour:
   camHeight: 0
   keepOnScreen: 0
   isOnScreen: 1
+--- !u!114 &5844553848213524480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519399282143753321}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af937fdd2df804dea94fdcbac0cca807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocketTarget: {fileID: 0}
+  rocketRigidBody: {fileID: 3519399282143753314}
+  turn: 10
+  rocketVelocity: 50
