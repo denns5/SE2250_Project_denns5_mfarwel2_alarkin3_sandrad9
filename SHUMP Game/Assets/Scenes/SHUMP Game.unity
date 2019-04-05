@@ -516,7 +516,7 @@ MonoBehaviour:
   - type: 3
     letter: R
     color: {r: 0.9622642, g: 0.05900679, b: 0.05900679, a: 1}
-    projectilePrefab: {fileID: 3201731478111324121, guid: c697527c73c534e0584600ebb44c43d4,
+    projectilePrefab: {fileID: 4115110084389985284, guid: 5fd5dc3e1add144808dc2a9d502d8769,
       type: 3}
     projectileColor: {r: 0.9528302, g: 0.09438412, b: 0.09438412, a: 1}
     delayBetweenShots: 0.4

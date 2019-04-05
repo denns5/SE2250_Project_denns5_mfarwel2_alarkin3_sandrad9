@@ -72,6 +72,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3519399282143753318, guid: 907ded2321a867a44868a41931853b38,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5844553848213524480, guid: 907ded2321a867a44868a41931853b38,
         type: 3}
       propertyPath: m_Enabled
@@ -82,6 +87,11 @@ PrefabInstance:
       propertyPath: rocketRigidBody
       value: 
       objectReference: {fileID: 3201731478111324114}
+    - target: {fileID: 8525429829188091665, guid: 907ded2321a867a44868a41931853b38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 907ded2321a867a44868a41931853b38, type: 3}
 --- !u!54 &3201731478111324114 stripped
