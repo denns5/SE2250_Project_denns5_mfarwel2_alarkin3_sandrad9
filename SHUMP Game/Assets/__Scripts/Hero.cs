@@ -14,10 +14,12 @@ public class Hero : MonoBehaviour
     public float projectileSpeed = 40;
     public Weapon[] weapons;
     public AudioClip shootSound;
-
+    public GameObject leftWeapon, rightWeapon;
     private float _shieldLevel = 4;//setting initial shield level
     private AudioSource _source;
     private GameObject _lastTriggerGo = null;
+    private float _powerUpTime = 0;
+    private bool _check = false;
 
     public delegate void WeaponFireDelegate();
     public WeaponFireDelegate fireDelegate;
@@ -28,12 +30,20 @@ public class Hero : MonoBehaviour
         {
             S = this;//setting the singleton to this
         }
+     
+
         else
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second hero");
         }
         _source = GetComponent<AudioSource>();
 
+    }
+
+    private void Start()
+    {
+        leftWeapon.SetActive(false);
+        rightWeapon.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,6 +63,13 @@ public class Hero : MonoBehaviour
         {
             fireDelegate();
             _source.PlayOneShot(shootSound,0.3f);
+        }
+
+        if (Time.time - _powerUpTime >= 10 && _check == true)
+        {
+            _check = false;
+            leftWeapon.SetActive(false);
+            rightWeapon.SetActive(false);
         }
     }
 
@@ -78,6 +95,7 @@ public class Hero : MonoBehaviour
                 Main.S.DelayedRestart(gameRestartDelay);//restarting the game
             }
         }
+
         else if (go.tag == "PowerUp")
         {
             AbsorbPowerUp(go);
@@ -92,7 +110,10 @@ public class Hero : MonoBehaviour
     {
         PowerUp pu = go.GetComponent<PowerUp>();
         Debug.Log("Here" + pu.type);
-
+        leftWeapon.SetActive(true);
+        rightWeapon.SetActive(true);
+        _check = true;
+        _powerUpTime = Time.time;
         switch (pu.type)
         {
             case WeaponType.speed:

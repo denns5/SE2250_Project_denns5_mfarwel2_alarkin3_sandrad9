@@ -10,7 +10,7 @@ public class Boss_Weapon : MonoBehaviour
 
     void Start()
     {
-        fireRate = 4f;
+        fireRate = 2f;
         nextFire = Time.time;
     }
 
