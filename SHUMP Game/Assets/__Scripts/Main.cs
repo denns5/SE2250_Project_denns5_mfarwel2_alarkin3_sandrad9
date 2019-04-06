@@ -12,7 +12,7 @@ public class Main : MonoBehaviour
     public float enemyDefaultPadding = 1.5f;
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
-    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.bomb };//Make changes
+    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.bomb, WeaponType.multi, WeaponType.rocket };//Make changes
     public AudioClip killSound;
     public AudioClip music;
     private BoundsCheck _bndCheck;
@@ -35,7 +35,7 @@ public class Main : MonoBehaviour
     public void SpawnEnemy()
     {
       
-        int ndx = Random.Range(0, 2);
+        int ndx = Random.Range(0, prefabEnemies.Length-1);
         if (ScoreManager.LEVEL == _bossSpawn)
         {
             ndx = 3;
@@ -90,7 +90,7 @@ public class Main : MonoBehaviour
             //spawn a power up
             GameObject go = Instantiate(prefabPowerUp) as GameObject;
             PowerUp pu = go.GetComponent<PowerUp>();
-            pu.SetType(puType);
+          
             //set the power up to the position of the destroyed ship
             go.transform.position = e.transform.position;
         }

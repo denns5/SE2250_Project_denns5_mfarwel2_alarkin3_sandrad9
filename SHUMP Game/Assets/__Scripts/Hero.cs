@@ -5,7 +5,6 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     static public Hero S;
-    //delcaring public variables that will determine how the ship will move.
     public float speed = 30;
     public float rollMult = -45;
     public float pitchMult = 30;
@@ -19,7 +18,7 @@ public class Hero : MonoBehaviour
     private AudioSource _source;
     private GameObject _lastTriggerGo = null;
     private float _powerUpTime = 0;
-    private bool _check = false;
+   public static bool CHECK = false;
 
     public delegate void WeaponFireDelegate();
     public WeaponFireDelegate fireDelegate;
@@ -65,9 +64,9 @@ public class Hero : MonoBehaviour
             _source.PlayOneShot(shootSound,0.3f);
         }
 
-        if (Time.time - _powerUpTime >= 10 && _check == true)
+        if (Time.time - _powerUpTime >= 10 && CHECK == true)
         {
-            _check = false;
+            CHECK = false;
             leftWeapon.SetActive(false);
             rightWeapon.SetActive(false);
         }
@@ -109,23 +108,34 @@ public class Hero : MonoBehaviour
     public void AbsorbPowerUp(GameObject go)
     {
         PowerUp pu = go.GetComponent<PowerUp>();
-        Debug.Log("Here" + pu.type);
-        leftWeapon.SetActive(true);
-        rightWeapon.SetActive(true);
-        _check = true;
-        _powerUpTime = Time.time;
-        switch (pu.type)
-        {
-            case WeaponType.speed:
-                speed += 10;
-                break;
 
-            case WeaponType.simple:
+      
+        int ndx = Random.Range(0, 1);
+        Debug.Log(ndx + " Absorbed value ");
+        switch (ndx)
+         {
+             case 0:
+                 Bomb.CHECK = false;
+                // Rocket.CHECK = false;
+                 leftWeapon.SetActive(true);
+                 rightWeapon.SetActive(true);
+                 CHECK = true;
+                 _powerUpTime = Time.time;
+                 break;
 
+            /* case "Rocket":
+                 Rocket.CHECK = true;
+                 Bomb.CHECK = false;
+                 _check = false;
+                 break;*/
 
-                break;
-                //fill in later when we create the different power up types
-        }
+             case 1:
+                 Bomb.CHECK = true;
+                //Rocket.CHECK = false;
+                 CHECK = false;
+                 break;
+
+         }
         pu.Absorbedby(gameObject);
     }
     

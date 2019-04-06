@@ -10,7 +10,7 @@ public enum WeaponType
     blaster,
     simple,
     rocket,
-    speed,
+    multi,
     bomb
 }
 
@@ -127,7 +127,7 @@ public class Weapon : MonoBehaviour
                 p.rigid.velocity = p.transform.rotation * vel;
                 break;
 
-            case WeaponType.speed:
+            case WeaponType.multi:
                 break;
 
             case WeaponType.bomb:
@@ -163,7 +163,7 @@ public class Weapon : MonoBehaviour
         return p;
     }
 
-
+    private float _timer;
     // Update is called once per frame
     void Update()
     {
@@ -171,10 +171,55 @@ public class Weapon : MonoBehaviour
                 SetType(WeaponType.simple);
         if (Input.GetKeyDown(KeyCode.X))
             SetType(WeaponType.blaster);
-        if (Input.GetKeyDown(KeyCode.C))
+        /*if (Rocket.CHECK == true && type != WeaponType.rocket)
+        {
             SetType(WeaponType.rocket);
-        if (Input.GetKeyDown(KeyCode.V))
+        }
+        if (Rocket.CHECK == true && type == WeaponType.rocket)
+        {
+            _timer += Time.deltaTime;
+            if (_timer >= 5f)
+            {
+                SetType(WeaponType.simple);
+                //    _timer = 0;
+                _timer = 0;
+             }
+            // {
+            // }
+        }
+
+        if (Rocket.CHECK == false && type == WeaponType.rocket)
+        {
+           //_timer += Time.deltaTime;
+           // if (_timer >= 0.1f)
+           // {
+                SetType(WeaponType.simple);
+           //    _timer = 0;
+                _timer= 0;
+           // }
+        }*/
+        if (Input.GetKeyDown(KeyCode.C) && Hero.CHECK != true && ScoreManager.LEVEL >= 2)
+        {
+            SetType(WeaponType.rocket);
+        }
+
+        if (Hero.CHECK == true && type == WeaponType.rocket) {
+            SetType(WeaponType.simple);
+        }
+
+        if (Bomb.CHECK == true && type != WeaponType.bomb)
+        {
             SetType(WeaponType.bomb);
+        }
+        if (Bomb.CHECK == false && type == WeaponType.bomb)
+        {
+            _timer += Time.deltaTime;
+            if (_timer >= 0.1f) { 
+                SetType(WeaponType.simple); 
+                _timer = 0;
+            }
+          
+        }
     }
 
 }
