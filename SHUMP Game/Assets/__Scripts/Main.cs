@@ -7,18 +7,17 @@ public class Main : MonoBehaviour
 {
     static public Main S;
     static Dictionary<WeaponType, WeaponDefinition> WEAP_DICT;
-    public GameObject[] prefabEnemies;//creating a array to store the three enemies
+    public GameObject[] prefabEnemies;//creating a array to store the four enemies
     public float enemySpawnPerSecond = 0.5f;
     public float enemyDefaultPadding = 1.5f;
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
-    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.simple, WeaponType.bomb, WeaponType.blaster};//simple will be twice as likley as blaster
+    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.bomb };//simple will be twice as likley as blaster
     public AudioClip killSound;
     public AudioClip music;
-
     private BoundsCheck _bndCheck;
     private AudioSource _source;
-
+    private int _bossSpawn = 2;
     void Awake()
     {
         S = this;
@@ -35,7 +34,13 @@ public class Main : MonoBehaviour
     }
     public void SpawnEnemy()
     {
-        int ndx = Random.Range(0, prefabEnemies.Length);
+      
+        int ndx = Random.Range(0, 2);
+        if (ScoreManager.LEVEL == _bossSpawn)
+        {
+            ndx = 3;
+            _bossSpawn += 1;
+        }
         GameObject go = Instantiate(prefabEnemies[ndx]);//will generate a random number between 0 and 2 to access a raondom enemy in the array using the random index number.
         float enemyPadding = enemyDefaultPadding;
         if (go.GetComponent<BoundsCheck>() != null)

@@ -67,7 +67,8 @@ public class Hero : MonoBehaviour
             return;
         }
         _lastTriggerGo = go;
-        if (go.tag == "Enemy")
+        if (go.tag == "Enemy" || go.tag == "ProjectileEnemy")
+
         {
             _shieldLevel--;//decreasing the shield level when the ship is hit by an enemy
             Destroy(go);//destroying the enemy when hit
@@ -90,12 +91,19 @@ public class Hero : MonoBehaviour
     public void AbsorbPowerUp(GameObject go)
     {
         PowerUp pu = go.GetComponent<PowerUp>();
+        Debug.Log("Here" + pu.type);
+
         switch (pu.type)
         {
             case WeaponType.speed:
                 speed += 10;
                 break;
-            //fill in later when we create the different power up types
+
+            case WeaponType.simple:
+
+
+                break;
+                //fill in later when we create the different power up types
         }
         pu.Absorbedby(gameObject);
     }

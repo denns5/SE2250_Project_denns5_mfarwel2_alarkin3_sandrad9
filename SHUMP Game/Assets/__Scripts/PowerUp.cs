@@ -24,7 +24,6 @@ public class PowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        print("Powerup spawned");
         //find cube reference
         cube = transform.Find("Cube").gameObject;
         //find other components
@@ -48,6 +47,8 @@ public class PowerUp : MonoBehaviour
             Random.Range(rotMinMax.x, rotMinMax.y));
 
         birthTime = Time.time;
+        SetType(WeaponType.bomb);
+        Debug.Log(type);
     }
 
     // Update is called once per frame
