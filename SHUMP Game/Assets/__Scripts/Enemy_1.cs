@@ -25,6 +25,10 @@ public class Enemy_1 : Enemy
     }
 
     // Update is called once per frame
+    int getPoints()
+    {
+        return _points;
+    }
     void Update()
     {
         Move();

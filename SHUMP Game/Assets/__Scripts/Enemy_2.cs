@@ -30,6 +30,11 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
 
     }
 
+    int getPoints()
+    {
+        return _points;
+    }
+
     // Update is called once per frame
     void Update()
     {

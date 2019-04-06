@@ -25,6 +25,7 @@ public class Bomb : MonoBehaviour
                 count++;
             }
             Destroy(gameObject);
+            Hero.bmb = false;
             if (count > 0)
             {
                 ScoreManager.UpdateScore(50);

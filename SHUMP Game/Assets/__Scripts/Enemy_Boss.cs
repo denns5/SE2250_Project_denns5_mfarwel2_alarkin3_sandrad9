@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-
-public class Enemy_0 : Enemy
+using UnityEngine.SceneManagement;
+public class Enemy_Boss : Enemy
 {
-    private int _health = 2;
-    private int _points = 20;
-    private float _delayBetweenHits=0;
+    private int _health = 5;
+    private int _points = 100;
+    private float _delayBetweenHits = 0;
+
+
+    // Start is called before the first frame update
 
     void Update()
     {
@@ -16,7 +19,7 @@ public class Enemy_0 : Enemy
     public override void Move()
     {//adjusting the position of the enemy whenever Move() is called(every frame).
         Vector3 tempPos = transform.position;
-        tempPos.y -= (speed + ScoreManager.LEVEL) * Time.deltaTime;//will cause the enemy to move down
+        tempPos.y -= (1f + ScoreManager.LEVEL) * Time.deltaTime;//will cause the enemy to move down
         pos = tempPos;
     }
 
@@ -28,6 +31,7 @@ public class Enemy_0 : Enemy
     public override void OnCollisionEnter(Collision coll)
     {
         GameObject otherGO = coll.gameObject;
+        print("Hello");
         if (otherGO.tag == "ProjectileHero")
         {
             print("Collision with 0");
@@ -37,7 +41,7 @@ public class Enemy_0 : Enemy
             {
                 ScoreManager.UpdateScore(_points);
                 TextManager.UpdateText();
-                Main.S.ShipDestoryed(this,0);
+                Main.S.ShipDestoryed(this, 0);
                 print("Enemy 0 killed");
                 Destroy(gameObject);
 
