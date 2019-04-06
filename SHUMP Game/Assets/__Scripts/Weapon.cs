@@ -132,7 +132,7 @@ public class Weapon : MonoBehaviour
 
             case WeaponType.bomb:
                 p = MakeProjectile();
-                p.rigid.velocity =  vel;
+                p.rigid.velocity = vel;
                 break;
 
             // idk about this one
