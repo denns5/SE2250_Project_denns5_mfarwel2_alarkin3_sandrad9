@@ -78,7 +78,7 @@ public class Hero : MonoBehaviour
         GameObject go = rootT.gameObject;
         print("Triggered: "+other.gameObject.name);
 
-        if (go == _lastTriggerGo)
+        if (go == _lastTriggerGo && go.tag!="EnemyBoss")
         {
             return;
         }
@@ -88,6 +88,16 @@ public class Hero : MonoBehaviour
         {
             _shieldLevel--;//decreasing the shield level when the ship is hit by an enemy
             Destroy(go);//destroying the enemy when hit
+            if (_shieldLevel < 0)
+            {
+                Destroy(gameObject);//destroying the hero ship
+                Main.S.DelayedRestart(gameRestartDelay);//restarting the game
+            }
+        }
+        else if (go.tag == "EnemyBoss")//this enemy isn't destroyed on contact with Hero
+        {
+            print("touched boss");
+            _shieldLevel--;//decreasing the shield level when the ship is hit by an enemy
             if (_shieldLevel < 0)
             {
                 Destroy(gameObject);//destroying the hero ship
