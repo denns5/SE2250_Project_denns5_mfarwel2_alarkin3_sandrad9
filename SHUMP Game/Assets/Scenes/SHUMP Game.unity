@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -502,10 +502,10 @@ MonoBehaviour:
   weaponDefinitions:
   - type: 2
     letter: S
-    color: {r: 0.89117086, g: 0.9433962, b: 0.031149892, a: 1}
+    color: {r: 0.9245283, g: 0, b: 0.76449025, a: 1}
     projectilePrefab: {fileID: 3519399282143753321, guid: 907ded2321a867a44868a41931853b38,
       type: 3}
-    projectileColor: {r: 0.89411765, g: 0.94509804, b: 0.03137255, a: 1}
+    projectileColor: {r: 0.9254902, g: 0, b: 0.7647059, a: 1}
     delayBetweenShots: 0.2
     velocity: 50
   - type: 1
@@ -879,7 +879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -275, y: -20}
+  m_AnchoredPosition: {x: -127, y: -20}
   m_SizeDelta: {x: 256, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &965852537
@@ -958,7 +958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -275, y: -40}
+  m_AnchoredPosition: {x: -130, y: -40}
   m_SizeDelta: {x: 256, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &971495943
@@ -2118,7 +2118,7 @@ PrefabInstance:
     - target: {fileID: 3606555934601145970, guid: 6dc09fa43f23d3447b85f60cade0f3a1,
         type: 3}
       propertyPath: _type
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3606555934601145970, guid: 6dc09fa43f23d3447b85f60cade0f3a1,
         type: 3}

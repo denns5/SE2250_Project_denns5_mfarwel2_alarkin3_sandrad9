@@ -168,62 +168,102 @@ public class Weapon : MonoBehaviour
     }
 
     private float _timer;
-    // Update is called once per frame
+    public static int gun;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-                SetType(WeaponType.simple);
-        if (Input.GetKeyDown(KeyCode.X))
-            SetType(WeaponType.blaster);
-        /*if (Rocket.CHECK == true && type != WeaponType.rocket)
+        if (Input.GetKeyDown(KeyCode.Z) || Hero.CHECK == false && gun == 1 && Bomb.CHECK == false && type != WeaponType.bomb)
         {
-            SetType(WeaponType.rocket);
-        }
-        if (Rocket.CHECK == true && type == WeaponType.rocket)
-        {
-            _timer += Time.deltaTime;
-            if (_timer >= 5f)
-            {
-                SetType(WeaponType.simple);
-                //    _timer = 0;
-                _timer = 0;
-             }
-            // {
-            // }
-        }
-
-        if (Rocket.CHECK == false && type == WeaponType.rocket)
-        {
-           //_timer += Time.deltaTime;
-           // if (_timer >= 0.1f)
-           // {
-                SetType(WeaponType.simple);
-           //    _timer = 0;
-                _timer= 0;
-           // }
-        }*/
-        if (Input.GetKeyDown(KeyCode.C) && Hero.CHECK != true && ScoreManager.LEVEL >= 2)
-        {
-            SetType(WeaponType.rocket);
-        }
-
-        if (Hero.CHECK == true && type == WeaponType.rocket) {
             SetType(WeaponType.simple);
+            gun = 0;
         }
+
+        if (Hero.CHECK == true && gun == 0)
+        {
+            SetType(WeaponType.blaster);
+            gun = 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) && Hero.CHECK != true && ScoreManager.LEVEL >= 2)
+        {
+            SetType(WeaponType.rocket);
+        }
+
 
         if (Bomb.CHECK == true && type != WeaponType.bomb)
         {
             SetType(WeaponType.bomb);
+            Hero.CHECK = false;
         }
         if (Bomb.CHECK == false && type == WeaponType.bomb)
         {
             _timer += Time.deltaTime;
-            if (_timer >= 0.1f) { 
-                SetType(WeaponType.simple); 
+            if (_timer >= 0.2f)
+            {
+                SetType(WeaponType.simple);
+                gun = 0;
                 _timer = 0;
             }
-          
+
         }
+
     }
+    // Update is called once per frame
+    /*   void Update()
+       {
+           if (Input.GetKeyDown(KeyCode.Z))
+                   SetType(WeaponType.simple);
+           if (Input.GetKeyDown(KeyCode.X))
+               SetType(WeaponType.blaster);
+           /*if (Rocket.CHECK == true && type != WeaponType.rocket)
+           {
+               SetType(WeaponType.rocket);
+           }
+           if (Rocket.CHECK == true && type == WeaponType.rocket)
+           {
+               _timer += Time.deltaTime;
+               if (_timer >= 5f)
+               {
+                   SetType(WeaponType.simple);
+                   //    _timer = 0;
+                   _timer = 0;
+                }
+               // {
+               // }
+           }
+
+           if (Rocket.CHECK == false && type == WeaponType.rocket)
+           {
+              //_timer += Time.deltaTime;
+              // if (_timer >= 0.1f)
+              // {
+                   SetType(WeaponType.simple);
+              //    _timer = 0;
+                   _timer= 0;
+              // }
+           }
+           if (Input.GetKeyDown(KeyCode.C) && Hero.CHECK != true && ScoreManager.LEVEL >= 2)
+           {
+               SetType(WeaponType.rocket);
+           }
+
+           if (Hero.CHECK == true && type == WeaponType.rocket) {
+               SetType(WeaponType.simple);
+           }
+
+           if (Bomb.CHECK == true && type != WeaponType.bomb)
+           {
+               SetType(WeaponType.bomb);
+           }
+           if (Bomb.CHECK == false && type == WeaponType.bomb)
+           {
+               _timer += Time.deltaTime;
+               if (_timer >= 0.1f) { 
+                   SetType(WeaponType.simple); 
+                   _timer = 0;
+               }
+
+           }
+       }*/
 
 }

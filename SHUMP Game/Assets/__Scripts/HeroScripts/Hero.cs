@@ -18,7 +18,8 @@ public class Hero : MonoBehaviour
     private AudioSource _source;
     private GameObject _lastTriggerGo = null;
     private float _powerUpTime = 0;
-   public static bool CHECK = false;
+    public static bool CHECK = false;
+    public static int PICK = 0;
 
     public delegate void WeaponFireDelegate();
     public WeaponFireDelegate fireDelegate;
@@ -64,7 +65,7 @@ public class Hero : MonoBehaviour
             _source.PlayOneShot(shootSound,0.3f);
         }
 
-        if (Time.time - _powerUpTime >= 10 && CHECK == true)
+        if (Time.time - _powerUpTime >= 10 && CHECK == true || CHECK == false)
         {
             CHECK = false;
             leftWeapon.SetActive(false);
@@ -118,37 +119,29 @@ public class Hero : MonoBehaviour
     public void AbsorbPowerUp(GameObject go)
     {
         PowerUp pu = go.GetComponent<PowerUp>();
+        switch (PICK)
+        {
+            case 0:
+                Bomb.CHECK = false;
+                leftWeapon.SetActive(true);
+                rightWeapon.SetActive(true);
+                CHECK = true;
+                _powerUpTime = Time.time;
+                PICK = 1;
+                break;
 
-      
-        int ndx = Random.Range(0, 1);
-        Debug.Log(ndx + " Absorbed value ");
-        switch (ndx)
-         {
-             case 0:
-                 Bomb.CHECK = false;
-                // Rocket.CHECK = false;
-                 leftWeapon.SetActive(true);
-                 rightWeapon.SetActive(true);
-                 CHECK = true;
-                 _powerUpTime = Time.time;
-                 break;
 
-            /* case "Rocket":
-                 Rocket.CHECK = true;
-                 Bomb.CHECK = false;
-                 _check = false;
-                 break;*/
+            case 1:
+                Bomb.CHECK = true;
+                PICK = 0;
+                CHECK = false;
+                break;
 
-             case 1:
-                 Bomb.CHECK = true;
-                //Rocket.CHECK = false;
-                 CHECK = false;
-                 break;
-
-         }
+        }
         pu.Absorbedby(gameObject);
     }
-    
+
+
     public float shieldLevel
     {
         get
