@@ -38,7 +38,6 @@ public class Weapon : MonoBehaviour
     public float lastShotTime;
     private Renderer _collarRend;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +57,7 @@ public class Weapon : MonoBehaviour
         {
             rootGO.GetComponent<Hero>().fireDelegate += Fire;
         }
+        TextManager.UpdateGun("Simple");
 
     }
 
@@ -176,23 +176,27 @@ public class Weapon : MonoBehaviour
         {
             SetType(WeaponType.simple);
             gun = 0;
+            TextManager.UpdateGun("Simple");
         }
 
         if (Hero.CHECK == true && gun == 0)
         {
             SetType(WeaponType.blaster);
+            TextManager.UpdateGun("Multi");
             gun = 1;
         }
 
         if (Input.GetKeyDown(KeyCode.X) && Hero.CHECK != true && ScoreManager.LEVEL >= 2)
         {
             SetType(WeaponType.rocket);
+            TextManager.UpdateGun("Rocket");
         }
 
 
         if (Bomb.CHECK == true && type != WeaponType.bomb)
         {
             SetType(WeaponType.bomb);
+            TextManager.UpdateGun("Bomb");
             Hero.CHECK = false;
         }
         if (Bomb.CHECK == false && type == WeaponType.bomb)
@@ -201,6 +205,7 @@ public class Weapon : MonoBehaviour
             if (_timer >= 0.2f)
             {
                 SetType(WeaponType.simple);
+                TextManager.UpdateGun("Simple");
                 gun = 0;
                 _timer = 0;
             }

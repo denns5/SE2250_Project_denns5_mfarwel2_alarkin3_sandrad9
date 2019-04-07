@@ -7,7 +7,7 @@ public class TextManager : MonoBehaviour
 {
     static private TextManager T;
     public float levelStartDelay = 2f;
-    public Text gameOverGT, highScoreGT, scoreGT, level, fixedLevel;
+    public Text gameOverGT, highScoreGT, scoreGT, level, fixedLevel, gunGT;
 
     void Awake()
     {
@@ -40,6 +40,9 @@ public class TextManager : MonoBehaviour
         //Set up ScoreCounter UI Text
         go = GameObject.Find("ScoreCounter");
         scoreGT = go.GetComponent<Text>();
+
+        go = GameObject.Find("WeaponTracker");
+        gunGT = go.GetComponent<Text>();
 
         //Set up Level UI Text
         go = GameObject.Find("Level");
@@ -91,6 +94,22 @@ public class TextManager : MonoBehaviour
         scoreGT.text = "Your score: " + ScoreManager.SCORE;
         fixedLevel.text = "Level: " + ScoreManager.LEVEL;
 
+    }
+
+    public static void UpdateGun(string gun)
+    {
+        try
+        { // try-catch stops an error from breaking your program 
+            T.UpdateG(gun);
+        }
+        catch (System.NullReferenceException nre)
+        {
+            Debug.LogError("TextManager:UpdateText() called while T=null.\n" + nre);
+        }
+    }
+    public void UpdateG(string g)
+    {
+        gunGT.text = "Current gun: " + g;
     }
 
     public void UpdateHighScore()

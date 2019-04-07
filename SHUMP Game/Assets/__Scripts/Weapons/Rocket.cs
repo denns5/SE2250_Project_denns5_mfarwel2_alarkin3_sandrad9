@@ -12,13 +12,29 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
    private void FixedUpdate()
     {
-        if (FindClosestByTag("Enemy") == null)
+        if (FindClosestByTag("Enemy") == null && FindClosestByTag("EnemyBoss") == null)
         {
             rocketRigidBody.velocity = transform.forward * rocketVelocity;
         }
         else
         {
-            _rocketTarget = FindClosestByTag("Enemy").transform;
+            if (FindClosestByTag("Enemy") == null)
+            {
+                _rocketTarget = FindClosestByTag("EnemyBoss").transform;
+            }
+
+            else if (FindClosestByTag("EnemyBoss") == null)
+            {
+                _rocketTarget = FindClosestByTag("Enemy").transform;
+            }
+            else if (Vector3.Distance(rocketRigidBody.position, FindClosestByTag("EnemyBoss").transform.position) < Vector3.Distance(rocketRigidBody.position, FindClosestByTag("Enemy").transform.position))
+            {
+                _rocketTarget = FindClosestByTag("EnemyBoss").transform;
+            }
+            else
+            {
+                _rocketTarget = FindClosestByTag("Enemy").transform;
+            }
             rocketRigidBody.velocity = transform.forward * rocketVelocity;
             var rocketTargetRotation = Quaternion.LookRotation(_rocketTarget.position - transform.position);
             rocketRigidBody.MoveRotation(Quaternion.RotateTowards(transform.rotation, rocketTargetRotation, turn));

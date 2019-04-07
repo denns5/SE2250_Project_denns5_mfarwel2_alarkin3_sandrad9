@@ -126,6 +126,7 @@ public class Hero : MonoBehaviour
                 leftWeapon.SetActive(true);
                 rightWeapon.SetActive(true);
                 CHECK = true;
+                TextManager.UpdateGun("Multi");
                 _powerUpTime = Time.time;
                 PICK = 1;
                 break;
