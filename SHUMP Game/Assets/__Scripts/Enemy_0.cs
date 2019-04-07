@@ -30,17 +30,18 @@ public class Enemy_0 : Enemy
         GameObject otherGO = coll.gameObject;
         if (otherGO.tag == "ProjectileHero")
         {
-            print("Collision with 0");
+            //print("Collision with 0");
             Destroy(otherGO);
-            if (Time.time - _delayBetweenHits < 0.1f) return;
-            else if (_health <= 1)
+            //if (Time.time - _delayBetweenHits < 0.1f) return;
+            //else 
+            if (_health <= 1)
             {
                 ScoreManager.UpdateScore(_points);
-                TextManager.UpdateScoreCounterText();
+                TextManager.UpdateText();
                 Main.S.ShipDestoryed(this,0);
                 print("Enemy 0 killed");
+                _health = 0;
                 Destroy(gameObject);
-
             }
             else
             {

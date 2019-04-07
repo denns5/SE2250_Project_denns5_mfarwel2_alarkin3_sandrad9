@@ -7,8 +7,7 @@ public class TextManager : MonoBehaviour
 {
     static private TextManager T;
     public float levelStartDelay = 2f;
-    public Text gameOverGT, scoreCounterGT, levelCounterGT, weaponTypeGT, nextLevel;
-    public Weapon weaponType;
+    public Text gameOverGT, highScoreGT, scoreGT, level, fixedLevel;
 
     void Awake()
     {
@@ -28,7 +27,8 @@ public class TextManager : MonoBehaviour
     }
 
     private void SetUpUITexts()
-    {        
+    {
+        
         // Set up GameOver UI Text
         GameObject go = GameObject.Find("GameOver");
         if (go != null)
@@ -39,23 +39,18 @@ public class TextManager : MonoBehaviour
 
         //Set up ScoreCounter UI Text
         go = GameObject.Find("ScoreCounter");
-        scoreCounterGT = go.GetComponent<Text>();
-        UpdateScoreCT();
+        scoreGT = go.GetComponent<Text>();
 
-        //Set up LevelCounter UI Text
-        go = GameObject.Find("LevelCounter");
-        levelCounterGT = go.GetComponent<Text>();
-        UpdateLevelCT();
+        //Set up Level UI Text
+        go = GameObject.Find("Level");
+        level = go.GetComponent<Text>();
+        UpdateLevel();
 
-        //Set up WeaponType UI Text
-        go = GameObject.Find("WeaponType");
-        weaponTypeGT = go.GetComponent<Text>();
-        UpdateWeaponTT("Blaster");
+        //Set up Level UI Text
+        go = GameObject.Find("FixedLevel");
+        fixedLevel = go.GetComponent<Text>();
+        UpdateT();
 
-        //Set up NextLevel UI Text
-        go = GameObject.Find("NextLevel");
-        nextLevel = go.GetComponent<Text>();
-        UpdateNextLevelT();
     }
 
     public static void GameOverText()
@@ -72,23 +67,18 @@ public class TextManager : MonoBehaviour
 
     void GameOver()
     {
-        //Hide scoreCounterGT, levelCounterGT, weaponTypeGT UI Text
-        scoreCounterGT.gameObject.SetActive(false);
-        levelCounterGT.gameObject.SetActive(false);
-        weaponTypeGT.gameObject.SetActive(false);
-
-        //Set GameOver UI Text
-        gameOverGT.text = "Game Over!\nYou got to Level: " + ScoreManager.LEVEL + "\nHigh Score: " + ScoreManager.HIGH_SCORE;
-        
-        //Display GameOver UI Text   
+        gameOverGT.text = "Game Over!\nYou got to Level: " + ScoreManager.LEVEL;
+        scoreGT.gameObject.SetActive(false);
+        UpdateHighScore();
+        highScoreGT.gameObject.SetActive(true);
         gameOverGT.gameObject.SetActive(true);
     }
 
-    public static void UpdateScoreCounterText()
+    public static void UpdateText()
     {
         try
         { // try-catch stops an error from breaking your program 
-            T.UpdateScoreCT();
+            T.UpdateT();
         }
         catch (System.NullReferenceException nre)
         {
@@ -96,50 +86,31 @@ public class TextManager : MonoBehaviour
         }
     }
 
-    public void UpdateScoreCT()
+    public void UpdateT()
     {
-        scoreCounterGT.text = "Your score: " + ScoreManager.SCORE;
+        scoreGT.text = "Your score: " + ScoreManager.SCORE;
+        fixedLevel.text = "Level: " + ScoreManager.LEVEL;
+
     }
 
-    public static void UpdateLevelCounterText()
+    public void UpdateHighScore()
     {
-        try
-        { // try-catch stops an error from breaking your program 
-            T.UpdateLevelCT();
-        }
-        catch (System.NullReferenceException nre)
+        // Set up the HighScore UI Text
+        GameObject go = GameObject.Find("HighScore");
+        if (go != null)
         {
-            Debug.LogError("TextManager:UpdateText() called while T=null.\n" + nre);
+            highScoreGT = go.GetComponent<Text>();
+            highScoreGT.gameObject.SetActive(false);
         }
+        string hScore = "High Score: " + ScoreManager.HIGH_SCORE;
+        go.GetComponent<Text>().text = hScore;
     }
 
-    public void UpdateLevelCT()
-    {
-        levelCounterGT.text = "Level: " + ScoreManager.LEVEL;
-    }
-
-    public static void UpdateWeaponTypeText(string type)
+    public static void UpdateLevel()
     {
         try
         { // try-catch stops an error from breaking your program 
-            T.UpdateWeaponTT(type);
-        }
-        catch (System.NullReferenceException nre)
-        {
-            Debug.LogError("TextManager:UpdateText() called while T=null.\n" + nre);
-        }
-    }
-
-    public void UpdateWeaponTT(string type)
-    {
-        weaponTypeGT.text = "Weapon Type: " + type;
-    }
-
-    public static void UpdateNextLevelText()
-    {
-        try
-        { // try-catch stops an error from breaking your program 
-            T.UpdateNextLevelT();
+            T.UpdateL();
         }
         catch (System.NullReferenceException nre)
         {
@@ -147,21 +118,15 @@ public class TextManager : MonoBehaviour
         }
     }
 
-    public void UpdateNextLevelT()
+    public void UpdateL()
     {
-        //Set up NextLevel UI Text
-        nextLevel.text = "Level: " + ScoreManager.LEVEL;
-
-        //Display NextLevel UI Text
-        nextLevel.gameObject.SetActive(true);
-
-        //Call function to hide NextLevel UI Text after levelStartDelay
+        level.text = "Level: " + ScoreManager.LEVEL;
+        level.gameObject.SetActive(true);
         Invoke("HideLevelText", levelStartDelay);
     }
 
     private void HideLevelText()
     {
-        //Hide NextLevel UI Text
-        nextLevel.gameObject.SetActive(false);
+        level.gameObject.SetActive(false);
     }
 }

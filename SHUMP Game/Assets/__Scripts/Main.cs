@@ -12,12 +12,14 @@ public class Main : MonoBehaviour
     public float enemyDefaultPadding = 1.5f;
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
-    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.bomb };//Make changes
+    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.bomb, WeaponType.multi, WeaponType.rocket };//Make changes
     public AudioClip killSound;
     public AudioClip music;
     private BoundsCheck _bndCheck;
     private AudioSource _source;
     private int _bossSpawn = 2;
+    private float _powerupDelay = 0;
+
     void Awake()
     {
         S = this;
@@ -35,7 +37,7 @@ public class Main : MonoBehaviour
     public void SpawnEnemy()
     {
       
-        int ndx = Random.Range(0, 2);
+        int ndx = Random.Range(0, prefabEnemies.Length-1);
         if (ScoreManager.LEVEL == _bossSpawn)
         {
             ndx = 3;
@@ -85,14 +87,21 @@ public class Main : MonoBehaviour
         _source.PlayOneShot(killSound, 0.5f);
         if (Random.value <= e.powerUpDropChance)
         {//havent created this variable in Enemy yet
-            int index = Random.Range(0, powerUpFrequency.Length);
-            WeaponType puType = powerUpFrequency[index];
-            //spawn a power up
-            GameObject go = Instantiate(prefabPowerUp) as GameObject;
-            PowerUp pu = go.GetComponent<PowerUp>();
-            pu.SetType(puType);
-            //set the power up to the position of the destroyed ship
-            go.transform.position = e.transform.position;
+            // if powerup was just created, don't create a new one from same destroyed ship
+            if (Time.time - _powerupDelay < 0.1f) return;
+            else
+            {
+                int index = Random.Range(0, powerUpFrequency.Length);
+                WeaponType puType = powerUpFrequency[index];
+                //spawn a power up
+                GameObject go = Instantiate(prefabPowerUp) as GameObject;
+                PowerUp pu = go.GetComponent<PowerUp>();
+
+                //set the power up to the position of the destroyed ship
+                go.transform.position = e.transform.position;
+
+                _powerupDelay = Time.time;
+            }
         }
     }
 }

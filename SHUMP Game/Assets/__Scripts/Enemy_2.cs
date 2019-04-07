@@ -62,15 +62,16 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
         if (otherGO.tag == "ProjectileHero")
         {
             Destroy(otherGO);
-            if (Time.time - _delayBetweenHits < 0.1) return;
-            else if (_health == 1)
+            //if (Time.time - _delayBetweenHits < 0.1) return;
+            //else 
+            if (_health == 1)
             {
                 ScoreManager.UpdateScore(_points);
-                TextManager.UpdateScoreCounterText();
-                Destroy(gameObject);
+                TextManager.UpdateText();
+                _health = 0;
                 Main.S.ShipDestoryed(this,2);
                 print("Enemy 2 killed");
-                
+                Destroy(gameObject);
             }
             else
             {

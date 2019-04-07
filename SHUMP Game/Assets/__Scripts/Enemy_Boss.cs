@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 public class Enemy_Boss : Enemy
 {
-    private int _health = 5;
+    private int _health = 10;
     private int _points = 100;
     private float _delayBetweenHits = 0;
 
@@ -31,25 +31,25 @@ public class Enemy_Boss : Enemy
     public override void OnCollisionEnter(Collision coll)
     {
         GameObject otherGO = coll.gameObject;
-        Debug.Log("Collision (Boss)");
+        //print("Hello");
         if (otherGO.tag == "ProjectileHero")
         {
-            print("Collision with hero and boss");
+            print("Collision with boss");
             Destroy(otherGO);
             if (Time.time - _delayBetweenHits < 0.1f) return;
             else if (_health <= 1)
             {
                 ScoreManager.UpdateScore(_points);
-                TextManager.UpdateScoreCounterText();
+                TextManager.UpdateText();
                 Main.S.ShipDestoryed(this, 0);
-                print("Enemy 0 killed");
+                print("Enemy boss killed");
                 Destroy(gameObject);
 
             }
             else
             {
                 _health = _health - 1;
-                print("Enemy 0 hit " + _health);
+                print("Enemy boss hit " + _health);
                 _delayBetweenHits = Time.time;
             }
         }

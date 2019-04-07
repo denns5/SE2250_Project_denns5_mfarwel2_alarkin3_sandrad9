@@ -5,7 +5,6 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     static public Hero S;
-    //delcaring public variables that will determine how the ship will move.
     public float speed = 30;
     public float rollMult = -45;
     public float pitchMult = 30;
@@ -19,11 +18,7 @@ public class Hero : MonoBehaviour
     private AudioSource _source;
     private GameObject _lastTriggerGo = null;
     private float _powerUpTime = 0;
-<<<<<<< HEAD
-    public static bool CHECK = false;
-=======
-    private bool _check = false;
->>>>>>> parent of 072a621... Pickups
+   public static bool CHECK = false;
 
     public delegate void WeaponFireDelegate();
     public WeaponFireDelegate fireDelegate;
@@ -69,14 +64,9 @@ public class Hero : MonoBehaviour
             _source.PlayOneShot(shootSound,0.3f);
         }
 
-        if (Time.time - _powerUpTime >= 10 && _check == true)
+        if (Time.time - _powerUpTime >= 10 && CHECK == true)
         {
-<<<<<<< HEAD
-            print("Hero check set false after time");
             CHECK = false;
-=======
-            _check = false;
->>>>>>> parent of 072a621... Pickups
             leftWeapon.SetActive(false);
             rightWeapon.SetActive(false);
         }
@@ -84,10 +74,9 @@ public class Hero : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("On trigger enter called");
         Transform rootT = other.gameObject.transform.root;
         GameObject go = rootT.gameObject;
-        print("Triggered: "+ other.gameObject.name);
+        print("Triggered: "+other.gameObject.name);
 
         if (go == _lastTriggerGo)
         {
@@ -119,32 +108,17 @@ public class Hero : MonoBehaviour
     public void AbsorbPowerUp(GameObject go)
     {
         PowerUp pu = go.GetComponent<PowerUp>();
-        Debug.Log("Here" + pu.type);
-        leftWeapon.SetActive(true);
-        rightWeapon.SetActive(true);
-        _check = true;
-        _powerUpTime = Time.time;
-        switch (pu.type)
-        {
-            case WeaponType.speed:
-                speed += 10;
-                break;
 
-            case WeaponType.simple:
-
-<<<<<<< HEAD
       
-        //int ndx = Random.Range(0, 2);
-        //Debug.Log(ndx + " Absorbed value ");
-        string type = pu.GetStringType();
-        switch (type)
+        int ndx = Random.Range(0, 1);
+        Debug.Log(ndx + " Absorbed value ");
+        switch (ndx)
          {
-             case "Multi":
+             case 0:
                  Bomb.CHECK = false;
-                 //Rocket.CHECK = false;
+                // Rocket.CHECK = false;
                  leftWeapon.SetActive(true);
                  rightWeapon.SetActive(true);
-                print("Hero check set true");
                  CHECK = true;
                  _powerUpTime = Time.time;
                  break;
@@ -155,21 +129,13 @@ public class Hero : MonoBehaviour
                  _check = false;
                  break;*/
 
-             case "Bomb":
-                
+             case 1:
                  Bomb.CHECK = true;
                 //Rocket.CHECK = false;
-                print("hero check set false. case 1");
-                CHECK = false;
+                 CHECK = false;
                  break;
 
          }
-=======
-
-                break;
-                //fill in later when we create the different power up types
-        }
->>>>>>> parent of 072a621... Pickups
         pu.Absorbedby(gameObject);
     }
     

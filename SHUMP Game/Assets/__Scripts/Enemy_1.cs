@@ -49,12 +49,11 @@ public class Enemy_1 : Enemy
         if (otherGO.tag == "ProjectileHero")
         {
             ScoreManager.UpdateScore(_points);
-            TextManager.UpdateScoreCounterText();
+            TextManager.UpdateText();
             Destroy(otherGO);
             Destroy(gameObject);
             Main.S.ShipDestoryed(this,1);
             print("Enemy 1 killed");
-            
         }
         else
         {

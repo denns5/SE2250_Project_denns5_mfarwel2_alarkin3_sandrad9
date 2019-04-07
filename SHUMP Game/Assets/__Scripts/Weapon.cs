@@ -10,7 +10,7 @@ public enum WeaponType
     blaster,
     simple,
     rocket,
-    speed,
+    multi,
     bomb
 }
 
@@ -94,7 +94,7 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
-        Projectile p;
+        Projectile p = MakeProjectile();
         Vector3 vel = Vector3.up * def.velocity;
         if (transform.up.y < 0)
         {
@@ -104,18 +104,18 @@ public class Weapon : MonoBehaviour
         switch (type)
         {
             case WeaponType.simple:
-                p = MakeProjectile();
+                //p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
            
            case WeaponType.rocket:
-                p = MakeProjectile();
+                //p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
 
             case WeaponType.blaster:
                 // middle projectile
-                p = MakeProjectile();
+                //p = MakeProjectile();
                 p.rigid.velocity = vel;
                 // right projectile
                 p = MakeProjectile();
@@ -127,11 +127,11 @@ public class Weapon : MonoBehaviour
                 p.rigid.velocity = p.transform.rotation * vel;
                 break;
 
-            case WeaponType.speed:
+            case WeaponType.multi:
                 break;
 
             case WeaponType.bomb:
-                p = MakeProjectile();
+                //p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
 
@@ -139,6 +139,10 @@ public class Weapon : MonoBehaviour
             case WeaponType.none:
                 break;
         }
+
+        // delete projectile after each switch statement executes 
+        // so the new weapon starts fresh with correct number of projectiles
+        Destroy(p,0);
     }
 
     public Projectile MakeProjectile()
@@ -163,42 +167,14 @@ public class Weapon : MonoBehaviour
         return p;
     }
 
-
+    private float _timer;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z)){
-            TextManager.UpdateWeaponTypeText("Simple");
-            SetType(WeaponType.simple);
-
-        }else if(Input.GetKeyDown(KeyCode.X)){
-            TextManager.UpdateWeaponTypeText("Blaster");
-            SetType(WeaponType.blaster);
-<<<<<<< HEAD
-
-        }else if(Input.GetKeyDown(KeyCode.C) && Hero.CHECK == false && ScoreManager.LEVEL >= 2){
-            TextManager.UpdateWeaponTypeText("Rocket");
-            SetType(WeaponType.rocket);
-
-        }else if(Hero.CHECK == true && type == WeaponType.rocket){
-            TextManager.UpdateWeaponTypeText("Simple");
-            SetType(WeaponType.simple);
-
-        }else if(Bomb.CHECK == true && type != WeaponType.bomb){
-            TextManager.UpdateWeaponTypeText("Bomb");
-            SetType(WeaponType.bomb);
-
-        }else if(Bomb.CHECK == false && type == WeaponType.bomb){
-            _timer += Time.deltaTime;
-            if (_timer >= 0.1f)
-            {
-                TextManager.UpdateWeaponTypeText("Simple");
+        if (Input.GetKeyDown(KeyCode.Z))
                 SetType(WeaponType.simple);
-                _timer = 0;
-            }
-
-        }
-
+        if (Input.GetKeyDown(KeyCode.X))
+            SetType(WeaponType.blaster);
         /*if (Rocket.CHECK == true && type != WeaponType.rocket)
         {
             SetType(WeaponType.rocket);
@@ -226,13 +202,28 @@ public class Weapon : MonoBehaviour
                 _timer= 0;
            // }
         }*/
-
-=======
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && Hero.CHECK != true && ScoreManager.LEVEL >= 2)
+        {
             SetType(WeaponType.rocket);
-        if (Input.GetKeyDown(KeyCode.V))
+        }
+
+        if (Hero.CHECK == true && type == WeaponType.rocket) {
+            SetType(WeaponType.simple);
+        }
+
+        if (Bomb.CHECK == true && type != WeaponType.bomb)
+        {
             SetType(WeaponType.bomb);
->>>>>>> parent of 072a621... Pickups
+        }
+        if (Bomb.CHECK == false && type == WeaponType.bomb)
+        {
+            _timer += Time.deltaTime;
+            if (_timer >= 0.1f) { 
+                SetType(WeaponType.simple); 
+                _timer = 0;
+            }
+          
+        }
     }
 
 }

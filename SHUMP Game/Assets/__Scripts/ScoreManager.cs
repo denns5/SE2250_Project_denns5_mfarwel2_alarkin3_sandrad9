@@ -72,8 +72,7 @@ public class ScoreManager : MonoBehaviour
     public void UpdateL()
     {
         _level++;
-        TextManager.UpdateNextLevelText();
-        TextManager.UpdateLevelCounterText();
+        TextManager.UpdateLevel();
     }
 
     public static void GameOverScore()
