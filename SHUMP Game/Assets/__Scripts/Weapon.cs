@@ -10,7 +10,7 @@ public enum WeaponType
     blaster,
     simple,
     rocket,
-    multi,
+    speed,
     bomb
 }
 
@@ -127,7 +127,7 @@ public class Weapon : MonoBehaviour
                 p.rigid.velocity = p.transform.rotation * vel;
                 break;
 
-            case WeaponType.multi:
+            case WeaponType.speed:
                 break;
 
             case WeaponType.bomb:
@@ -163,7 +163,7 @@ public class Weapon : MonoBehaviour
         return p;
     }
 
-    private float _timer;
+
     // Update is called once per frame
     void Update()
     {
@@ -174,6 +174,7 @@ public class Weapon : MonoBehaviour
         }else if(Input.GetKeyDown(KeyCode.X)){
             TextManager.UpdateWeaponTypeText("Blaster");
             SetType(WeaponType.blaster);
+<<<<<<< HEAD
 
         }else if(Input.GetKeyDown(KeyCode.C) && Hero.CHECK == false && ScoreManager.LEVEL >= 2){
             TextManager.UpdateWeaponTypeText("Rocket");
@@ -226,6 +227,12 @@ public class Weapon : MonoBehaviour
            // }
         }*/
 
+=======
+        if (Input.GetKeyDown(KeyCode.C))
+            SetType(WeaponType.rocket);
+        if (Input.GetKeyDown(KeyCode.V))
+            SetType(WeaponType.bomb);
+>>>>>>> parent of 072a621... Pickups
     }
 
 }

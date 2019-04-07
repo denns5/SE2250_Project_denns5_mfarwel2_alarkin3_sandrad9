@@ -5,8 +5,7 @@ public class Rocket : MonoBehaviour
 {
     private Transform _rocketTarget;
     public Rigidbody rocketRigidBody;
- //   static public float TIMER;
-    //public static bool CHECK;
+
     public float turn;
     public float rocketVelocity;
     // Update is called once per frame

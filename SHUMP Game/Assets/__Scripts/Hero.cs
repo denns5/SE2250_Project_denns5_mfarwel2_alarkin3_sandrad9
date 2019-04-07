@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     static public Hero S;
+    //delcaring public variables that will determine how the ship will move.
     public float speed = 30;
     public float rollMult = -45;
     public float pitchMult = 30;
@@ -18,7 +19,11 @@ public class Hero : MonoBehaviour
     private AudioSource _source;
     private GameObject _lastTriggerGo = null;
     private float _powerUpTime = 0;
+<<<<<<< HEAD
     public static bool CHECK = false;
+=======
+    private bool _check = false;
+>>>>>>> parent of 072a621... Pickups
 
     public delegate void WeaponFireDelegate();
     public WeaponFireDelegate fireDelegate;
@@ -64,10 +69,14 @@ public class Hero : MonoBehaviour
             _source.PlayOneShot(shootSound,0.3f);
         }
 
-        if (Time.time - _powerUpTime >= 10 && CHECK == true)
+        if (Time.time - _powerUpTime >= 10 && _check == true)
         {
+<<<<<<< HEAD
             print("Hero check set false after time");
             CHECK = false;
+=======
+            _check = false;
+>>>>>>> parent of 072a621... Pickups
             leftWeapon.SetActive(false);
             rightWeapon.SetActive(false);
         }
@@ -110,7 +119,20 @@ public class Hero : MonoBehaviour
     public void AbsorbPowerUp(GameObject go)
     {
         PowerUp pu = go.GetComponent<PowerUp>();
+        Debug.Log("Here" + pu.type);
+        leftWeapon.SetActive(true);
+        rightWeapon.SetActive(true);
+        _check = true;
+        _powerUpTime = Time.time;
+        switch (pu.type)
+        {
+            case WeaponType.speed:
+                speed += 10;
+                break;
 
+            case WeaponType.simple:
+
+<<<<<<< HEAD
       
         //int ndx = Random.Range(0, 2);
         //Debug.Log(ndx + " Absorbed value ");
@@ -142,6 +164,12 @@ public class Hero : MonoBehaviour
                  break;
 
          }
+=======
+
+                break;
+                //fill in later when we create the different power up types
+        }
+>>>>>>> parent of 072a621... Pickups
         pu.Absorbedby(gameObject);
     }
     

@@ -11,7 +11,7 @@ public class PowerUp : MonoBehaviour
     public float fadeTime = 4f;
 
     [Header("Set Dynamically")]
-    public string type;
+    public WeaponType type;
     public GameObject cube;
     public TextMesh letter;
     public Vector3 rotPerSecond;
@@ -20,8 +20,6 @@ public class PowerUp : MonoBehaviour
     private Rigidbody _rigidBody;
     private BoundsCheck _bndCheck;
     private Renderer _cubeRend;
-
-    private string[] _types = { "Multi", "Bomb" };
 
     // Start is called before the first frame update
     void Awake()
@@ -47,6 +45,7 @@ public class PowerUp : MonoBehaviour
         rotPerSecond = new Vector3(Random.Range(rotMinMax.x, rotMinMax.y), 
             Random.Range(rotMinMax.x, rotMinMax.y), 
             Random.Range(rotMinMax.x, rotMinMax.y));
+<<<<<<< HEAD
         int ndx = Random.Range(0,2); 
         type = _types[ndx];
         
@@ -59,8 +58,11 @@ public class PowerUp : MonoBehaviour
         {
             letter.text = "B";
         }
+=======
+>>>>>>> parent of 072a621... Pickups
 
         birthTime = Time.time;
+        SetType(WeaponType.bomb);
         Debug.Log(type);
     }
 
@@ -96,15 +98,23 @@ public class PowerUp : MonoBehaviour
         }
     }
     
+<<<<<<< HEAD
     public string GetStringType()
+=======
+    public void SetType(WeaponType wt)
+>>>>>>> parent of 072a621... Pickups
     {
-        return type;
+        //get weapon definition from main
+        WeaponDefinition def = Main.GetWeaponDefinition(wt);
+        //set the color and text of the cube
+        _cubeRend.material.color = def.color;
+        letter.text = def.letter;
+        type = wt;//set tthe type
     }
 
     public void Absorbedby(GameObject target)
     {
         //called by the hero class when an object is collected
-        Debug.Log("PowerUp: " + type);
         Destroy(gameObject);
     }
 }
