@@ -3,14 +3,14 @@ using System.Collections;
 
 public class Boss_Weapon : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField]//creating a serialize field
     GameObject bullet;
     float fireRate;
     float nextFire;
 
     void Start()
     {
-        fireRate = 2f;
+        fireRate = 2f;//will fire every 2 seconds
         nextFire = Time.time;
     }
 
@@ -22,10 +22,10 @@ public class Boss_Weapon : MonoBehaviour
 
     void FireCheck()
     {
-        if (Time.time > nextFire)
+        if (Time.time > nextFire)//will only fire every 2 seconds
         {
-            Instantiate(bullet, transform.position, Quaternion.identity);
-            nextFire = Time.time + fireRate;
+            Instantiate(bullet, transform.position, Quaternion.identity);//instantiate the bullet
+            nextFire = Time.time + fireRate;//setting the time of next fire to 2 seconds later
         }
     }
 }

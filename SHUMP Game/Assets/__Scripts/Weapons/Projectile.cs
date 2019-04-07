@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private BoundsCheck _bndCheck;
+    private BoundsCheck _bndCheck;//creating variables for components
     private Renderer _rend;
 
     [Header("Set Dynamically")]
@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private WeaponType _type;
 
-    public WeaponType type
+    public WeaponType type//weapon type setter/getter in order to read and write the private _type variable
     {
         get
         {
@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
 
     void Awake()
     {
-        _bndCheck = GetComponent<BoundsCheck>();
+        _bndCheck = GetComponent<BoundsCheck>();//getting the correct components when awoken
         _rend = GetComponent<Renderer>();
         rigid = GetComponent<Rigidbody>();
 
@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_bndCheck.isOnScreen)
+        if (!_bndCheck.isOnScreen)//destroy the projectile when it leaves the scren
         {
             Destroy(gameObject);
         }

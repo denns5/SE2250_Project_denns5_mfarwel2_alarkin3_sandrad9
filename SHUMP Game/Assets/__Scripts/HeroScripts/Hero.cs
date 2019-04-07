@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
-{
+{//setting up all initial necaessary variables
     static public Hero S;
     public float speed = 30;
     public float rollMult = -45;
@@ -42,7 +42,7 @@ public class Hero : MonoBehaviour
 
     private void Start()
     {
-        leftWeapon.SetActive(false);
+        leftWeapon.SetActive(false);//making the left and right guns not active at the start
         rightWeapon.SetActive(false);
     }
 
@@ -61,14 +61,14 @@ public class Hero : MonoBehaviour
         // Allow the ship to fire bullet
         if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
         {
-            fireDelegate();
-            _source.PlayOneShot(shootSound,0.3f);
+            fireDelegate();//will make the ship fire
+            _source.PlayOneShot(shootSound,0.3f);//play the shooting sound
         }
 
         if (Time.time - _powerUpTime >= 10 && CHECK == true || CHECK == false)
-        {
+        {//if the hero has had the power up for 10 seconds
             CHECK = false;
-            leftWeapon.SetActive(false);
+            leftWeapon.SetActive(false);//guns become unactive
             rightWeapon.SetActive(false);
         }
     }
@@ -79,12 +79,12 @@ public class Hero : MonoBehaviour
         GameObject go = rootT.gameObject;
         print("Triggered: "+other.gameObject.name);
 
-        if (go == _lastTriggerGo && go.tag!="EnemyBoss")
+        if (go == _lastTriggerGo && go.tag!="EnemyBoss")//if the same object hits it again and its not the enemy boss do nothing
         {
             return;
         }
-        _lastTriggerGo = go;
-        if (go.tag == "Enemy" || go.tag == "ProjectileEnemy")
+        _lastTriggerGo = go;//last trigger set to the current game object
+        if (go.tag == "Enemy" || go.tag == "ProjectileEnemy")//if hero is hot by either a ship or projectile...
 
         {
             _shieldLevel--;//decreasing the shield level when the ship is hit by an enemy
@@ -107,43 +107,43 @@ public class Hero : MonoBehaviour
         }
 
         else if (go.tag == "PowerUp")
-        {
-            AbsorbPowerUp(go);
+        {//the hero has touched a power up
+            AbsorbPowerUp(go);//call this function to decide what the power up does
         }
         else
-        {
+        {//something else hit the enemy
             print("Triggered by non Enemy" + go.name);
         }
     }
 
     public void AbsorbPowerUp(GameObject go)
     {
-        PowerUp pu = go.GetComponent<PowerUp>();
+        PowerUp pu = go.GetComponent<PowerUp>();//getting the power up component
         switch (PICK)
         {
-            case 0:
-                Bomb.CHECK = false;
-                leftWeapon.SetActive(true);
+            case 0:// the last pick was a bomb or this is the first power up
+                Bomb.CHECK = false;//there is no bomb
+                leftWeapon.SetActive(true);//making the other guns active
                 rightWeapon.SetActive(true);
                 CHECK = true;
-                TextManager.UpdateGun("Multi");
-                _powerUpTime = Time.time;
-                PICK = 1;
+                TextManager.UpdateGun("Multi");//update the weapon text
+                _powerUpTime = Time.time;//the current time is when the power up was absorbed
+                PICK = 1;//next power up will be bomb
                 break;
 
 
-            case 1:
-                Bomb.CHECK = true;
-                PICK = 0;
+            case 1://bomb pwoer up case
+                Bomb.CHECK = true;//bomb will become active
+                PICK = 0;//next pwoer up will be multi
                 CHECK = false;
                 break;
 
         }
-        pu.Absorbedby(gameObject);
+        pu.Absorbedby(gameObject);//power up will be destroyed by this funciton
     }
 
 
-    public float shieldLevel
+    public float shieldLevel//getter for _shield
     {
         get
         {

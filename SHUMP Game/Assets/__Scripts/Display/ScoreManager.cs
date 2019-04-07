@@ -53,7 +53,7 @@ public class ScoreManager : MonoBehaviour
     {
         _score = _score + p;
 
-        if (_score > _level*200)
+        if (_score > _level*200)//will only update level when the score is 200 times the level
         {
             UpdateL();
         }
@@ -71,8 +71,8 @@ public class ScoreManager : MonoBehaviour
     }
     public void UpdateL()
     {
-        _level++;
-        TextManager.UpdateLevel();
+        _level++;//increase level by 1
+        TextManager.UpdateLevel();//update the text
     }
 
     public static void GameOverScore()
@@ -90,9 +90,9 @@ public class ScoreManager : MonoBehaviour
     public void GameOver()
     {
         if (HIGH_SCORE <= _score)
-        {
-            PlayerPrefs.SetInt("SHUMPHighScore", _score);
-            HIGH_SCORE = PlayerPrefs.GetInt("SHUMPHighScore");
+        {//if there is a new high score...
+            PlayerPrefs.SetInt("SHUMPHighScore", _score);//set the new high score
+            HIGH_SCORE = PlayerPrefs.GetInt("SHUMPHighScore");//get the new high score so it can be displayed when called
         }
     }
 

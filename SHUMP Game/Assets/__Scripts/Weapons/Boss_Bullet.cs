@@ -3,15 +3,15 @@ using System.Collections;
 
 public class Boss_Bullet : MonoBehaviour
 {
-    float moveSpeed = 10f;
+    float moveSpeed = 10f;//speed of the bullet
 
-    public int angle;
-    Rigidbody rb;
+    public int angle;//angle at which the bullet comes out
+    Rigidbody rigidBody;//rigid body variable
     void Start()
     {
-        Vector3 vel = Vector3.down * moveSpeed;
-        rb = GetComponent<Rigidbody>();
-        rb.transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
-        rb.velocity = rb.transform.rotation * vel;
+        Vector3 vel = Vector3.down * moveSpeed;//bullets move down the screen
+        rigidBody = GetComponent<Rigidbody>();//get the rigid body component
+        rigidBody.transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);//setting the angle of the bullet
+        rigidBody.velocity = rigidBody.transform.rotation * vel;//giving the rigid body a velocity
     }
 }

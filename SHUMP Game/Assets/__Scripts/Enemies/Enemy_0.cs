@@ -6,7 +6,6 @@ public class Enemy_0 : Enemy
 {
     private int _health = 2;
     private int _points = 20;
-    private float _delayBetweenHits=0;
 
     void Update()
     {
@@ -30,24 +29,20 @@ public class Enemy_0 : Enemy
         GameObject otherGO = coll.gameObject;
         if (otherGO.tag == "ProjectileHero")
         {
-            //print("Collision with 0");
             Destroy(otherGO);
-            //if (Time.time - _delayBetweenHits < 0.1f) return;
-            //else 
             if (_health <= 1)
             {
-                ScoreManager.UpdateScore(_points);
-                TextManager.UpdateText();
-                Main.S.ShipDestoryed(this,0);
+                ScoreManager.UpdateScore(_points);//update the score
+                TextManager.UpdateText();//update the text
+                Main.S.ShipDestoryed(this,0);//telling main that a ship was destroyed to possibly spawn a power up
                 print("Enemy 0 killed");
                 _health = 0;
-                Destroy(gameObject);
+                Destroy(gameObject);//destroying the enemy
             }
             else
-            {
-                _health = _health - 1;
+            {//if the enemy has more health...
+                _health = _health - 1;//decrease health by 1
                 print("Enemy 0 hit " + _health);
-                _delayBetweenHits = Time.time;
             }
         }
         else

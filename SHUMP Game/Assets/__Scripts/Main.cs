@@ -62,9 +62,9 @@ public class Main : MonoBehaviour
 
     public void DelayedRestart(float delay)
     {
-        ScoreManager.GameOverScore();
+        ScoreManager.GameOverScore();//displaying proper gameover text
         TextManager.GameOverText();
-        Invoke("Restart", delay);
+        Invoke("Restart", delay);//invoke the restart method after delay seconds
     }
     public void Restart()
     {
@@ -75,10 +75,10 @@ public class Main : MonoBehaviour
     {
         if (WEAP_DICT.ContainsKey(weaponType))
         {
-            return (WEAP_DICT[weaponType]);
+            return (WEAP_DICT[weaponType]);//if there contains a key of the weapon type, return it
         }
 
-        return (new WeaponDefinition());
+        return (new WeaponDefinition());//else return a new definition
     }
 
     public void ShipDestoryed(Enemy e, int type)
@@ -91,7 +91,7 @@ public class Main : MonoBehaviour
             if (Time.time - _powerupDelay < 0.1f) return;
             else
             {
-                int index = Random.Range(0, powerUpFrequency.Length);
+                int index = Random.Range(0, powerUpFrequency.Length);//get a random index in the array to access a random power up
                 WeaponType puType = powerUpFrequency[index];
                 //spawn a power up
                 GameObject go = Instantiate(prefabPowerUp) as GameObject;
@@ -100,7 +100,7 @@ public class Main : MonoBehaviour
                 //set the power up to the position of the destroyed ship
                 go.transform.position = e.transform.position;
 
-                _powerupDelay = Time.time;
+                _powerupDelay = Time.time;//new delay is the current time
             }
         }
     }

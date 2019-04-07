@@ -68,13 +68,13 @@ public class TextManager : MonoBehaviour
         }
     }
 
-    void GameOver()
+    void GameOver()//called when the hero dies
     {
-        gameOverGT.text = "Game Over!\nYou got to Level: " + ScoreManager.LEVEL;
-        scoreGT.gameObject.SetActive(false);
+        gameOverGT.text = "Game Over!\nYou got to Level: " + ScoreManager.LEVEL;//displaying what level the player reached
+        scoreGT.gameObject.SetActive(false);//turning off the score counter text
         UpdateHighScore();
-        highScoreGT.gameObject.SetActive(true);
-        gameOverGT.gameObject.SetActive(true);
+        highScoreGT.gameObject.SetActive(true);//show the highscore 
+        gameOverGT.gameObject.SetActive(true);//show gameover text
     }
 
     public static void UpdateText()
@@ -91,8 +91,8 @@ public class TextManager : MonoBehaviour
 
     public void UpdateT()
     {
-        scoreGT.text = "Your score: " + ScoreManager.SCORE;
-        fixedLevel.text = "Level: " + ScoreManager.LEVEL;
+        scoreGT.text = "Your score: " + ScoreManager.SCORE;//shows players current score
+        fixedLevel.text = "Level: " + ScoreManager.LEVEL;//shows players current level
 
     }
 
@@ -109,7 +109,7 @@ public class TextManager : MonoBehaviour
     }
     public void UpdateG(string g)
     {
-        gunGT.text = "Current gun: " + g;
+        gunGT.text = "Current gun: " + g;//show current weapon type
     }
 
     public void UpdateHighScore()
@@ -139,13 +139,13 @@ public class TextManager : MonoBehaviour
 
     public void UpdateL()
     {
-        level.text = "Level: " + ScoreManager.LEVEL;
+        level.text = "Level: " + ScoreManager.LEVEL;//level displayed is the current level
         level.gameObject.SetActive(true);
-        Invoke("HideLevelText", levelStartDelay);
+        Invoke("HideLevelText", levelStartDelay);//will only be displayed for a short period of time
     }
 
     private void HideLevelText()
     {
-        level.gameObject.SetActive(false);
+        level.gameObject.SetActive(false);//taking away the text after it has displayed for 2 seconds
     }
 }

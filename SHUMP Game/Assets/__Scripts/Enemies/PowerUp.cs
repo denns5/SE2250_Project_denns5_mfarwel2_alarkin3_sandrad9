@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
-{
+{//setting all necessary variables
     [Header("Set in Inspector")]
     public Vector2 rotMinMax = new Vector2(15, 90);
     public Vector2 driftMinMax = new Vector2(0.25f, 2);
@@ -17,11 +17,11 @@ public class PowerUp : MonoBehaviour
     public Vector3 rotPerSecond;
     public float birthTime;
 
-    private Rigidbody _rigidBody;
+    private Rigidbody _rigidBody;//creating private variables for components
     private BoundsCheck _bndCheck;
     private Renderer _cubeRend;
 
-    private string[] _types = { "Multi", "Bomb" };
+    private string[] _types = { "Multi", "Bomb" };//decalring power up types
 
     // Start is called before the first frame update
     void Awake()
