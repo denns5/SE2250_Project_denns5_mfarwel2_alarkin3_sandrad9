@@ -13,6 +13,11 @@ public class Enemy_Boss : Enemy
 
     // Start is called before the first frame update
 
+    void Awake()
+    {
+        _src = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         Move();
