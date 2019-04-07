@@ -18,7 +18,7 @@ public class Hero : MonoBehaviour
     private AudioSource _source;
     private GameObject _lastTriggerGo = null;
     private float _powerUpTime = 0;
-   public static bool CHECK = false;
+    public static bool CHECK = false;
 
     public delegate void WeaponFireDelegate();
     public WeaponFireDelegate fireDelegate;
@@ -66,6 +66,7 @@ public class Hero : MonoBehaviour
 
         if (Time.time - _powerUpTime >= 10 && CHECK == true)
         {
+            print("Hero check set false after time");
             CHECK = false;
             leftWeapon.SetActive(false);
             rightWeapon.SetActive(false);
@@ -74,9 +75,10 @@ public class Hero : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("On trigger enter called");
         Transform rootT = other.gameObject.transform.root;
         GameObject go = rootT.gameObject;
-        print("Triggered: "+other.gameObject.name);
+        print("Triggered: "+ other.gameObject.name);
 
         if (go == _lastTriggerGo)
         {
@@ -110,15 +112,17 @@ public class Hero : MonoBehaviour
         PowerUp pu = go.GetComponent<PowerUp>();
 
       
-        int ndx = Random.Range(0, 1);
-        Debug.Log(ndx + " Absorbed value ");
-        switch (ndx)
+        //int ndx = Random.Range(0, 2);
+        //Debug.Log(ndx + " Absorbed value ");
+        string type = pu.GetStringType();
+        switch (type)
          {
-             case 0:
+             case "Multi":
                  Bomb.CHECK = false;
-                // Rocket.CHECK = false;
+                 //Rocket.CHECK = false;
                  leftWeapon.SetActive(true);
                  rightWeapon.SetActive(true);
+                print("Hero check set true");
                  CHECK = true;
                  _powerUpTime = Time.time;
                  break;
@@ -129,10 +133,12 @@ public class Hero : MonoBehaviour
                  _check = false;
                  break;*/
 
-             case 1:
+             case "Bomb":
+                
                  Bomb.CHECK = true;
                 //Rocket.CHECK = false;
-                 CHECK = false;
+                print("hero check set false. case 1");
+                CHECK = false;
                  break;
 
          }

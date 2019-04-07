@@ -66,7 +66,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
             else if (_health == 1)
             {
                 ScoreManager.UpdateScore(_points);
-                TextManager.UpdateText();
+                TextManager.UpdateScoreCounterText();
                 Destroy(gameObject);
                 Main.S.ShipDestoryed(this,2);
                 print("Enemy 2 killed");

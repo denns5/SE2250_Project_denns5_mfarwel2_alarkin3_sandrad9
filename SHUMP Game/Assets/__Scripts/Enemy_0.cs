@@ -36,7 +36,7 @@ public class Enemy_0 : Enemy
             else if (_health <= 1)
             {
                 ScoreManager.UpdateScore(_points);
-                TextManager.UpdateText();
+                TextManager.UpdateScoreCounterText();
                 Main.S.ShipDestoryed(this,0);
                 print("Enemy 0 killed");
                 Destroy(gameObject);

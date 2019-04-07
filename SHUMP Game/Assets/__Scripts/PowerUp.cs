@@ -47,8 +47,19 @@ public class PowerUp : MonoBehaviour
         rotPerSecond = new Vector3(Random.Range(rotMinMax.x, rotMinMax.y), 
             Random.Range(rotMinMax.x, rotMinMax.y), 
             Random.Range(rotMinMax.x, rotMinMax.y));
-        int ndx = Random.Range(0,1); 
+        int ndx = Random.Range(0,2); 
         type = _types[ndx];
+        
+        //Set text
+        if(type == "Multi")
+        {
+            letter.text = "M";
+        }
+        else
+        {
+            letter.text = "B";
+        }
+
         birthTime = Time.time;
         Debug.Log(type);
     }
@@ -85,7 +96,7 @@ public class PowerUp : MonoBehaviour
         }
     }
     
-    public string GetType()
+    public string GetStringType()
     {
         return type;
     }

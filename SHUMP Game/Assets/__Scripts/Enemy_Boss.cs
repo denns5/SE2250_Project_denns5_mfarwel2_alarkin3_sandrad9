@@ -31,16 +31,16 @@ public class Enemy_Boss : Enemy
     public override void OnCollisionEnter(Collision coll)
     {
         GameObject otherGO = coll.gameObject;
-        print("Hello");
+        Debug.Log("Collision (Boss)");
         if (otherGO.tag == "ProjectileHero")
         {
-            print("Collision with 0");
+            print("Collision with hero and boss");
             Destroy(otherGO);
             if (Time.time - _delayBetweenHits < 0.1f) return;
             else if (_health <= 1)
             {
                 ScoreManager.UpdateScore(_points);
-                TextManager.UpdateText();
+                TextManager.UpdateScoreCounterText();
                 Main.S.ShipDestoryed(this, 0);
                 print("Enemy 0 killed");
                 Destroy(gameObject);

@@ -30,7 +30,7 @@ public class Bomb : MonoBehaviour
             if (count > 0)
             {
                 ScoreManager.UpdateScore(50);
-                TextManager.UpdateText();
+                TextManager.UpdateScoreCounterText();
             }
            // check = false;
         }
