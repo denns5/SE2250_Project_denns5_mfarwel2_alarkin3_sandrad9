@@ -13,6 +13,8 @@ public class Hero : MonoBehaviour
     public float projectileSpeed = 40;
     public Weapon[] weapons;
     public AudioClip shootSound;
+    public AudioClip powerUpSound;
+    public AudioClip heroDamageSound;
     public GameObject leftWeapon, rightWeapon;
     private float _shieldLevel = 4;//setting initial shield level
     private AudioSource _source;
@@ -30,13 +32,11 @@ public class Hero : MonoBehaviour
         {
             S = this;//setting the singleton to this
         }
-     
-
         else
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second hero");
         }
-        _source = GetComponent<AudioSource>();
+        _source = GetComponent<AudioSource>();//assigning the audio source component
 
     }
 
@@ -84,9 +84,9 @@ public class Hero : MonoBehaviour
             return;
         }
         _lastTriggerGo = go;//last trigger set to the current game object
-        if (go.tag == "Enemy" || go.tag == "ProjectileEnemy")//if hero is hot by either a ship or projectile...
-
+        if (go.tag == "Enemy" || go.tag == "ProjectileEnemy")//if hero is hit by either a ship or projectile...
         {
+            _source.PlayOneShot(heroDamageSound, 1f);
             _shieldLevel--;//decreasing the shield level when the ship is hit by an enemy
             Destroy(go);//destroying the enemy when hit
             if (_shieldLevel < 0)
@@ -98,6 +98,7 @@ public class Hero : MonoBehaviour
         else if (go.tag == "EnemyBoss")//this enemy isn't destroyed on contact with Hero
         {
             print("touched boss");
+            _source.PlayOneShot(heroDamageSound, 1f);
             _shieldLevel--;//decreasing the shield level when the ship is hit by an enemy
             if (_shieldLevel < 0)
             {
@@ -119,6 +120,7 @@ public class Hero : MonoBehaviour
     public void AbsorbPowerUp(GameObject go)
     {
         PowerUp pu = go.GetComponent<PowerUp>();//getting the power up component
+        _source.PlayOneShot(powerUpSound, 0.9f);
         switch (PICK)
         {
             case 0:// the last pick was a bomb or this is the first power up

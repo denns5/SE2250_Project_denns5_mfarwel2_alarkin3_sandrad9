@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1754,6 +1754,8 @@ MonoBehaviour:
   projectileSpeed: 40
   weapons: []
   shootSound: {fileID: 8300000, guid: 215412cd8e4faf5408f4c13c96804df2, type: 3}
+  powerUpSound: {fileID: 8300000, guid: f7e2390b2868c5845b78028114f77223, type: 3}
+  heroDamageSound: {fileID: 0}
   leftWeapon: {fileID: 1227307863}
   rightWeapon: {fileID: 1331283163}
 --- !u!114 &1849502932
@@ -1785,7 +1787,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 215412cd8e4faf5408f4c13c96804df2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.685
+  m_Volume: 0.388
   m_Pitch: 2.3
   Loop: 0
   Mute: 0

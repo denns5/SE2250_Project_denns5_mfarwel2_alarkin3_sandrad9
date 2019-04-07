@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 public class Enemy_Boss : Enemy
 {
+    public AudioClip killSound;
+
     private int _health = 10;
     private int _points = 100;
     private float _delayBetweenHits = 0;
-
+    private AudioSource _src;
 
     // Start is called before the first frame update
 
@@ -31,26 +33,25 @@ public class Enemy_Boss : Enemy
     public override void OnCollisionEnter(Collision coll)
     {
         GameObject otherGO = coll.gameObject;
-        //print("Hello");
-        if (otherGO.tag == "ProjectileHero")
+        if (otherGO.tag == "ProjectileHero")//if hit by a hero projectile...
         {
             print("Collision with boss");
-            Destroy(otherGO);
+            _src.PlayOneShot(killSound, 1f);//play kill sound
+            Destroy(otherGO);//destroy the projetile
             if (Time.time - _delayBetweenHits < 0.1f) return;
             else if (_health <= 1)
             {
-                ScoreManager.UpdateScore(_points);
+                ScoreManager.UpdateScore(_points);//update score and text
                 TextManager.UpdateText();
-                Main.S.ShipDestoryed(this, 0);
+                Main.S.ShipDestoryed(this, 0);//telling main that ship is destroyed
                 print("Enemy boss killed");
-                Destroy(gameObject);
-
+                Destroy(gameObject);//destroy the boss
             }
             else
             {
-                _health = _health - 1;
+                _health = _health - 1;//health is decreased by 1
                 print("Enemy boss hit " + _health);
-                _delayBetweenHits = Time.time;
+                _delayBetweenHits = Time.time;//resetting delay between hits
             }
         }
         else

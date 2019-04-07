@@ -32,7 +32,7 @@ public class Main : MonoBehaviour
             WEAP_DICT[def.type] = def;
         }
         _source = GetComponent<AudioSource>();
-        _source.PlayOneShot(music, 0.6f);
+        _source.PlayOneShot(music, 0.6f);//playing the background music
     }
     public void SpawnEnemy()
     {
