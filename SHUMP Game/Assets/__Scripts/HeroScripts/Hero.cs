@@ -20,6 +20,7 @@ public class Hero : MonoBehaviour
     private AudioSource _source;
     private GameObject _lastTriggerGo = null;
     private float _powerUpTime = 0;
+    public static int TIME = 0;
     public static bool CHECK = false;
     public static int PICK = 0;
 
@@ -65,11 +66,17 @@ public class Hero : MonoBehaviour
             _source.PlayOneShot(shootSound,0.3f);//play the shooting sound
         }
 
+        if (Time.time - _powerUpTime > TIME + 1) {
+            TIME++;
+            TextManager.UpdateGun();
+        }
+
         if (Time.time - _powerUpTime >= 10 && CHECK == true || CHECK == false)
         {//if the hero has had the power up for 10 seconds
             CHECK = false;
             leftWeapon.SetActive(false);//guns become unactive
             rightWeapon.SetActive(false);
+            TIME = 0;
         }
     }
 
@@ -128,7 +135,8 @@ public class Hero : MonoBehaviour
                 leftWeapon.SetActive(true);//making the other guns active
                 rightWeapon.SetActive(true);
                 CHECK = true;
-                TextManager.UpdateGun("Multi");//update the weapon text
+                Weapon.GUN = "Multi";
+                TextManager.UpdateGun();//update the weapon text
                 _powerUpTime = Time.time;//the current time is when the power up was absorbed
                 PICK = 1;//next power up will be bomb
                 break;

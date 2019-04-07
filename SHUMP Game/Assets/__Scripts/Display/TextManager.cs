@@ -23,7 +23,8 @@ public class TextManager : MonoBehaviour
 
     private void Start()
     {
-        SetUpUITexts();
+       SetUpUITexts();
+
     }
 
     private void SetUpUITexts()
@@ -43,6 +44,8 @@ public class TextManager : MonoBehaviour
 
         go = GameObject.Find("WeaponTracker");
         gunGT = go.GetComponent<Text>();
+        UpdateGun();
+
 
         //Set up Level UI Text
         go = GameObject.Find("Level");
@@ -96,21 +99,29 @@ public class TextManager : MonoBehaviour
 
     }
 
-    public static void UpdateGun(string gun)
+    public static void UpdateGun()
     {
         try
         { // try-catch stops an error from breaking your program 
-            T.UpdateG(gun);
+            T.UpdateG();
         }
         catch (System.NullReferenceException nre)
         {
             Debug.LogError("TextManager:UpdateText() called while T=null.\n" + nre);
         }
     }
-    public void UpdateG(string g)
+
+    public void UpdateG()
     {
-        gunGT.text = "Current gun: " + g;//show current weapon type
+        gunGT.text = "Current gun: " + Weapon.GUN;
+        if (Hero.CHECK == true)
+        { 
+        int i = 10;
+            i = i - Hero.TIME;
+            gunGT.text = "Current gun: " + Weapon.GUN + ", " + i.ToString() + " seconds left";//show current weapon type
+        }//show current weapon type
     }
+
 
     public void UpdateHighScore()
     {
@@ -148,4 +159,5 @@ public class TextManager : MonoBehaviour
     {
         level.gameObject.SetActive(false);//taking away the text after it has displayed for 2 seconds
     }
+
 }

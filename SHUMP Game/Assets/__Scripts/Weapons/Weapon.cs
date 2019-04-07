@@ -37,6 +37,7 @@ public class Weapon : MonoBehaviour
     public GameObject collar;
     public float lastShotTime;
     private Renderer _collarRend;
+    public static string GUN = "Simple";
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +58,7 @@ public class Weapon : MonoBehaviour
         {
             rootGO.GetComponent<Hero>().fireDelegate += Fire;//using the fire delegate for game operations
         }
-        TextManager.UpdateGun("Simple");//setting the initial gun to Simple
+        //setting the initial gun to Simple
 
     }
 
@@ -171,27 +172,31 @@ public class Weapon : MonoBehaviour
         {//if the player selects 'z' and there is no power up and no bomb then they have selected blaster
             SetType(WeaponType.simple);
             gun = 0;
-            TextManager.UpdateGun("Simple");//update the weapon type text
+            GUN = "Simple";
+            TextManager.UpdateGun();//update the weapon type text
         }
 
         if (Hero.CHECK == true && gun == 0)//if the hero has the blaster power up set type to blaster
         {
             SetType(WeaponType.blaster);
-            TextManager.UpdateGun("Multi");//update the weapn type text
+            GUN = "Multi";
+            TextManager.UpdateGun();//update the weapn type text
             gun = 1;
         }
 
         if (Input.GetKeyDown(KeyCode.X) && Hero.CHECK != true && ScoreManager.LEVEL >= 2)
         {//once the player has reached level 2 they can access the rocket by selecting 'X'
             SetType(WeaponType.rocket);
-            TextManager.UpdateGun("Rocket");//update weapon text
+            GUN = "Rocket";
+            TextManager.UpdateGun();//update weapon text
         }
 
 
         if (Bomb.CHECK == true && type != WeaponType.bomb)//if the hero has the bomb power up and are not already set to bomb, set type to bomb
         {
             SetType(WeaponType.bomb);
-            TextManager.UpdateGun("Bomb");//update weapon text
+            GUN = "Bomb";
+            TextManager.UpdateGun();//update weapon text
             Hero.CHECK = false;//after they shoot they no longer have the bomb
         }
         if (Bomb.CHECK == false && type == WeaponType.bomb)//if they no longer have the bomb and are still set on bomb, change to simple weapon type
@@ -200,7 +205,8 @@ public class Weapon : MonoBehaviour
             if (_timer >= 0.2f)//will change 0.2 seconds after the bomb was shot
             {
                 SetType(WeaponType.simple);
-                TextManager.UpdateGun("Simple");//updating the weapon text
+                GUN = "Simple";
+                TextManager.UpdateGun();//updating the weapon text
                 gun = 0;
                 _timer = 0;//settingh the timer back to zero
             }
