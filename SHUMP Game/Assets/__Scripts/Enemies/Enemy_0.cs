@@ -6,6 +6,7 @@ public class Enemy_0 : Enemy
 {
     private int _health = 2;
     private int _points = 20;
+    private GameObject _lastTriggeredGo = null;
 
     void Update()
     {
@@ -29,6 +30,11 @@ public class Enemy_0 : Enemy
         GameObject otherGO = coll.gameObject;
         if (otherGO.tag == "ProjectileHero")
         {
+            if (otherGO == _lastTriggeredGo)
+            {
+                return;
+            }
+            _lastTriggeredGo = otherGO;
             Destroy(otherGO);
             if (_health <= 1)
             {

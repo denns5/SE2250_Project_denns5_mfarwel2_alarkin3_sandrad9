@@ -12,6 +12,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
     private int _health = 3;
     private int _points = 30;
     private float _delayBetweenHits = 0;
+    private GameObject _lastTriggeredGo = null;
 
 
     // Start is called before the first frame update
@@ -61,6 +62,11 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
         GameObject otherGO = coll.gameObject;
         if (otherGO.tag == "ProjectileHero")
         {
+            if (otherGO == _lastTriggeredGo)
+            {
+                return;
+            }
+            _lastTriggeredGo = otherGO;
             Destroy(otherGO);
             if (_health == 1)
             {

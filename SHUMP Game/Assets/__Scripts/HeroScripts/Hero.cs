@@ -141,18 +141,17 @@ public class Hero : MonoBehaviour
                 Weapon.GUN = "Multi";
                 TextManager.UpdateGun();//update the weapon text
                 _powerUpTime = Time.time;//the current time is when the power up was absorbed
-                //PICK = 1;//next power up will be bomb
                 break;
 
 
             case 1://bomb power up case
                 Bomb.CHECK = true;//bomb will become active
-                //PICK = 0;//next power up will be multi
                 CHECK = false;
                 break;
 
             case 2://shield power up case
                 SHIELD = 4;//setting shield back to maximum level
+                TextManager.UpdateText();
                 break;
         }
         pu.Absorbedby(gameObject);//power up will be destroyed by this funciton
