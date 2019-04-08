@@ -11,10 +11,10 @@ public class Hero : MonoBehaviour
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
     public Weapon[] weapons;
-    public AudioClip shootSound;
     public AudioClip powerUpSound;
     public AudioClip heroDamageSound;
     public AudioClip gameOverSound;
+    public AudioClip shieldPowerUp;
     public GameObject leftWeapon, rightWeapon;
     public static float SHIELD = 4;//setting initial shield level
     private AudioSource _source;
@@ -64,7 +64,6 @@ public class Hero : MonoBehaviour
         if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
         {
             fireDelegate();//will make the ship fire
-            _source.PlayOneShot(shootSound,0.4f);//play the shooting sound
         }
 
         if (Time.time - _powerUpTime > TIME + 1) {
@@ -159,6 +158,7 @@ public class Hero : MonoBehaviour
 
             case 2://shield power up case
                 SHIELD = 4;//setting shield back to maximum level
+                _source.PlayOneShot(shieldPowerUp, 1.5f);
                 TextManager.UpdateText();
                 break;
         }

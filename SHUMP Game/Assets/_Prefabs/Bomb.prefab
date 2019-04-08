@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4379853007105306509}
   m_Layer: 10
   m_Name: Bomb
-  m_TagString: ProjectileHero
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bomb: {fileID: 3176013250079285684}
   bombSound: {fileID: 8300000, guid: 2350dbe27d54c4087af6d5923360c5d7, type: 3}
-  src: {fileID: 4379853007105306509}
 --- !u!114 &8820764075346806742
 MonoBehaviour:
   m_ObjectHideFlags: 0

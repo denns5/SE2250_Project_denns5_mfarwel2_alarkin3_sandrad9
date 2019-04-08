@@ -12,6 +12,7 @@ TagManager:
   - PowerUpBox
   - RocketHero
   - EnemyBoss
+  - Bomb
   layers:
   - Default
   - TransparentFX

@@ -21,6 +21,7 @@ public class Bomb : MonoBehaviour
        _timer += Time.deltaTime;
         if (_timer >= 1f)
         {
+            _src.PlayOneShot(bombSound, 0.9f);
             GameObject[] gameObj;
             gameObj = GameObject.FindGameObjectsWithTag("Enemy");//create an array of all gameobjects with the tag "Enemy"
            
@@ -29,7 +30,6 @@ public class Bomb : MonoBehaviour
                 Destroy(obj);
                 _count++;
             }
-            _src.PlayOneShot(bombSound, 0.9f);
             Destroy(gameObject);//destroy the bomb
             if (_count > 0)//if at least one enemy is on screen
             {
@@ -37,5 +37,10 @@ public class Bomb : MonoBehaviour
                 TextManager.UpdateText();
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision coll)
+    {
+        
     }
 }

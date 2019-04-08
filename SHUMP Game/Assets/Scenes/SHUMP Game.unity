@@ -309,7 +309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &480217405
@@ -1682,7 +1682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 13, y: -250}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 256, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1148737736
@@ -1872,7 +1872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -30}
+  m_AnchoredPosition: {x: 0, y: -60}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1501787362
@@ -2402,10 +2402,10 @@ MonoBehaviour:
     type: 3}
   projectileSpeed: 40
   weapons: []
-  shootSound: {fileID: 8300000, guid: 215412cd8e4faf5408f4c13c96804df2, type: 3}
   powerUpSound: {fileID: 8300000, guid: f7e2390b2868c5845b78028114f77223, type: 3}
   heroDamageSound: {fileID: 8300000, guid: de5a19778282c6b439a032f518423afe, type: 3}
   gameOverSound: {fileID: 8300000, guid: c375ea2aeb6f29d42ab481af13c62c30, type: 3}
+  shieldPowerUp: {fileID: 8300000, guid: a2c53fc47a5b7274eac26ac79c37e696, type: 3}
   leftWeapon: {fileID: 1227307863}
   rightWeapon: {fileID: 1331283163}
   explosion: {fileID: 159918, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
@@ -2944,5 +2944,15 @@ PrefabInstance:
       propertyPath: def.type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3606555934601145970, guid: 6dc09fa43f23d3447b85f60cade0f3a1,
+        type: 3}
+      propertyPath: rocketSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 688bb65948b46f442b5bede225c73bf5, type: 3}
+    - target: {fileID: 3606555934601145970, guid: 6dc09fa43f23d3447b85f60cade0f3a1,
+        type: 3}
+      propertyPath: bombSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2350dbe27d54c4087af6d5923360c5d7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dc09fa43f23d3447b85f60cade0f3a1, type: 3}

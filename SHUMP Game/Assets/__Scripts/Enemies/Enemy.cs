@@ -6,14 +6,17 @@ public class Enemy : MonoBehaviour
 {   //setting speed
     public float speed = 10f;
     public float powerUpDropChance = 0.1f;
+    public AudioClip rocketHit;
+    public AudioClip bombHit;
 
-
+    private AudioSource _source;
     private BoundsCheck _bndCheck;
     
 
     void Awake()
     {
         _bndCheck = GetComponent<BoundsCheck>();//when an enemy is instantiated, a BoundsCheck component is created and we can access variables from it
+        _source = GetComponent<AudioSource>();
     }
 
     public Vector3 pos
@@ -44,6 +47,14 @@ public class Enemy : MonoBehaviour
 
     public virtual void OnCollisionEnter(Collision coll)
     {
-
+        GameObject otherGO = coll.gameObject;
+        if (otherGO.tag == "RocketHero")
+        {
+            _source.PlayOneShot(rocketHit, 1f);
+        }
+        if (otherGO.tag == "Bomb")
+        {
+            _source.PlayOneShot(bombHit, 1f);
+        }
     }
 }

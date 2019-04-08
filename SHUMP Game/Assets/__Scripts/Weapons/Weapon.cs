@@ -30,6 +30,11 @@ public class WeaponDefinition
 public class Weapon : MonoBehaviour
 {
     static public Transform PROJECTILE_ANCHOR;
+    public AudioClip projectile1;
+    public AudioClip bombSound;
+    public AudioClip rocketSound;
+
+    private AudioSource _source;
 
     [Header("Set Dynamically")]
     [SerializeField]
@@ -60,7 +65,7 @@ public class Weapon : MonoBehaviour
             rootGO.GetComponent<Hero>().fireDelegate += Fire;//using the fire delegate for game operations
         }
         //setting the initial gun to Simple
-
+        _source = GetComponent<AudioSource>();//getting the audio aource component
     }
 
     public WeaponType type//Weapontype setter and getter as type is declared is private in the class
@@ -108,13 +113,16 @@ public class Weapon : MonoBehaviour
         {
             case WeaponType.simple://just one projectile is created for simple
                 p.rigid.velocity = vel;
+                _source.PlayOneShot(projectile1, 0.4f);
                 break;
            
            case WeaponType.rocket://just one projectile is created for rocket
                 p.rigid.velocity = vel;
+                _source.PlayOneShot(rocketSound, 1f);
                 break;
 
             case WeaponType.blaster://three projectiles will be created for the blaster
+                _source.PlayOneShot(projectile1, 0.4f);
                 // middle projectile
                 p.rigid.velocity = vel;
                 // right projectile
