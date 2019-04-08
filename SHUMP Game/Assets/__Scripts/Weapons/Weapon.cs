@@ -11,7 +11,8 @@ public enum WeaponType
     simple,
     rocket,
     multi,
-    bomb
+    bomb,
+    shield
 }
 
 [System.Serializable]
