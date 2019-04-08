@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy_0 : Enemy
 {
+    public GameObject explosion;
     private int _health = 2;
     private int _points = 20;
     private GameObject _lastTriggeredGo = null;
@@ -44,6 +45,7 @@ public class Enemy_0 : Enemy
                 print("Enemy 0 killed");
                 _health = 0;
                 Destroy(gameObject);//destroying the enemy
+                Instantiate(explosion, transform.position, transform.rotation);
             }
             else
             {//if the enemy has more health...

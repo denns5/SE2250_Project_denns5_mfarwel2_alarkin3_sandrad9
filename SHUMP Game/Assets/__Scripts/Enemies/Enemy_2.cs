@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
 {
-    
 
+    public GameObject explosion;
     private float _randomSpeed;
     private float _directionChange = 50f;
 
@@ -75,6 +75,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
                 Main.S.ShipDestoryed(this,2);//letting main know ship was destroyed to possibly spawn a power up
                 print("Enemy 2 killed");
                 Destroy(gameObject);//destroy the ship
+                Instantiate(explosion, transform.position, transform.rotation);
             }
             else
             {//if the enemy have more lives

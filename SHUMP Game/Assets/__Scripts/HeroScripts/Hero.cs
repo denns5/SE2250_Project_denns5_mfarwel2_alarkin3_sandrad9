@@ -24,6 +24,7 @@ public class Hero : MonoBehaviour
     public static int TIME = 0;
     public static bool CHECK = false;
     public static int PICK = 0;
+    public GameObject explosion;
 
     public delegate void WeaponFireDelegate();
     public WeaponFireDelegate fireDelegate;
@@ -97,7 +98,11 @@ public class Hero : MonoBehaviour
             _source.PlayOneShot(heroDamageSound, 2f);
             SHIELD--;//decreasing the shield level when the ship is hit by an enemy
             Destroy(go);//destroying the enemy when hit
-            if (SHIELD > -1)
+            if (go.tag == "Enemy"){
+                Instantiate(explosion, transform.position, transform.rotation);
+            }
+        
+        if (SHIELD > -1)
                 TextManager.UpdateText();
             if (SHIELD < 0)
             {
@@ -106,6 +111,7 @@ public class Hero : MonoBehaviour
                 Main.S.DelayedRestart(gameRestartDelay);//restarting the game
             }
         }
+
         else if (go.tag == "EnemyBoss")//this enemy isn't destroyed on contact with Hero
         {
             print("touched boss");
@@ -157,6 +163,7 @@ public class Hero : MonoBehaviour
                 TextManager.UpdateText();
                 break;
         }
+        //TextManager.UpdatePickup();
         pu.Absorbedby(gameObject);//power up will be destroyed by this funciton
     }
 

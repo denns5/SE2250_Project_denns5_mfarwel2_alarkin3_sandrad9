@@ -4,7 +4,7 @@ using System.Collections;
 public class Boss_Weapon : MonoBehaviour
 {
     [SerializeField]//creating a serialize field
-    GameObject bullet;
+    GameObject [] bullet;
     float fireRate;
     float nextFire;
 
@@ -24,7 +24,10 @@ public class Boss_Weapon : MonoBehaviour
     {
         if (Time.time > nextFire)//will only fire every 2 seconds
         {
-            Instantiate(bullet, transform.position, Quaternion.identity);//instantiate the bullet
+            foreach (GameObject obj in bullet)
+            {
+                Instantiate(obj, transform.position, Quaternion.identity);
+            }//instantiate the bullet
             nextFire = Time.time + fireRate;//setting the time of next fire to 2 seconds later
         }
     }

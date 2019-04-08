@@ -93,7 +93,7 @@ public class PowerUp : MonoBehaviour
     public void Absorbedby(GameObject target)
     {
         //called by the hero class when an object is collected
-        Debug.Log("PowerUp: " + type);
+       // Debug.Log("PowerUp: " + type);
         Destroy(gameObject);
     }
 }

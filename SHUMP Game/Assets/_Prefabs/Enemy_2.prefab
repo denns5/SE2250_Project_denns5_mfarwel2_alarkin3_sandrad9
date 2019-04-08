@@ -373,6 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   powerUpDropChance: 0.6
+  explosion: {fileID: 159918, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
 --- !u!114 &769230799192860393
 MonoBehaviour:
   m_ObjectHideFlags: 0

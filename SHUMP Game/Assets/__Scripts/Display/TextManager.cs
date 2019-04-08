@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class TextManager : MonoBehaviour
 {
     static private TextManager T;
-    public float levelStartDelay = 2f;
-    public Text gameOverGT, highScoreGT, scoreGT, level, fixedLevel, gunGT, shield;
+    public float levelStartDelay = 2f, pickupStartDelay = 1f;
+    public Text gameOverGT, highScoreGT, scoreGT, level, fixedLevel, gunGT, shield, pickup;
 
     void Awake()
     {
@@ -49,6 +49,9 @@ public class TextManager : MonoBehaviour
         gunGT = go.GetComponent<Text>();
         UpdateGun();
 
+        go = GameObject.Find("PickupDisplay");
+        level = go.GetComponent<Text>();
+       // UpdatePickup();
 
         //Set up Level UI Text
         go = GameObject.Find("Level");
@@ -162,6 +165,46 @@ public class TextManager : MonoBehaviour
     private void HideLevelText()
     {
         level.gameObject.SetActive(false);//taking away the text after it has displayed for 2 seconds
+    }
+
+    public static void UpdatePickup()
+    {
+        try
+        { // try-catch stops an error from breaking your program 
+            T.UpdateP();
+        }
+        catch (System.NullReferenceException nre)
+        {
+            Debug.LogError("TextManager:UpdatePickup() called while T=null.\n" + nre);
+        }
+    }
+
+    public void UpdateP()
+    {
+        pickup.text = "Pickup: ";
+        /*if (Hero.SHIELD == 4 && Bomb.CHECK != true && Hero.CHECK != true)
+        {
+            pickup.text += "Shield";
+        }
+        else if (Hero.CHECK == true)
+        {
+            pickup.text += "Multi";
+        }
+
+        else 
+        {
+            pickup.text += "Bomb";
+        }*/
+
+
+        //level displayed is the current level
+        pickup.gameObject.SetActive(true);
+        Invoke("HidePickupText", pickupStartDelay);//will only be displayed for a short period of time
+    }
+
+    private void HidePickupText()
+    {
+       pickup.gameObject.SetActive(false);//taking away the text after it has displayed for 1 seconds
     }
 
 }
