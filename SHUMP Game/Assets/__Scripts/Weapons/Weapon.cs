@@ -96,7 +96,8 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
-        Projectile p = MakeProjectile();//creating a projectil eobject
+
+        Projectile p = MakeProjectile();//creating a projectile object
         Vector3 vel = Vector3.up * def.velocity;//setting the velocity to be upward
         if (transform.up.y < 0)//making sure the projectile is always upward
         {

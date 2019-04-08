@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 168103038258396640}
   - component: {fileID: 3519399282143753314}
   - component: {fileID: 3519399282143753312}
+  - component: {fileID: 4926025336495387928}
   m_Layer: 11
   m_Name: ProjectileEnemy
   m_TagString: ProjectileEnemy
@@ -106,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181c4877b8af5493fa90b39ed7df1776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angle: 0
 --- !u!54 &3519399282143753314
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,3 +141,17 @@ MonoBehaviour:
   camHeight: 0
   keepOnScreen: 0
   isOnScreen: 1
+--- !u!114 &4926025336495387928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519399282143753321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f2fa35b5e368141ad1a628a03696f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigid: {fileID: 0}
+  _type: 0
