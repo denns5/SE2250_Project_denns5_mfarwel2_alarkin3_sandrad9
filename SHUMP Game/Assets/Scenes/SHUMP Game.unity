@@ -709,6 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef934eb452c33f0409af66706ef56305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelUpSound: {fileID: 8300000, guid: a25c0954299cace42884ef3ab26f7448, type: 3}
 --- !u!82 &534669909
 AudioSource:
   m_ObjectHideFlags: 0

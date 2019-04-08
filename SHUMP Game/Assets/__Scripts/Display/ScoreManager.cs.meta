@@ -3,7 +3,8 @@ guid: ef934eb452c33f0409af66706ef56305
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - levelUpSound: {fileID: 8300000, guid: a25c0954299cace42884ef3ab26f7448, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

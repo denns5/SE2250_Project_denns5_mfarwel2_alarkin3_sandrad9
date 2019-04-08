@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    public AudioClip levelUpSound;
     static private ScoreManager S;
     static public int HIGH_SCORE = 0;
     private int _score = 0;
     private int _level = 1;
+    private AudioSource _source;
 
     void Awake()
     {
@@ -35,7 +37,7 @@ public class ScoreManager : MonoBehaviour
 
         //Reset score
         _score = 0;
-
+        _source = GetComponent<AudioSource>();//getting the audio source component
     }
 
     public static void UpdateScore(int p)
@@ -74,6 +76,7 @@ public class ScoreManager : MonoBehaviour
         _level++;//increase level by 1
         TextManager.UpdateLevel();//update the text
         Main.S.enemySpawnPerSecond += 0.2f;//increasing the spawn rate every level;
+        _source.PlayOneShot(levelUpSound, 1f);//playing the level up sound
     }
 
     public static void GameOverScore()
