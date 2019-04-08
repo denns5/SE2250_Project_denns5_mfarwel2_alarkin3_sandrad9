@@ -38,6 +38,7 @@ public class ScoreManager : MonoBehaviour
         //Reset score
         _score = 0;
         _source = GetComponent<AudioSource>();//getting the audio source component
+        HIGH_SCORE = 0;
     }
 
     //Update the game score method that can be called outside of this class
@@ -61,6 +62,10 @@ public class ScoreManager : MonoBehaviour
         if (_score > _level*200+Main.S.enemySpawnPerSecond*200)//will only update level when the score is 200 times the level
         {
             UpdateL();
+        }
+        if (_score > HIGH_SCORE)
+        {
+            HIGH_SCORE = _score;
         }
     }
 
