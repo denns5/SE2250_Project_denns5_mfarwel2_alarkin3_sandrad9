@@ -540,6 +540,7 @@ MonoBehaviour:
     type: 3}
   powerUpFrequency: 020000000200000001000000
   killSound: {fileID: 8300000, guid: c2eaad9344d101944bc22dc13dc9d1c3, type: 3}
+  gameOverSound: {fileID: 8300000, guid: de5a19778282c6b439a032f518423afe, type: 3}
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,7 +1976,8 @@ MonoBehaviour:
   weapons: []
   shootSound: {fileID: 8300000, guid: 215412cd8e4faf5408f4c13c96804df2, type: 3}
   powerUpSound: {fileID: 8300000, guid: f7e2390b2868c5845b78028114f77223, type: 3}
-  heroDamageSound: {fileID: 0}
+  heroDamageSound: {fileID: 8300000, guid: de5a19778282c6b439a032f518423afe, type: 3}
+  gameOverSound: {fileID: 8300000, guid: c375ea2aeb6f29d42ab481af13c62c30, type: 3}
   leftWeapon: {fileID: 1227307863}
   rightWeapon: {fileID: 1331283163}
 --- !u!114 &1849502932
@@ -2005,7 +2007,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 215412cd8e4faf5408f4c13c96804df2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c375ea2aeb6f29d42ab481af13c62c30, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.388
   m_Pitch: 2.3

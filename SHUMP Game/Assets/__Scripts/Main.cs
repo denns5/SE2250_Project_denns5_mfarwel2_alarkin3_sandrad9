@@ -14,7 +14,7 @@ public class Main : MonoBehaviour
     public GameObject prefabPowerUp;
     public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.bomb, WeaponType.multi, WeaponType.shield };//Make an array of possible power ups
     public AudioClip killSound;
-  //  public AudioClip music;
+    public AudioClip gameOverSound;
     private BoundsCheck _bndCheck;
     private AudioSource _source;
     private int _bossSpawn = 2;
@@ -62,6 +62,7 @@ public class Main : MonoBehaviour
 
     public void DelayedRestart(float delay)
     {
+        _source.PlayOneShot(gameOverSound, 1.5f);
         ScoreManager.GameOverScore();//displaying proper gameover text
         TextManager.GameOverText();
         Invoke("Restart", delay);//invoke the restart method after delay seconds

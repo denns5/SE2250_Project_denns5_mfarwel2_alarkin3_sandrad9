@@ -15,6 +15,7 @@ public class Hero : MonoBehaviour
     public AudioClip shootSound;
     public AudioClip powerUpSound;
     public AudioClip heroDamageSound;
+    public AudioClip gameOverSound;
     public GameObject leftWeapon, rightWeapon;
     public static float SHIELD = 4;//setting initial shield level
     private AudioSource _source;
@@ -38,7 +39,7 @@ public class Hero : MonoBehaviour
             Debug.LogError("Hero.Awake() - Attempted to assign second hero");
         }
         _source = GetComponent<AudioSource>();//assigning the audio source component
-
+        SHIELD = 4;
     }
 
     private void Start()
@@ -93,13 +94,14 @@ public class Hero : MonoBehaviour
         _lastTriggerGo = go;//last trigger set to the current game object
         if (go.tag == "Enemy" || go.tag == "ProjectileEnemy")//if hero is hit by either a ship or projectile...
         {
-            _source.PlayOneShot(heroDamageSound, 1f);
+            _source.PlayOneShot(heroDamageSound, 2f);
             SHIELD--;//decreasing the shield level when the ship is hit by an enemy
             Destroy(go);//destroying the enemy when hit
             if (SHIELD > -1)
                 TextManager.UpdateText();
             if (SHIELD < 0)
             {
+                //_source.PlayOneShot(gameOverSound, 2f);
                 Destroy(gameObject);//destroying the hero ship
                 Main.S.DelayedRestart(gameRestartDelay);//restarting the game
             }
@@ -107,10 +109,11 @@ public class Hero : MonoBehaviour
         else if (go.tag == "EnemyBoss")//this enemy isn't destroyed on contact with Hero
         {
             print("touched boss");
-            _source.PlayOneShot(heroDamageSound, 1f);
+            _source.PlayOneShot(heroDamageSound, 2f);
             SHIELD--;//decreasing the shield level when the ship is hit by an enemy
             if (SHIELD < 0)
             {
+                //_source.PlayOneShot(gameOverSound, 2f);
                 Destroy(gameObject);//destroying the hero ship
                 Main.S.DelayedRestart(gameRestartDelay);//restarting the game
             }
@@ -129,7 +132,7 @@ public class Hero : MonoBehaviour
     public void AbsorbPowerUp(GameObject go)
     {
         PowerUp pu = go.GetComponent<PowerUp>();//getting the power up component
-        _source.PlayOneShot(powerUpSound, 0.9f);
+        _source.PlayOneShot(powerUpSound, 1.5f);
         PICK = Random.Range(0, 3);
         switch (PICK)
         {
