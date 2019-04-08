@@ -33,7 +33,7 @@ public class Rocket : MonoBehaviour
             {
                 _rocketTarget = FindClosestByTag("Enemy").transform;
             }
-            rocketRigidBody.velocity = transform.forward * rocketVelocity;
+            rocketRigidBody.velocity = transform.forward * rocketVelocity; //Set the rockets velocity
             var rocketTargetRotation = Quaternion.LookRotation(_rocketTarget.position - transform.position);//rotating the rocket toward the targeted enemy
             rocketRigidBody.MoveRotation(Quaternion.RotateTowards(transform.rotation, rocketTargetRotation, turn));//having the rigit body also look toward the targeted enemy
         }

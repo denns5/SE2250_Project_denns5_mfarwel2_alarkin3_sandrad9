@@ -22,11 +22,7 @@ public class Enemy_1 : Enemy
         }
     }
 
-    // Update is called once per frame
-    int getPoints()
-    {
-        return _points;
-    }
+ //Called once per frame
     void Update()
     {
         Move();
@@ -44,7 +40,7 @@ public class Enemy_1 : Enemy
     public override void OnCollisionEnter(Collision coll)
     {
         GameObject otherGO = coll.gameObject;
-        if (otherGO.tag == "ProjectileHero")
+        if (otherGO.tag == "ProjectileHero") //If projectile is a hero projectile kill
         {
             ScoreManager.UpdateScore(_points);
             TextManager.UpdateText();

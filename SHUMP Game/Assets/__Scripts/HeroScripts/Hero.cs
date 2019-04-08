@@ -19,10 +19,10 @@ public class Hero : MonoBehaviour
     public float shield = 4;//setting initial shield level
     private AudioSource _source;
     private GameObject _lastTriggerGo = null;
-    private float _powerUpTime = 0;
-    public static int TIME = 0;
-    public static bool CHECK = false;
-    public static int PICK = 0;
+    private float _powerUpTime = 0; //Will track the time the powerup becomes active relative to total runtime
+    public int timeIncrement = 0;
+    public bool multiActive = false; //Variabe used to signal when multiweapon is active 
+    public int pick = 0; //Variabe used for switch statement for pickups
     public GameObject explosionEnemy, explosionHero;
 
     public delegate void WeaponFireDelegate();
@@ -44,7 +44,8 @@ public class Hero : MonoBehaviour
 
     private void Start()
     {
-        leftWeapon.SetActive(false);//making the left and right guns not active at the start
+        //making the left and right guns not active at the start
+        leftWeapon.SetActive(false);
         rightWeapon.SetActive(false);
     }
 
@@ -66,17 +67,19 @@ public class Hero : MonoBehaviour
             fireDelegate();//will make the ship fire
         }
 
-        if (Time.time - _powerUpTime > TIME + 1) {
-            TIME++;
-            TextManager.UpdateGun();
+        //
+        if (Time.time - _powerUpTime > timeIncrement + 1) {
+            timeIncrement++; //Increment the counter
+            TextManager.UpdateGun(); //Updates the countdown for when the multi weapon is active that is displayed by text
         }
 
-        if (Time.time - _powerUpTime >= 10 && CHECK == true || CHECK == false)
+        //If the multi weapon exceeds 10 seconds or is deactivated, deactivate it
+        if (Time.time - _powerUpTime >= 10 && multiActive == true || multiActive == false)
         {//if the hero has had the power up for 10 seconds
-            CHECK = false;
+            multiActive = false;
             leftWeapon.SetActive(false);//guns become unactive
             rightWeapon.SetActive(false);
-            TIME = 0;
+            timeIncrement = 0;
         }
     }
 
@@ -139,14 +142,15 @@ public class Hero : MonoBehaviour
     {
         PowerUp pu = go.GetComponent<PowerUp>();//getting the power up component
         _source.PlayOneShot(powerUpSound, 1.5f);
-        PICK = Random.Range(0, 3);
-        switch (PICK)
+        pick = Random.Range(0, 3);
+        switch (pick)
         {
-            case 0:// the last pick was a bomb or this is the first power up
-                Bomb.CHECK = false;//there is no bomb
+            case 0://When pickup is a multiweapon
+                Bomb.CHECK = false;//Incase last pickup was a bomb
                 leftWeapon.SetActive(true);//making the other guns active
                 rightWeapon.SetActive(true);
-                CHECK = true;
+                multiActive = true; //Check used 
+                timeIncrement = 0;
                 Weapon.GUN = "Multi";
                 TextManager.UpdateGun();//update the weapon text
                 _powerUpTime = Time.time;//the current time is when the power up was absorbed
@@ -155,7 +159,7 @@ public class Hero : MonoBehaviour
 
             case 1://bomb power up case
                 Bomb.CHECK = true;//bomb will become active
-                CHECK = false;
+                multiActive = false;
                 break;
 
             case 2://shield power up case
@@ -164,7 +168,6 @@ public class Hero : MonoBehaviour
                 TextManager.UpdateText();
                 break;
         }
-        //TextManager.UpdatePickup();
         pu.Absorbedby(gameObject);//power up will be destroyed by this funciton
     }
     

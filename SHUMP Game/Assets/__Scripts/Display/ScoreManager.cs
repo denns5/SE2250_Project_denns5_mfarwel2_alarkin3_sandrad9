@@ -40,6 +40,7 @@ public class ScoreManager : MonoBehaviour
         _source = GetComponent<AudioSource>();//getting the audio source component
     }
 
+    //Update the game score method that can be called outside of this class
     public static void UpdateScore(int p)
     {
         try
@@ -51,6 +52,8 @@ public class ScoreManager : MonoBehaviour
             Debug.LogError("ScoreManager:UpdateScore() called while S=null.\n" + nre);
         }
     }
+
+    //Update the game score method that increments the score based on the value passed in as a parameter
     public void UpdateS(int p)
     {
         _score = _score + p;
@@ -60,6 +63,8 @@ public class ScoreManager : MonoBehaviour
             UpdateL();
         }
     }
+
+    //Update the level method that can be called outside of this class
     public static void UpdateLevel()
     {
         try
@@ -71,6 +76,8 @@ public class ScoreManager : MonoBehaviour
             Debug.LogError("ScoreManager:UpdateLevel() called while S=null.\n" + nre);
         }
     }
+
+    //Update the level method that increments the level
     public void UpdateL()
     {
         _level++;//increase level by 1

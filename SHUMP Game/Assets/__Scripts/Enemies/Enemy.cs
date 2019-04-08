@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         _bndCheck = GetComponent<BoundsCheck>();//when an enemy is instantiated, a BoundsCheck component is created and we can access variables from it
-        _source = GetComponent<AudioSource>();
+        _source = GetComponent<AudioSource>(); //Set up audiosource for sound when enemies die
     }
 
     public Vector3 pos
@@ -44,8 +44,8 @@ public class Enemy : MonoBehaviour
 
     }
 
-
-    public virtual void OnCollisionEnter(Collision coll)
+    //Don't know if we need anymore
+    public virtual void OnCollisionEnter(Collision coll) 
     {
         GameObject otherGO = coll.gameObject;
         if (otherGO.tag == "RocketHero")

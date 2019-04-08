@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Boss_Weapon : MonoBehaviour
+public class Boss_Weapon : MonoBehaviour //Class will be attached to the weapon of the boss
 {
     [SerializeField]//creating a serialize field
     GameObject [] bullet;
@@ -26,7 +26,8 @@ public class Boss_Weapon : MonoBehaviour
         {
             foreach (GameObject obj in bullet)
             {
-                Instantiate(obj, transform.position, Quaternion.identity);
+                Instantiate(obj, transform.position, Quaternion.identity); //Instantiate the bullets being fired by the boss
+             
             }//instantiate the bullet
             nextFire = Time.time + fireRate;//setting the time of next fire to 2 seconds later
         }

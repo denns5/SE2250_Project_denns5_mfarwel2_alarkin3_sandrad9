@@ -41,12 +41,11 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    //Set weapon type
     public void SetType(WeaponType eType)
     {
         _type = eType;
         WeaponDefinition def = Main.GetWeaponDefinition(_type);
-        // error -- fixed Mar 19, 2019
         _rend.material.color = def.projectileColor;
     }
 

@@ -43,7 +43,7 @@ public class Weapon : MonoBehaviour
     public GameObject collar;
     public float lastShotTime;
     private Renderer _collarRend;
-    public static string GUN = "Simple";
+    public static string GUN = "Simple"; //Used to track the current active gun 
 
     // Start is called before the first frame update
     void Start()
@@ -138,8 +138,8 @@ public class Weapon : MonoBehaviour
             case WeaponType.multi:
                 break;
 
-            case WeaponType.bomb:
-                p.rigid.velocity = vel;//one bomb is created when shot
+            case WeaponType.bomb: //one bomb is created when shot
+                p.rigid.velocity = vel;
                 _source.PlayOneShot(projectile1, 0.4f);
                 break;
 
@@ -179,7 +179,7 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) || Hero.CHECK == false && gun == 1 && Bomb.CHECK == false && type != WeaponType.bomb)
+        if (Input.GetKeyDown(KeyCode.Z) || Hero.S.multiActive == false && gun == 1 && Bomb.CHECK == false && type != WeaponType.bomb)
         {//if the player selects 'z' and there is no power up and no bomb then they have selected blaster
             SetType(WeaponType.simple);
             gun = 0;
@@ -187,7 +187,7 @@ public class Weapon : MonoBehaviour
             TextManager.UpdateGun();//update the weapon type text
         }
 
-        if (Hero.CHECK == true && gun == 0)//if the hero has the blaster power up set type to blaster
+        if (Hero.S.multiActive == true && gun == 0)//if the hero has the blaster power up set type to blaster
         {
             SetType(WeaponType.blaster);
             GUN = "Multi";
@@ -195,7 +195,7 @@ public class Weapon : MonoBehaviour
             gun = 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && Hero.CHECK != true && ScoreManager.LEVEL >= 2)
+        if (Input.GetKeyDown(KeyCode.X) && Hero.S.multiActive != true && ScoreManager.LEVEL >= 2)
         {//once the player has reached level 2 they can access the rocket by selecting 'X'
             SetType(WeaponType.rocket);
             GUN = "Rocket";
@@ -208,7 +208,7 @@ public class Weapon : MonoBehaviour
             SetType(WeaponType.bomb);
             GUN = "Bomb";
             TextManager.UpdateGun();//update weapon text
-            Hero.CHECK = false;//after they shoot they no longer have the bomb
+            Hero.S.multiActive = false;//after they shoot they no longer have the bomb
         }
         if (Bomb.CHECK == false && type == WeaponType.bomb)//if they no longer have the bomb and are still set on bomb, change to simple weapon type
         {

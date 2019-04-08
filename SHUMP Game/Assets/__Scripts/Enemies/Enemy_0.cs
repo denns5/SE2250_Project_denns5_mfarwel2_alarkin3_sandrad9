@@ -21,23 +21,18 @@ public class Enemy_0 : Enemy
         pos = tempPos;
     }
 
-    int getPoints()
-    {
-        return _points;
-    }
-
     public override void OnCollisionEnter(Collision coll)
     {
         GameObject otherGO = coll.gameObject;
-        if (otherGO.tag == "ProjectileHero")
+        if (otherGO.tag == "ProjectileHero") 
         {
-            if (otherGO == _lastTriggeredGo)
+            if (otherGO == _lastTriggeredGo) //Makes sure there is not multiple collision from same game object
             {
                 return;
             }
             _lastTriggeredGo = otherGO;
             Destroy(otherGO);
-            if (_health <= 1)
+            if (_health <= 1) //If enemy health below 1 kill enemy
             {
                 ScoreManager.UpdateScore(_points);//update the score
                 TextManager.UpdateText();//update the text
@@ -45,7 +40,7 @@ public class Enemy_0 : Enemy
                 print("Enemy 0 killed");
                 _health = 0;
                 Destroy(gameObject);//destroying the enemy
-                Instantiate(explosion, transform.position, transform.rotation);
+                Instantiate(explosion, transform.position, transform.rotation); //Explosion effect
             }
             else
             {//if the enemy has more health...

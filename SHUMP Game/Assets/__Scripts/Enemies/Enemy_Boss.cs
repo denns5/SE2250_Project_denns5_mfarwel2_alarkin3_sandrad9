@@ -6,7 +6,7 @@ public class Enemy_Boss : Enemy
 {
     public AudioClip killSound;
     public GameObject explosion;
-    private int _health = 10;
+    private int _health = 10; 
     private int _points = 100;
     private float _delayBetweenHits = 0;
     private AudioSource _src;
@@ -28,11 +28,6 @@ public class Enemy_Boss : Enemy
         Vector3 tempPos = transform.position;
         tempPos.y -= (1f + ScoreManager.LEVEL) * Time.deltaTime;//will cause the enemy to move down
         pos = tempPos;
-    }
-
-    int getPoints()
-    {
-        return _points;
     }
 
     public override void OnCollisionEnter(Collision coll)

@@ -11,7 +11,6 @@ public class PowerUp : MonoBehaviour
     public float fadeTime = 4f;
 
     [Header("Set Dynamically")]
-    public string type;
     public GameObject cube;
     public TextMesh letter;
     public Vector3 rotPerSecond;
@@ -20,8 +19,6 @@ public class PowerUp : MonoBehaviour
     private Rigidbody _rigidBody;//creating private variables for components
     private BoundsCheck _bndCheck;
     private Renderer _cubeRend;
-
-    private string[] _types = { "Multi", "Bomb" };//decalring power up types
 
     // Start is called before the first frame update
     void Awake()
@@ -47,10 +44,9 @@ public class PowerUp : MonoBehaviour
         rotPerSecond = new Vector3(Random.Range(rotMinMax.x, rotMinMax.y), 
             Random.Range(rotMinMax.x, rotMinMax.y), 
             Random.Range(rotMinMax.x, rotMinMax.y));
-        int ndx = Random.Range(0,1); 
-        type = _types[ndx];
+       
         birthTime = Time.time;
-        Debug.Log(type);
+       
     }
 
     // Update is called once per frame
@@ -84,16 +80,10 @@ public class PowerUp : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    public string GetType()
-    {
-        return type;
-    }
 
     public void Absorbedby(GameObject target)
     {
         //called by the hero class when an object is collected
-       // Debug.Log("PowerUp: " + type);
         Destroy(gameObject);
     }
 }

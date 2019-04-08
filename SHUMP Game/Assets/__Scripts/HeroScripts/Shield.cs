@@ -16,10 +16,10 @@ public class Shield : MonoBehaviour
         mat = GetComponent<Renderer>().material;
     }
 
-    // Update is called once per frame
+    // Update is called once per frame to update the shield level
     void Update()
     {
-        int currLevel = Mathf.FloorToInt(Hero.S.shieldLevel);
+        int currLevel = Mathf.FloorToInt(Hero.S.shield);
         if (levelShown != currLevel)
         {
             levelShown = currLevel;//making the shield have tghe correct look in accordance to its current level

@@ -30,10 +30,10 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
 
     }
 
-    int getPoints()
+  /*  int getPoints()
     {
         return _points;
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -61,7 +61,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
         GameObject otherGO = coll.gameObject;
         if (otherGO.tag == "ProjectileHero")
         {
-            if (otherGO == _lastTriggeredGo)
+            if (otherGO == _lastTriggeredGo) //Avoids same projectile triggering multiple times
             {
                 return;
             }

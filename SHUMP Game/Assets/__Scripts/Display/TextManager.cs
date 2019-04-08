@@ -7,7 +7,7 @@ public class TextManager : MonoBehaviour
 {
     static private TextManager T;
     public float levelStartDelay = 2f, pickupStartDelay = 1f;
-    public Text gameOverGT, highScoreGT, scoreGT, level, fixedLevel, gunGT, shield, pickup;
+    public Text gameOverGT, highScoreGT, scoreGT, level, fixedLevel, gunGT, shield;
 
     void Awake()
     {
@@ -21,6 +21,7 @@ public class TextManager : MonoBehaviour
         }
     }
 
+    //Set up the ui texts after awake to mitigate null reference errors
     private void Start()
     {
        SetUpUITexts();
@@ -42,26 +43,25 @@ public class TextManager : MonoBehaviour
         go = GameObject.Find("ScoreCounter");
         scoreGT = go.GetComponent<Text>();
 
+        //Set up Shield UI Text
         go = GameObject.Find("Shield");
         shield = go.GetComponent<Text>();
 
+        //Set up WeaponTracker UI Text
         go = GameObject.Find("WeaponTracker");
         gunGT = go.GetComponent<Text>();
         UpdateGun();
 
+        //Set up HighScore UI Text
         go = GameObject.Find("HighScore");
         highScoreGT = go.GetComponent<Text>();
-
-        go = GameObject.Find("PickupDisplay");
-        level = go.GetComponent<Text>();
-       // UpdatePickup();
 
         //Set up Level UI Text
         go = GameObject.Find("Level");
         level = go.GetComponent<Text>();
         UpdateLevel();
 
-        //Set up fixed Level UI Text
+        //Set up FixedLevel UI Text
         go = GameObject.Find("FixedLevel");
         fixedLevel = go.GetComponent<Text>();
         UpdateT();
@@ -100,11 +100,11 @@ public class TextManager : MonoBehaviour
         }
     }
 
-    public void UpdateT()
+    public void UpdateT() //Called consistently to handle updates to each value the text is tracking
     {
         scoreGT.text = "Your score: " + ScoreManager.SCORE;//shows players current score
         fixedLevel.text = "Level: " + ScoreManager.LEVEL;//shows players current level
-        shield.text = "Shield: " + Hero.SHIELD.ToString();//shows players current shield level
+        shield.text = "Shield: " + Hero.S.shield.ToString();//shows players current shield level
     }
 
     public static void UpdateGun()
@@ -122,10 +122,10 @@ public class TextManager : MonoBehaviour
     public void UpdateG()
     {
         gunGT.text = "Current gun: " + Weapon.GUN;
-        if (Hero.CHECK == true)
+        if (Hero.S.multiActive == true)
         { 
         int i = 10;
-            i = i - Hero.TIME;
+            i = i - Hero.S.timeIncrement;
             gunGT.text = "Current gun: " + Weapon.GUN + ", " + i.ToString() + " seconds left";//show current weapon type and time left
         }
     }
@@ -159,53 +159,18 @@ public class TextManager : MonoBehaviour
     public void UpdateL()
     {
         level.text = "Level: " + ScoreManager.LEVEL;//level displayed is the current level
+        if (ScoreManager.LEVEL == 2) //Informs user of new weapon unlock
+        {
+            level.text += "\nRockets Unlocked";
+        }
         level.gameObject.SetActive(true);
         Invoke("HideLevelText", levelStartDelay);//will only be displayed for a short period of time
     }
 
+    //Used to ensure level text is not active for the whole game
     private void HideLevelText()
     {
         level.gameObject.SetActive(false);//taking away the text after it has displayed for 2 seconds
-    }
-
-    public static void UpdatePickup()
-    {
-        try
-        { // try-catch stops an error from breaking your program 
-            T.UpdateP();
-        }
-        catch (System.NullReferenceException nre)
-        {
-            Debug.LogError("TextManager:UpdatePickup() called while T=null.\n" + nre);
-        }
-    }
-
-    public void UpdateP()
-    {
-        pickup.text = "Pickup: ";
-        /*if (Hero.SHIELD == 4 && Bomb.CHECK != true && Hero.CHECK != true)
-        {
-            pickup.text += "Shield";
-        }
-        else if (Hero.CHECK == true)
-        {
-            pickup.text += "Multi";
-        }
-
-        else 
-        {
-            pickup.text += "Bomb";
-        }*/
-
-
-        //level displayed is the current level
-        pickup.gameObject.SetActive(true);
-        Invoke("HidePickupText", pickupStartDelay);//will only be displayed for a short period of time
-    }
-
-    private void HidePickupText()
-    {
-       pickup.gameObject.SetActive(false);//taking away the text after it has displayed for 1 seconds
     }
 
 }
