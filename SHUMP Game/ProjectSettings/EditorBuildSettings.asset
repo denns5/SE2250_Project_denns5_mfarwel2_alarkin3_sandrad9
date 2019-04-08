@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 57871fa7b5bb84178ace4096fc4bd22e
+  - enabled: 1
+    path: Assets/Scenes/SHUMP Game.unity
+    guid: 880f7af550b5d9a4a876f7bbbc49ddec
   m_configObjects: {}
