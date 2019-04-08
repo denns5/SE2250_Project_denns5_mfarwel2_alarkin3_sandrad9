@@ -21,11 +21,11 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
         int r = Random.Range(0, 2);
         if (r == 0)
         {
-            _randomSpeed = -(speed + ScoreManager.LEVEL) ;
+            _randomSpeed = -(speed) ;
         }
         else
         {
-            _randomSpeed = (speed + ScoreManager.LEVEL);
+            _randomSpeed = (speed);
         }
 
     }

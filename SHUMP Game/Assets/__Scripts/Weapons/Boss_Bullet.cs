@@ -9,6 +9,7 @@ public class Boss_Bullet : MonoBehaviour
     Rigidbody rigidBody;//rigid body variable
     void Start()
     {
+        moveSpeed += ScoreManager.LEVEL;
         Vector3 vel = Vector3.down * moveSpeed;//bullets move down the screen
         rigidBody = GetComponent<Rigidbody>();//get the rigid body component
         rigidBody.transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);//setting the angle of the bullet

@@ -53,7 +53,7 @@ public class ScoreManager : MonoBehaviour
     {
         _score = _score + p;
 
-        if (_score > _level*200)//will only update level when the score is 200 times the level
+        if (_score > _level*200+Main.S.enemySpawnPerSecond*100)//will only update level when the score is 200 times the level
         {
             UpdateL();
         }
@@ -73,6 +73,7 @@ public class ScoreManager : MonoBehaviour
     {
         _level++;//increase level by 1
         TextManager.UpdateLevel();//update the text
+        Main.S.enemySpawnPerSecond += 0.2f;//increasing the spawn rate every level;
     }
 
     public static void GameOverScore()

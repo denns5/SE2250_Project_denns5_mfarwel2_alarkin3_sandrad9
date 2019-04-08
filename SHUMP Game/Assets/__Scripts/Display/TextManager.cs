@@ -49,6 +49,9 @@ public class TextManager : MonoBehaviour
         gunGT = go.GetComponent<Text>();
         UpdateGun();
 
+        go = GameObject.Find("HighScore");
+        highScoreGT = go.GetComponent<Text>();
+
         go = GameObject.Find("PickupDisplay");
         level = go.GetComponent<Text>();
        // UpdatePickup();
@@ -58,7 +61,7 @@ public class TextManager : MonoBehaviour
         level = go.GetComponent<Text>();
         UpdateLevel();
 
-        //Set up Level UI Text
+        //Set up fixed Level UI Text
         go = GameObject.Find("FixedLevel");
         fixedLevel = go.GetComponent<Text>();
         UpdateT();
@@ -79,9 +82,8 @@ public class TextManager : MonoBehaviour
 
     void GameOver()//called when the hero dies
     {
-        gameOverGT.text = "Game Over!\nYou got to Level: " + ScoreManager.LEVEL;//displaying what level the player reached
-        scoreGT.gameObject.SetActive(true);//turning off the score counter text
-        UpdateHighScore();
+        UpdateHighScore();//updating the high score
+        gameOverGT.text = "Game Over!\nYou got to Level: " + ScoreManager.LEVEL+"\nHighScore: "+ScoreManager.HIGH_SCORE;//displaying what level the player reached
         highScoreGT.gameObject.SetActive(true);//show the highscore 
         gameOverGT.gameObject.SetActive(true);//show gameover text
     }
@@ -102,8 +104,7 @@ public class TextManager : MonoBehaviour
     {
         scoreGT.text = "Your score: " + ScoreManager.SCORE;//shows players current score
         fixedLevel.text = "Level: " + ScoreManager.LEVEL;//shows players current level
-        shield.text = "Shield: " + Hero.SHIELD.ToString();
-
+        shield.text = "Shield: " + Hero.SHIELD.ToString();//shows players current shield level
     }
 
     public static void UpdateGun()
@@ -125,8 +126,8 @@ public class TextManager : MonoBehaviour
         { 
         int i = 10;
             i = i - Hero.TIME;
-            gunGT.text = "Current gun: " + Weapon.GUN + ", " + i.ToString() + " seconds left";//show current weapon type
-        }//show current weapon type
+            gunGT.text = "Current gun: " + Weapon.GUN + ", " + i.ToString() + " seconds left";//show current weapon type and time left
+        }
     }
 
 
@@ -136,9 +137,9 @@ public class TextManager : MonoBehaviour
         GameObject go = GameObject.Find("HighScore");
         if (go != null)
         {
-            highScoreGT = go.GetComponent<Text>();
-            highScoreGT.gameObject.SetActive(false);
+            highScoreGT = go.GetComponent<Text>();  
         }
+        highScoreGT.gameObject.SetActive(true);//setting this text toe active
         string hScore = "High Score: " + ScoreManager.HIGH_SCORE;
         go.GetComponent<Text>().text = hScore;
     }

@@ -39,13 +39,12 @@ public class Enemy_Boss : Enemy
     {
         GameObject otherGO = coll.gameObject;
         if (otherGO.tag == "ProjectileHero")//if hit by a hero projectile...
-        {
-            print("Collision with boss");
-            _src.PlayOneShot(killSound, 1f);//play kill sound
+        {   
             Destroy(otherGO);//destroy the projetile
             if (Time.time - _delayBetweenHits < 0.1f) return;
             else if (_health <= 1)
             {
+                _src.PlayOneShot(killSound, 1f);//play kill sound
                 ScoreManager.UpdateScore(_points);//update score and text
                 TextManager.UpdateText();
                 Main.S.ShipDestoryed(this, 0);//telling main that ship is destroyed
