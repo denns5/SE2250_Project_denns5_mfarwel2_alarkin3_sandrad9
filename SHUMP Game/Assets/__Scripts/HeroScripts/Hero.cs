@@ -16,7 +16,7 @@ public class Hero : MonoBehaviour
     public AudioClip powerUpSound;
     public AudioClip heroDamageSound;
     public GameObject leftWeapon, rightWeapon;
-    private float _shieldLevel = 4;//setting initial shield level
+    public static float SHIELD = 4;//setting initial shield level
     private AudioSource _source;
     private GameObject _lastTriggerGo = null;
     private float _powerUpTime = 0;
@@ -94,9 +94,11 @@ public class Hero : MonoBehaviour
         if (go.tag == "Enemy" || go.tag == "ProjectileEnemy")//if hero is hit by either a ship or projectile...
         {
             _source.PlayOneShot(heroDamageSound, 1f);
-            _shieldLevel--;//decreasing the shield level when the ship is hit by an enemy
+            SHIELD--;//decreasing the shield level when the ship is hit by an enemy
             Destroy(go);//destroying the enemy when hit
-            if (_shieldLevel < 0)
+            if (SHIELD > -1)
+                TextManager.UpdateText();
+            if (SHIELD < 0)
             {
                 Destroy(gameObject);//destroying the hero ship
                 Main.S.DelayedRestart(gameRestartDelay);//restarting the game
@@ -106,8 +108,8 @@ public class Hero : MonoBehaviour
         {
             print("touched boss");
             _source.PlayOneShot(heroDamageSound, 1f);
-            _shieldLevel--;//decreasing the shield level when the ship is hit by an enemy
-            if (_shieldLevel < 0)
+            SHIELD--;//decreasing the shield level when the ship is hit by an enemy
+            if (SHIELD < 0)
             {
                 Destroy(gameObject);//destroying the hero ship
                 Main.S.DelayedRestart(gameRestartDelay);//restarting the game
@@ -150,7 +152,7 @@ public class Hero : MonoBehaviour
                 break;
 
             case 2://shield power up case
-                _shieldLevel = 4;//setting shield back to maximum level
+                SHIELD = 4;//setting shield back to maximum level
                 break;
         }
         pu.Absorbedby(gameObject);//power up will be destroyed by this funciton
@@ -161,7 +163,7 @@ public class Hero : MonoBehaviour
     {
         get
         {
-            return _shieldLevel;
+            return SHIELD;
         }
         set
         {

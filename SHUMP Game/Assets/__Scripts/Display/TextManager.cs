@@ -7,7 +7,7 @@ public class TextManager : MonoBehaviour
 {
     static private TextManager T;
     public float levelStartDelay = 2f;
-    public Text gameOverGT, highScoreGT, scoreGT, level, fixedLevel, gunGT;
+    public Text gameOverGT, highScoreGT, scoreGT, level, fixedLevel, gunGT, shield;
 
     void Awake()
     {
@@ -41,6 +41,9 @@ public class TextManager : MonoBehaviour
         //Set up ScoreCounter UI Text
         go = GameObject.Find("ScoreCounter");
         scoreGT = go.GetComponent<Text>();
+
+        go = GameObject.Find("Shield");
+        shield = go.GetComponent<Text>();
 
         go = GameObject.Find("WeaponTracker");
         gunGT = go.GetComponent<Text>();
@@ -96,6 +99,7 @@ public class TextManager : MonoBehaviour
     {
         scoreGT.text = "Your score: " + ScoreManager.SCORE;//shows players current score
         fixedLevel.text = "Level: " + ScoreManager.LEVEL;//shows players current level
+        shield.text = "Shield: " + Hero.SHIELD.ToString();
 
     }
 
