@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
@@ -15,8 +16,11 @@ public class Main : MonoBehaviour
     public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.bomb, WeaponType.multi, WeaponType.shield };//Make an array of possible power ups
     public AudioClip killSound;
     public AudioClip gameOverSound;
+    public Button restartButton;//buttons to control end of game functions
+    public Button menuButton;
+
     private BoundsCheck _bndCheck;
-    private AudioSource _source;
+    private AudioSource _source;//used to play audio clips
     private int _bossSpawn = 2;
     private float _powerupDelay = 0;
 
@@ -31,15 +35,17 @@ public class Main : MonoBehaviour
         {
             WEAP_DICT[def.type] = def;
         }
-        _source = GetComponent<AudioSource>();
-       // _source.PlayOneShot(music, 0.6f);//playing the background music
+        _source = GetComponent<AudioSource>();//getting the AudioSource component to play audio clips
+        //setting these buttons to false as they shouly only be active at the end of the game
+        restartButton.gameObject.SetActive(false);
+        menuButton.gameObject.SetActive(false);
     }
     public void SpawnEnemy()
     {
       
-        int ndx = Random.Range(0, prefabEnemies.Length-1);
+        int ndx = Random.Range(0, prefabEnemies.Length-1);//getting a random index number based on the length of the array of enemies
         if (ScoreManager.LEVEL == _bossSpawn)
-        {
+        {//at the start of every level(with the exception of the first), a boss will spawn
             ndx = 3;
             _bossSpawn += 1;
         }
@@ -62,14 +68,11 @@ public class Main : MonoBehaviour
 
     public void DelayedRestart(float delay)
     {
-        _source.PlayOneShot(gameOverSound, 1.5f);
+        _source.PlayOneShot(gameOverSound, 1.5f);//playing the gameover sound
         ScoreManager.GameOverScore();//displaying proper gameover text
         TextManager.GameOverText();
-        Invoke("Restart", delay);//invoke the restart method after delay seconds
-    }
-    public void Restart()
-    {
-        SceneManager.LoadScene("SHUMP Game");//reloading the scene
+        restartButton.gameObject.SetActive(true);//setting these buttons to true at the end of the game
+        menuButton.gameObject.SetActive(true);
     }
 
     static public WeaponDefinition GetWeaponDefinition(WeaponType weaponType)
