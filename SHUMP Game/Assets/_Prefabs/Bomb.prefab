@@ -109,7 +109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 3176013250079285684}
-  bombSound: {fileID: 8300000, guid: 2350dbe27d54c4087af6d5923360c5d7, type: 3}
+  bombHit: {fileID: 8300000, guid: c2eaad9344d101944bc22dc13dc9d1c3, type: 3}
+  explosion: {fileID: 159918, guid: 07262d186cba64e22865f8b604f544d7, type: 3}
 --- !u!114 &8820764075346806742
 MonoBehaviour:
   m_ObjectHideFlags: 0

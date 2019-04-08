@@ -140,6 +140,7 @@ public class Weapon : MonoBehaviour
 
             case WeaponType.bomb:
                 p.rigid.velocity = vel;//one bomb is created when shot
+                _source.PlayOneShot(projectile1, 0.4f);
                 break;
 
             case WeaponType.none:

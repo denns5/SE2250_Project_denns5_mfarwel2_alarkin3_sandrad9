@@ -429,7 +429,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   powerUpDropChance: 0.1
+  rocketHit: {fileID: 0}
+  bombHit: {fileID: 0}
   killSound: {fileID: 8300000, guid: 97fe8f641aad3954591b8f28493f12bc, type: 3}
+  explosion: {fileID: 159918, guid: 07262d186cba64e22865f8b604f544d7, type: 3}
 --- !u!54 &4620182893388030346
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -460,6 +463,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   powerUpDropChance: 0.1
+  rocketHit: {fileID: 0}
+  bombHit: {fileID: 0}
 --- !u!114 &4817982289962163684
 MonoBehaviour:
   m_ObjectHideFlags: 0

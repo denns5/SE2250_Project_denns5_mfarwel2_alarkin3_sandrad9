@@ -16,14 +16,14 @@ public class Hero : MonoBehaviour
     public AudioClip gameOverSound;
     public AudioClip shieldPowerUp;
     public GameObject leftWeapon, rightWeapon;
-    public static float SHIELD = 4;//setting initial shield level
+    public float shield = 4;//setting initial shield level
     private AudioSource _source;
     private GameObject _lastTriggerGo = null;
     private float _powerUpTime = 0;
     public static int TIME = 0;
     public static bool CHECK = false;
     public static int PICK = 0;
-    public GameObject explosion;
+    public GameObject explosionEnemy, explosionHero;
 
     public delegate void WeaponFireDelegate();
     public WeaponFireDelegate fireDelegate;
@@ -39,7 +39,7 @@ public class Hero : MonoBehaviour
             Debug.LogError("Hero.Awake() - Attempted to assign second hero");
         }
         _source = GetComponent<AudioSource>();//assigning the audio source component
-        SHIELD = 4;
+        shield = 4;
     }
 
     private void Start()
@@ -94,18 +94,19 @@ public class Hero : MonoBehaviour
         if (go.tag == "Enemy" || go.tag == "ProjectileEnemy")//if hero is hit by either a ship or projectile...
         {
             _source.PlayOneShot(heroDamageSound, 2f);
-            SHIELD--;//decreasing the shield level when the ship is hit by an enemy
+            shield--;//decreasing the shield level when the ship is hit by an enemy
             Destroy(go);//destroying the enemy when hit
             if (go.tag == "Enemy"){
-                Instantiate(explosion, transform.position, transform.rotation);
+                Instantiate(explosionEnemy, go.transform.position, go.transform.rotation);
             }
         
-        if (SHIELD > -1)
+        if (shield > -1)
                 TextManager.UpdateText();
-            if (SHIELD < 0)
+            if (shield  < 0)
             {
                 //_source.PlayOneShot(gameOverSound, 2f);
                 Destroy(gameObject);//destroying the hero ship
+                Instantiate(explosionHero, transform.position, transform.rotation);
                 Main.S.DelayedRestart();//restarting the game
             }
         }
@@ -114,10 +115,11 @@ public class Hero : MonoBehaviour
         {
             print("touched boss");
             _source.PlayOneShot(heroDamageSound, 2f);
-            SHIELD--;//decreasing the shield level when the ship is hit by an enemy
-            if (SHIELD < 0)
+            shield--;//decreasing the shield level when the ship is hit by an enemy
+            if (shield < 0)
             {
                 //_source.PlayOneShot(gameOverSound, 2f);
+                Instantiate(explosionHero, transform.position, transform.rotation);
                 Destroy(gameObject);//destroying the hero ship
                 Main.S.DelayedRestart();//restarting the game
             }
@@ -157,26 +159,13 @@ public class Hero : MonoBehaviour
                 break;
 
             case 2://shield power up case
-                SHIELD = 4;//setting shield back to maximum level
+                shield = 4;//setting shield back to maximum level
                 _source.PlayOneShot(shieldPowerUp, 1.5f);
                 TextManager.UpdateText();
                 break;
         }
         //TextManager.UpdatePickup();
         pu.Absorbedby(gameObject);//power up will be destroyed by this funciton
-    }
-
-
-    public float shieldLevel//getter for _shield
-    {
-        get
-        {
-            return SHIELD;
-        }
-        set
-        {
-        //do not need to use a setter at this point
-        }
     }
     
 }

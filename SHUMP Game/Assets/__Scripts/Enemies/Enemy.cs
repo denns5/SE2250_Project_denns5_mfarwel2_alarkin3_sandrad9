@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public float speed = 10f;
     public float powerUpDropChance = 0.1f;
     public AudioClip rocketHit;
-    public AudioClip bombHit;
+   
 
     private AudioSource _source;
     private BoundsCheck _bndCheck;
@@ -51,10 +51,6 @@ public class Enemy : MonoBehaviour
         if (otherGO.tag == "RocketHero")
         {
             _source.PlayOneShot(rocketHit, 1f);
-        }
-        if (otherGO.tag == "Bomb")
-        {
-            _source.PlayOneShot(bombHit, 1f);
         }
     }
 }

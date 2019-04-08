@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Enemy_Boss : Enemy
 {
     public AudioClip killSound;
-
+    public GameObject explosion;
     private int _health = 10;
     private int _points = 100;
     private float _delayBetweenHits = 0;
@@ -49,6 +49,7 @@ public class Enemy_Boss : Enemy
                 TextManager.UpdateText();
                 Main.S.ShipDestoryed(this, 0);//telling main that ship is destroyed
                 print("Enemy boss killed");
+                Instantiate(explosion, transform.position, transform.rotation);
                 Destroy(gameObject);//destroy the boss
             }
             else
