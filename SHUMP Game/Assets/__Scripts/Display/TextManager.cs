@@ -139,7 +139,7 @@ public class TextManager : MonoBehaviour
         {
             highScoreGT = go.GetComponent<Text>();  
         }
-        highScoreGT.gameObject.SetActive(true);//setting this text toe active
+        highScoreGT.gameObject.SetActive(true);//setting this text to active
         string hScore = "High Score: " + ScoreManager.HIGH_SCORE;
         go.GetComponent<Text>().text = hScore;
     }

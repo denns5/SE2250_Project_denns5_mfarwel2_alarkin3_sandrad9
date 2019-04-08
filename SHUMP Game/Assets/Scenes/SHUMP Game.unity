@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -649,10 +649,10 @@ MonoBehaviour:
     velocity: 50
   - type: 1
     letter: B
-    color: {r: 0.121568635, g: 0.27058825, b: 0.8196079, a: 1}
+    color: {r: 0.95686275, g: 0.27058825, b: 0.8196079, a: 1}
     projectilePrefab: {fileID: 3519399282143753321, guid: 907ded2321a867a44868a41931853b38,
       type: 3}
-    projectileColor: {r: 0.10588236, g: 0.29411766, b: 0.78823537, a: 1}
+    projectileColor: {r: 0.9568628, g: 0.27058825, b: 0.8196079, a: 1}
     delayBetweenShots: 0.4
     velocity: 50
   - type: 3

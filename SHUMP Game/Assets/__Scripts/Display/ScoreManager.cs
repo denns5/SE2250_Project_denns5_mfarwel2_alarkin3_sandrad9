@@ -58,7 +58,7 @@ public class ScoreManager : MonoBehaviour
     {
         _score = _score + p;
 
-        if (_score > _level*200+Main.S.enemySpawnPerSecond*100)//will only update level when the score is 200 times the level
+        if (_score > _level*200+Main.S.enemySpawnPerSecond*200)//will only update level when the score is 200 times the level
         {
             UpdateL();
         }
