@@ -80,7 +80,7 @@ public class TextManager : MonoBehaviour
     void GameOver()//called when the hero dies
     {
         gameOverGT.text = "Game Over!\nYou got to Level: " + ScoreManager.LEVEL;//displaying what level the player reached
-        scoreGT.gameObject.SetActive(false);//turning off the score counter text
+        scoreGT.gameObject.SetActive(true);//turning off the score counter text
         UpdateHighScore();
         highScoreGT.gameObject.SetActive(true);//show the highscore 
         gameOverGT.gameObject.SetActive(true);//show gameover text

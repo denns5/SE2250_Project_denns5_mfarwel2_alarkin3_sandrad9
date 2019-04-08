@@ -8,7 +8,6 @@ public class Hero : MonoBehaviour
     public float speed = 30;
     public float rollMult = -45;
     public float pitchMult = 30;
-    public float gameRestartDelay = 4f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
     public Weapon[] weapons;
@@ -65,7 +64,7 @@ public class Hero : MonoBehaviour
         if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
         {
             fireDelegate();//will make the ship fire
-            _source.PlayOneShot(shootSound,0.3f);//play the shooting sound
+            _source.PlayOneShot(shootSound,0.4f);//play the shooting sound
         }
 
         if (Time.time - _powerUpTime > TIME + 1) {
@@ -108,7 +107,7 @@ public class Hero : MonoBehaviour
             {
                 //_source.PlayOneShot(gameOverSound, 2f);
                 Destroy(gameObject);//destroying the hero ship
-                Main.S.DelayedRestart(gameRestartDelay);//restarting the game
+                Main.S.DelayedRestart();//restarting the game
             }
         }
 
@@ -121,7 +120,7 @@ public class Hero : MonoBehaviour
             {
                 //_source.PlayOneShot(gameOverSound, 2f);
                 Destroy(gameObject);//destroying the hero ship
-                Main.S.DelayedRestart(gameRestartDelay);//restarting the game
+                Main.S.DelayedRestart();//restarting the game
             }
         }
 

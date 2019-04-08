@@ -7,26 +7,17 @@ using UnityEngine.SceneManagement;
 public class RestartButton : MonoBehaviour
 {
 
-    public Button buttonComponent;
+    public Button buttonComponent;//used to make a listener
 
-    public float reloadDelay = 1f;// 1 sec delay between rounds
-
-    // Use this for initialization
+    // Start is called before the first frame update
     void Start()
     {
-        buttonComponent.onClick.AddListener(OnClick);//adding a listener when the button is made active
+        buttonComponent.onClick.AddListener(OnClick);//addding a listener when the button is set to active
     }
-
 
     public void OnClick()
     {
-        Invoke("ReloadLevel", reloadDelay);//when clicked, invoke the ReloadLevel method with a reload delay
-    }
-
-    void ReloadLevel()
-    {
-        // Reload the scene, resetting the game
-        SceneManager.LoadScene("SHUMP Game");
+        SceneManager.LoadScene("SHUMP Game");//when clicked, Unity will load the Menu scene
     }
 
 }

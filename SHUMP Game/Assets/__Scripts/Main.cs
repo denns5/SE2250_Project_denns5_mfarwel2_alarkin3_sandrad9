@@ -66,7 +66,7 @@ public class Main : MonoBehaviour
         Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);//calling the invoke again
     }
 
-    public void DelayedRestart(float delay)
+    public void DelayedRestart()
     {
         _source.PlayOneShot(gameOverSound, 1.5f);//playing the gameover sound
         ScoreManager.GameOverScore();//displaying proper gameover text
