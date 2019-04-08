@@ -14,7 +14,7 @@ public class Main : MonoBehaviour
     public GameObject prefabPowerUp;
     public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.bomb, WeaponType.multi, WeaponType.shield };//Make an array of possible power ups
     public AudioClip killSound;
-    public AudioClip music;
+  //  public AudioClip music;
     private BoundsCheck _bndCheck;
     private AudioSource _source;
     private int _bossSpawn = 2;
@@ -32,7 +32,7 @@ public class Main : MonoBehaviour
             WEAP_DICT[def.type] = def;
         }
         _source = GetComponent<AudioSource>();
-        _source.PlayOneShot(music, 0.6f);//playing the background music
+       // _source.PlayOneShot(music, 0.6f);//playing the background music
     }
     public void SpawnEnemy()
     {
