@@ -43,10 +43,11 @@ public class Bomb : MonoBehaviour //Class will be attached to the bomb prefab
         Instantiate(explosionBomb, transform.position, transform.rotation);
         if (_count > 0)//if at least one enemy is on screen
         {
-            ScoreManager.UpdateScore(50);//update the score and the text
+            ScoreManager.UpdateScore(_count*10);//update the score and the text
             TextManager.UpdateText();
         }
     }
+
 
 
 }
