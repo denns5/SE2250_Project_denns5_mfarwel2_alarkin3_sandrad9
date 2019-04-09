@@ -10,10 +10,4 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    //Used to quit the game on main menu
-    public void QuitGame()
-    {
-        Debug.Log("Quit");
-        Application.Quit();
-    }
 }
