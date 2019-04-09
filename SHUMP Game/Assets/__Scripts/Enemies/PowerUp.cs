@@ -81,7 +81,7 @@ public class PowerUp : MonoBehaviour
         }
     }
 
-    public void Absorbedby(GameObject target)
+    public void Absorbedby()
     {
         //called by the hero class when an object is collected
         Destroy(gameObject);

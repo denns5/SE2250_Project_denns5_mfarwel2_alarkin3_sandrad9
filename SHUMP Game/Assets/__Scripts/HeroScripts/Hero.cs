@@ -10,10 +10,8 @@ public class Hero : MonoBehaviour
     public float pitchMult = 30;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
-    public Weapon[] weapons;
     public AudioClip powerUpSound;
     public AudioClip heroDamageSound;
-    public AudioClip gameOverSound;
     public AudioClip shieldPowerUp;
     public GameObject leftWeapon, rightWeapon;
     public float shield = 4;//setting initial shield level
@@ -107,7 +105,6 @@ public class Hero : MonoBehaviour
                 TextManager.UpdateText();
             if (shield  < 0)
             {
-                //_source.PlayOneShot(gameOverSound, 2f);
                 Destroy(gameObject);//destroying the hero ship
                 Instantiate(explosionHero, transform.position, transform.rotation);
                 Main.S.DelayedRestart();//restarting the game
@@ -156,7 +153,6 @@ public class Hero : MonoBehaviour
                 _powerUpTime = Time.time;//the current time is when the power up was absorbed
                 break;
 
-
             case 1://bomb power up case
                 Bomb.CHECK = true;//bomb will become active
                 multiActive = false;
@@ -168,7 +164,7 @@ public class Hero : MonoBehaviour
                 TextManager.UpdateText();
                 break;
         }
-        pu.Absorbedby(gameObject);//power up will be destroyed by this funciton
+        pu.Absorbedby();//power up will be destroyed by this funciton
     }
     
 }

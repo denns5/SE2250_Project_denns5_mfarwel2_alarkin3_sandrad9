@@ -13,7 +13,6 @@ public class Main : MonoBehaviour
     public float enemyDefaultPadding = 1.5f;
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
-    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.bomb, WeaponType.multi, WeaponType.shield };//Make an array of possible power ups
     public AudioClip killSound;
     public AudioClip gameOverSound;
     public Button restartButton;//buttons to control end of game functions
@@ -55,7 +54,6 @@ public class Main : MonoBehaviour
         {
             enemyPadding = Mathf.Abs(go.GetComponent<BoundsCheck>().radius);
         }
-
         Vector3 pos = Vector3.zero;
         float xMin = -_bndCheck.camWidth + enemyPadding;//creating a max and min value for the possible starting points of the ships
         float xMax = _bndCheck.camWidth - enemyPadding;
@@ -85,25 +83,19 @@ public class Main : MonoBehaviour
         return (new WeaponDefinition());//else return a new definition
     }
 
-    public void ShipDestoryed(Enemy e, int type)
+    public void ShipDestroyed(Enemy e)
     {
-        //print("Ship Destroyed!" + type);
         _source.PlayOneShot(killSound, 0.5f);
         if (Random.value <= e.powerUpDropChance)
-        {//havent created this variable in Enemy yet
+        {
             // if powerup was just created, don't create a new one from same destroyed ship
             if (Time.time - _powerupDelay < 0.1f) return;
             else
             {
-                int index = Random.Range(0, powerUpFrequency.Length);//get a random index in the array to access a random power up
-                WeaponType puType = powerUpFrequency[index];
                 //spawn a power up
                 GameObject go = Instantiate(prefabPowerUp) as GameObject;
-                PowerUp pu = go.GetComponent<PowerUp>();
-
                 //set the power up to the position of the destroyed ship
                 go.transform.position = e.transform.position;
-
                 _powerupDelay = Time.time;//new delay is the current time
             }
         }

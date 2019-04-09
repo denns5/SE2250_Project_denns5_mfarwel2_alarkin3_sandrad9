@@ -8,7 +8,6 @@ public class Enemy_Boss : Enemy
     public GameObject explosion;
     private int _health = 10; 
     private int _points = 100;
-    private float _delayBetweenHits = 0;
     private AudioSource _src;
 
     // Start is called before the first frame update
@@ -36,13 +35,12 @@ public class Enemy_Boss : Enemy
         if (otherGO.tag == "ProjectileHero")//if hit by a hero projectile...
         {   
             Destroy(otherGO);//destroy the projetile
-            if (Time.time - _delayBetweenHits < 0.1f) return;
-            else if (_health <= 1)
+            if (_health <= 1)
             {
-                _src.PlayOneShot(killSound, 1f);//play kill sound
+                _src.PlayOneShot(killSound, 4f);//play kill sound
                 ScoreManager.UpdateScore(_points);//update score and text
                 TextManager.UpdateText();
-                Main.S.ShipDestoryed(this, 0);//telling main that ship is destroyed
+                Main.S.ShipDestroyed(this);//telling main that ship is destroyed
                 print("Enemy boss killed");
                 Instantiate(explosion, transform.position, transform.rotation);
                 Destroy(gameObject);//destroy the boss
@@ -51,7 +49,6 @@ public class Enemy_Boss : Enemy
             {
                 _health = _health - 1;//health is decreased by 1
                 print("Enemy boss hit " + _health);
-                _delayBetweenHits = Time.time;//resetting delay between hits
             }
         }
         else

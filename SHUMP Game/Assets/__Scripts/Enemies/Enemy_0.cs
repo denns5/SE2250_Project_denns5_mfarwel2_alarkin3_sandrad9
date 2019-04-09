@@ -36,9 +36,8 @@ public class Enemy_0 : Enemy
             {
                 ScoreManager.UpdateScore(_points);//update the score
                 TextManager.UpdateText();//update the text
-                Main.S.ShipDestoryed(this,0);//telling main that a ship was destroyed to possibly spawn a power up
+                Main.S.ShipDestroyed(this);//telling main that a ship was destroyed to possibly spawn a power up
                 print("Enemy 0 killed");
-                _health = 0;
                 Destroy(gameObject);//destroying the enemy
                 Instantiate(explosion, transform.position, transform.rotation); //Explosion effect
             }

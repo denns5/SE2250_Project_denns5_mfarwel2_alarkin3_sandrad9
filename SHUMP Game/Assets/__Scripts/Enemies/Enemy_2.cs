@@ -30,11 +30,6 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
 
     }
 
-  /*  int getPoints()
-    {
-        return _points;
-    }*/
-
     // Update is called once per frame
     void Update()
     {
@@ -71,8 +66,7 @@ public class Enemy_2 : Enemy//deriving this class from the Enemy SuperClass
             {
                 ScoreManager.UpdateScore(_points);//update the score
                 TextManager.UpdateText();//update the text
-                _health = 0;
-                Main.S.ShipDestoryed(this,2);//letting main know ship was destroyed to possibly spawn a power up
+                Main.S.ShipDestroyed(this);//letting main know ship was destroyed to possibly spawn a power up
                 print("Enemy 2 killed");
                 Destroy(gameObject);//destroy the ship
                 Instantiate(explosion, transform.position, transform.rotation);

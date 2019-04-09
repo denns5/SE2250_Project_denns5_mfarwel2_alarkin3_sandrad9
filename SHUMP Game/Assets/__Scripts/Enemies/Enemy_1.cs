@@ -46,7 +46,7 @@ public class Enemy_1 : Enemy
             TextManager.UpdateText();
             Destroy(otherGO);
             Destroy(gameObject);
-            Main.S.ShipDestoryed(this,1);
+            Main.S.ShipDestroyed(this);
             Instantiate(explosion, transform.position, transform.rotation);
             print("Enemy 1 killed");
         }

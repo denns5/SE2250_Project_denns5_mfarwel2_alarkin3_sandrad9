@@ -29,9 +29,7 @@ public class Projectile : MonoBehaviour
         _bndCheck = GetComponent<BoundsCheck>();//getting the correct components when awoken
         _rend = GetComponent<Renderer>();
         rigid = GetComponent<Rigidbody>();
-
     }
-
 
     // Update is called once per frame
     void Update()
@@ -41,6 +39,7 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     //Set weapon type
     public void SetType(WeaponType eType)
     {
@@ -48,6 +47,4 @@ public class Projectile : MonoBehaviour
         WeaponDefinition def = Main.GetWeaponDefinition(_type);
         _rend.material.color = def.projectileColor;
     }
-
-
 }

@@ -51,11 +51,7 @@ public class TextManager : MonoBehaviour
         go = GameObject.Find("WeaponTracker");
         gunGT = go.GetComponent<Text>();
         UpdateGun();
-        /*
-        //Set up HighScore UI Text
-        go = GameObject.Find("HighScore");
-        highScoreGT = go.GetComponent<Text>();
-        */
+
         //Set up Level UI Text
         go = GameObject.Find("Level");
         level = go.GetComponent<Text>();
@@ -82,9 +78,7 @@ public class TextManager : MonoBehaviour
 
     void GameOver()//called when the hero dies
     {
-        //UpdateHighScore();//updating the high score
         gameOverGT.text = "Game Over!\nYou got to Level: " + ScoreManager.LEVEL+"\nHighScore: "+ScoreManager.HIGH_SCORE;//displaying what level the player reached
-        //highScoreGT.gameObject.SetActive(true);//show the highscore 
         gameOverGT.gameObject.SetActive(true);//show gameover text
     }
 
@@ -126,24 +120,10 @@ public class TextManager : MonoBehaviour
         { 
         int i = 10;
             i = i - Hero.S.timeIncrement;
-            gunGT.text = "Current gun: " + Weapon.GUN + ", " + i.ToString() + " seconds left";//show current weapon type and time left
+            gunGT.text = "Current gun: " + Weapon.GUN + ", " + i.ToString() + " seconds";//show current weapon type and time left
         }
     }
 
-    /*
-    public void UpdateHighScore()
-    {
-        // Set up the HighScore UI Text
-        GameObject go = GameObject.Find("HighScore");
-        if (go != null)
-        {
-            highScoreGT = go.GetComponent<Text>();  
-        }
-        highScoreGT.gameObject.SetActive(true);//setting this text to active
-        string hScore = "High Score: " + ScoreManager.HIGH_SCORE;
-        go.GetComponent<Text>().text = hScore;
-    }
-    */
     public static void UpdateLevel()
     {
         try

@@ -55,8 +55,8 @@ public class Weapon : MonoBehaviour
 
         if (PROJECTILE_ANCHOR == null)
         {
-            GameObject go = new GameObject("_ProjectileAnchor");
-            PROJECTILE_ANCHOR = go.transform;
+            GameObject go = new GameObject("_ProjectileAnchor");//setting the projectile anchor
+            PROJECTILE_ANCHOR = go.transform;//setting to the position of the gameobject
         }
 
         GameObject rootGO = transform.root.gameObject;
@@ -201,7 +201,6 @@ public class Weapon : MonoBehaviour
             GUN = "Rocket";
             TextManager.UpdateGun();//update weapon text
         }
-
 
         if (Bomb.CHECK == true && type != WeaponType.bomb)//if the hero has the bomb power up and are not already set to bomb, set type to bomb
         {

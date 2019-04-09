@@ -5,14 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {   //setting speed
     public float speed = 10f;
-    public float powerUpDropChance = 0.1f;
+    public float powerUpDropChance = 0.1f;//this is set in inspector for each enemy
     public AudioClip rocketHit;
    
-
     private AudioSource _source;
     private BoundsCheck _bndCheck;
     
-
     void Awake()
     {
         _bndCheck = GetComponent<BoundsCheck>();//when an enemy is instantiated, a BoundsCheck component is created and we can access variables from it

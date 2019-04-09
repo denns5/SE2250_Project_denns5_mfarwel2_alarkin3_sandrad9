@@ -5,8 +5,9 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public AudioClip levelUpSound;
+
     static private ScoreManager S;
-    static public int HIGH_SCORE = 0;
+    static public int HIGH_SCORE = 0;//setting initial highscore to 0
     private int _score = 0;
     private int _level = 1;
     private AudioSource _source;
@@ -38,7 +39,6 @@ public class ScoreManager : MonoBehaviour
         //Reset score
         _score = 0;
         _source = GetComponent<AudioSource>();//getting the audio source component
-        HIGH_SCORE = 0;
     }
 
     //Update the game score method that can be called outside of this class
@@ -63,7 +63,7 @@ public class ScoreManager : MonoBehaviour
         {
             UpdateL();
         }
-        if (_score > HIGH_SCORE)
+        if (_score > HIGH_SCORE)//updating the highscore if the player passes it
         {
             HIGH_SCORE = _score;
         }
