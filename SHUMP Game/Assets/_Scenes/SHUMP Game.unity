@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -657,22 +657,21 @@ MonoBehaviour:
   - type: 3
     letter: R
     color: {r: 0.9529412, g: 0.14117648, b: 0.09411765, a: 1}
-    projectilePrefab: {fileID: 4115110084389985284, guid: 5fd5dc3e1add144808dc2a9d502d8769,
+    projectilePrefab: {fileID: 1606885508987902, guid: d4943850338a69742916d241ab98a327,
       type: 3}
-    projectileColor: {r: 0.9529412, g: 0.14027171, b: 0.09411765, a: 1}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
     delayBetweenShots: 0.4
     velocity: 50
   - type: 5
     letter: B
     color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
-    projectilePrefab: {fileID: 1234056846350956305, guid: 1c060622237fa43dfaf3066d5ed6adeb,
+    projectilePrefab: {fileID: 1923314958510664, guid: 9600bb0091acb80408dd622e882c5ce5,
       type: 3}
     projectileColor: {r: 0.43529412, g: 0.43529412, b: 0.43529412, a: 1}
     delayBetweenShots: 0.4
     velocity: 20
   prefabPowerUp: {fileID: 4954421266934592492, guid: 926b5324a546d9047aeae3b2db9f4ded,
     type: 3}
-  powerUpFrequency: 040000000500000006000000
   killSound: {fileID: 8300000, guid: c2eaad9344d101944bc22dc13dc9d1c3, type: 3}
   gameOverSound: {fileID: 8300000, guid: de5a19778282c6b439a032f518423afe, type: 3}
   restartButton: {fileID: 480217406}
@@ -1427,7 +1426,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2320,10 +2319,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3519399282143753321, guid: 907ded2321a867a44868a41931853b38,
     type: 3}
   projectileSpeed: 40
-  weapons: []
   powerUpSound: {fileID: 8300000, guid: f7e2390b2868c5845b78028114f77223, type: 3}
   heroDamageSound: {fileID: 8300000, guid: de5a19778282c6b439a032f518423afe, type: 3}
-  gameOverSound: {fileID: 8300000, guid: c375ea2aeb6f29d42ab481af13c62c30, type: 3}
   shieldPowerUp: {fileID: 8300000, guid: a2c53fc47a5b7274eac26ac79c37e696, type: 3}
   leftWeapon: {fileID: 1227307863}
   rightWeapon: {fileID: 1331283163}

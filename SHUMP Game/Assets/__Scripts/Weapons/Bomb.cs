@@ -37,4 +37,11 @@ public class Bomb : MonoBehaviour //Class will be attached to the bomb prefab
             }
         }
     }
+
+    //If bomb collides with gameobject before timer passes one it will still blow up all the other enemies.
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag != "Hero")
+            _timer = 2;
+    }
 }
