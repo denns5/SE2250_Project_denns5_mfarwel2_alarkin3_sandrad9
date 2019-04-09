@@ -85,7 +85,7 @@ public class Main : MonoBehaviour
 
     public void ShipDestroyed(Enemy e)
     {
-        _source.PlayOneShot(killSound, 0.5f);
+        _source.PlayOneShot(killSound, 1f);
         if (Random.value <= e.powerUpDropChance)
         {
             // if powerup was just created, don't create a new one from same destroyed ship

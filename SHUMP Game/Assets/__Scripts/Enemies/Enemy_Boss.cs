@@ -4,17 +4,14 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 public class Enemy_Boss : Enemy
 {
-    public AudioClip killSound;
     public GameObject explosion;
     private int _health = 10; 
     private int _points = 100;
-    private AudioSource _src;
 
     // Start is called before the first frame update
 
     void Awake()
     {
-        _src = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -37,7 +34,6 @@ public class Enemy_Boss : Enemy
             Destroy(otherGO);//destroy the projetile
             if (_health <= 1)
             {
-                _src.PlayOneShot(killSound, 4f);//play kill sound
                 ScoreManager.UpdateScore(_points);//update score and text
                 TextManager.UpdateText();
                 Main.S.ShipDestroyed(this);//telling main that ship is destroyed

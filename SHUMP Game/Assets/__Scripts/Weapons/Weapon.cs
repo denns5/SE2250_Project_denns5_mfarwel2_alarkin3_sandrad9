@@ -31,7 +31,6 @@ public class Weapon : MonoBehaviour
 {
     static public Transform PROJECTILE_ANCHOR;
     public AudioClip projectile1;
-    public AudioClip bombSound;
     public AudioClip rocketSound;
 
     private AudioSource _source;
