@@ -42,13 +42,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-    //Don't know if we need anymore
+    // virtual function for child classes when they are destroyed
     public virtual void OnCollisionEnter(Collision coll) 
     {
-        GameObject otherGO = coll.gameObject;
-        if (otherGO.tag == "RocketHero")
-        {
-            _source.PlayOneShot(rocketHit, 1f);
-        }
+     
     }
 }
